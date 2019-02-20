@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Random Music Session</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<script src="bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="bower_components/jQuery-SlotMachine/dist/jquery.slotmachine.min.js"></script>
+	<link rel="stylesheet" href="bower_components/jQuery-SlotMachine/dist/jquery.slotmachine.min.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="index.css" media="screen" />
+</head>
+<body>
+	<div id="lights_out"></div>
+	<div id="corner-logo"></div>
+	<div id="countdown-container">
+		<span id="countdown-remaining">Time Remaining:</span>
+		<span id="countdown"></span>
+	</div>
+    <div id="oblique-strategy"></div>
+	<p class="clear">
+		<label><input type="checkbox" id="time_constraint" /> Time Constraint</label>
+		<select class="normal" name="time-constraint">
+			<option selected>Random</option>
+			<option>15</option>
+			<option>30</option>
+			<option>45</option>
+			<option>60</option>
+			<option>120</option>
+			<option>180</option>
+		</select>
+		<label><input type="checkbox" id="use_constraint" /> Use Constraint</label>
+		<label><input type="checkbox" id="theme" /> Theme Idea</label>
+		<label><input type="checkbox" id="arrangment" /> Arrangement Idea</label>
+		<label><input type="checkbox" id="sounddesign" /> Sound Design Idea</label>
+		<label><input type="checkbox" id="mix" /> Mix Idea</label>
+        <button id="randomize">Randomize</button><button id="initialize">Initialize</button><span id="tempo"></span>
+	</p>
+	<div class="cell daw">
+        <span class="lock"></span>
+		<h1>DAW / Host / Program</h1>
+		<select name="daw">
+			<option>Ableton Live 10</option>
+			<option>Bitwig Studio</option>
+			<option>Studio One</option>
+			<option>Renoise</option>
+			<option>Waveform</option>
+			<option>FL Studio</option>
+			<option>Reason</option>
+		</select>
+	</div>
+	<div class="cell">
+        <span class="lock"></span>
+		<h1>Synth Instrument</h1>
+		<select name="synth-instrument">
+			<option data-hint="Click Randomize All from Pattern Menu Button">ABL2</option>
+			<option data-hint="Click next preset button">Autogun</option>
+			<option data-hint="Press [R] Button bottom right">Cataract</option>
+			<option data-hint="Use Settings [randomize] Section">Circle2</option>
+			<option data-hint="Press CTRL-R">Dagger</option>
+			<option data-hint="Click and Drag Dice in Modulation Matrix">Factory</option>
+			<option data-hint="Click Random button">Gladiator 2</option>
+			<option data-hint="Click Random buttons">GSinth2</option>
+			<option data-hint="Click Random buttons">HY-Mono</option>
+			<option data-hint="Click RANDOM button">Loom</option>
+			<option data-hint="Click dice button">MiniBit</option>
+			<option data-hint="Click dice buttons">Obscurium</option>
+			<option data-hint="Click dice button">Ogun</option>
+			<option data-hint="Click RANDOM button">PG-8X</option>
+			<option data-hint="Press [ ] Random Button bottom right">Polygon</option>
+			<option data-hint="Click Utils -> Randomize">Sunrizer</option>
+			<option data-hint="Click Dice Buttons">Super Audio Boy</option>
+			<option data-hint="Press SHIFT-R">Sylenth1</option>
+			<option data-hint="CTRL-click seed in GUI">Synplant</option>
+			<option data-hint="Click loopy arrows button">TheRiser</option>
+			<option data-hint="Click Randomize in Snapshot">Reaktor Monark</option>
+			<option data-hint="Click Randomize in Snapshot">Reaktor Razor</option>
+			<option data-hint="Click Randomize in Snapshot">Reaktor Skanner XT</option>
+			<option data-hint="Click Spider Logo">SM Black Widow</option>
+			<option data-hint="Click Random Button">SM System 1000M</option>
+			<option data-hint="Click Random Buttons in Panes">SM Sounds of the Trilogy</option>
+			<option data-hint="Click RAND! buttons on Parts">VacuumPro</option>
+			<option data-hint="Click Master(or section) Heading, then Randomize">VirtualCZ</option>
+		</select>
+	</div>
+	<div class="cell">
+        <span class="lock"></span>
+		<h1>Synth Effect</h1>
+		<select name="synth-effect">
+			<option data-hint="Click RND button in header">BowEcho</option>
+			<option data-hint="Click ? Arrow button in bottom">Cruelle</option>
+			<option data-hint="Click RANDOM button bottom right">Danaides</option>
+			<option data-hint="Click preset name, randomize parameters option">Dent2</option>
+			<option data-hint="Down arrow menu -> Randomize Patch">Echobode</option>
+			<option data-hint="Click !?! Buttons in each Module">Echomelt</option>
+			<option data-hint="Click CHAOS and RND Buttons">Effectrix</option>
+			<option data-hint="Click RND button bottom left">Eurydice CM</option>
+			<option data-hint="Click preset name, randomize parameters option">Fault</option>
+			<option data-hint="Click Random Button">Filter Jam</option>
+			<option data-hint="Click ? Button">Fracture XT</option>
+			<option data-hint="Click arrow buttons top left">FreeMod</option>
+			<option data-hint="Click Rand button for Scene">Glitch 2</option>
+			<option data-hint="Click Random Button">Hysteresis</option>
+			<option data-hint="Choose mode, click dice">HY-Delay2</option>
+			<option data-hint="Choose mode, click random, click R">HY-Delay3</option>
+			<option data-hint="Choose mode, click dice">HY-Filter2</option>
+			<option data-hint="Choose mode, click [R] buttons">HY-Filter3</option>
+			<option data-hint="Click preset name, randomize parameters option">Indent2</option>
+			<option data-hint="Click preset name, randomize parameters option">Instant Delay</option>
+			<option data-hint="Click Dice button in top middle">LitoteCM</option>
+			<option data-hint="Click Dice buttons">Looperator</option>
+			<option data-hint="Click Random button">Outer Space</option>
+			<option data-hint="Down arrow menu -> Randomize Instructions">Permut8</option>
+			<option data-hint="Click RND A/B buttons">R_MEM</option>
+			<option data-hint="Click ? Arrow button in bottom">Regressif</option>
+			<option data-hint="Click Random Button">Space Strip</option>
+			<option data-hint="Click preset name, randomize parameters option">SpecOps</option>
+			<option data-hint="Click Random in each Section">Tantra</option>
+			<option data-hint="Click Arrows Button">The Abuser</option>
+			<option data-hint="Click Random Button">The Orb</option>
+			<option data-hint="Click dice in header, twist knobs">Turnado</option>
+			<option data-hint="Click preset name, randomize parameters option">Sandman Pro</option>
+			<option data-hint="Click Random Button">Valve Filter VF-1</option>
+			<option data-hint="Click Random Button">Vinyl Strip</option>
+			<option data-hint="Click Random Button">Wave Box</option>
+			<option data-hint="Click Arrows Button">Xenoverb</option>
+		</select>
+	</div>
+	<div class="cell">
+        <span class="lock"></span>
+		<h1>Drum Instrument</h1>
+		<select name="drum-synth">
+			<option data-hint="Preset -> ROM -> Random Kit">Attack</option>
+			<option data-hint="Click Square Buttons">BitBox</option>
+			<option data-hint="Right click pad, randomize all">Drumatic 4</option>
+			<option data-hint="Click RANDOM buttons at bottom left">Ephemere</option>
+			<option data-hint="Click Random buttons">HY-Slicer</option>
+			<option data-hint="Down arrow menu -> Randomize All">uTonic</option>
+			<option data-hint="Click Dice buttons">Reaktor Polyplex</option>
+			<option data-hint="Turn Random and IUS on">Reaktor Patasonix</option>
+			<option data-hint="Use Randomize in Snapshot">Reaktor Retrobeat MK2</option>
+			<option data-hint="Use Randomize Buttons">AudioThing SR-88</option>
+			<option data-hint="Use Randomize Buttons">XDrum</option>
+			<option data-hint="Click Dice buttons">Drumvolution</option>
+		</select>
+	</div>
+	<div class="cell">
+        <span class="lock"></span>
+		<h1>Drum Effect</h1>
+		<select name="drum-effect">
+			<option data-hint="Click RND button in header">BowEcho</option>
+			<option data-hint="Click ? Arrow button in bottom">Cruelle</option>
+			<option data-hint="Click RANDOM button bottom right">Danaides</option>
+			<option data-hint="Click preset name, randomize parameters option">Dent2</option>
+			<option data-hint="Down arrow menu -> Randomize Patch">Echobode</option>
+			<option data-hint="Click !?! Buttons in each Module">Echomelt</option>
+			<option data-hint="Click CHAOS and RND Buttons">Effectrix</option>
+			<option data-hint="Click RND button bottom left">Eurydice CM</option>
+			<option data-hint="Click preset name, randomize parameters option">Fault</option>
+			<option data-hint="Click Random Button">Filter Jam</option>
+			<option data-hint="Click ? Button">Fracture XT</option>
+			<option data-hint="Click arrow buttons top left">FreeMod</option>
+			<option data-hint="Click Rand button for Scene">Glitch 2</option>
+			<option data-hint="Click Random Button">Hysteresis</option>
+			<option data-hint="Choose mode, click dice">HY-Delay2</option>
+			<option data-hint="Choose mode, click random, click R">HY-Delay3</option>
+			<option data-hint="Choose mode, click dice">HY-Filter2</option>
+			<option data-hint="Choose mode, click [R] buttons">HY-Filter3</option>
+			<option data-hint="Click preset name, randomize parameters option">Indent2</option>
+			<option data-hint="Click preset name, randomize parameters option">Instant Delay</option>
+			<option data-hint="Click Dice button in top middle">LitoteCM</option>
+			<option data-hint="Click Dice buttons">Looperator</option>
+			<option data-hint="Click Random button">Outer Space</option>
+			<option data-hint="Down arrow menu -> Randomize Instructions">Permut8</option>
+			<option data-hint="Click RND A/B buttons">R_MEM</option>
+			<option data-hint="Click ? Arrow button in bottom">Regressif</option>
+			<option data-hint="Click Random Button">Space Strip</option>
+			<option data-hint="Click preset name, randomize parameters option">SpecOps</option>
+			<option data-hint="Click Random in each Section">Tantra</option>
+			<option data-hint="Click Arrows Button">The Abuser</option>
+			<option data-hint="Click Random Button">The Orb</option>
+			<option data-hint="Click dice in header, twist knobs">Turnado</option>
+			<option data-hint="Click preset name, randomize parameters option">Sandman Pro</option>
+			<option data-hint="Click Random Button">Valve Filter VF-1</option>
+			<option data-hint="Click Random Button">Vinyl Strip</option>
+			<option data-hint="Click Random Button">Wave Box</option>
+			<option data-hint="Click Arrows Button">Xenoverb</option>
+		</select>
+	</div>
+	<div class="cell">
+        <span class="lock"></span>
+		<h1># Random Preset Instrument(s)</h1>
+		<select name="random-preset-instrument-count">
+			<option>0</option>
+			<option>1</option>
+			<option>2</option>
+			<option>3</option>
+		</select>
+	</div>
+	<div class="cell">
+        <span class="lock"></span>
+		<h1>Random Preset Instrument #1</h1>
+		<select name="random-preset-instrument0">
+			<option data-hint="Click Random button near volume">Alchemy</option>
+			<option data-hint="Click dice icon near preset">Cyclop</option>
+			<option data-hint="Click dice icon on each section">Egoist</option>
+			<option data-hint="Click Gear in Logo">Factory</option>			
+			<option data-hint="Click Random button near preset">IRIS 2</option>
+			<option data-hint="Click Random button">Reaktor Metaphysical Function A</option>
+			<option data-hint="Click Random button">Reaktor Metaphysical Function B</option>
+			<option data-hint="Click Randomize button">Reaktor Skrewell</option>
+			<option data-hint="Click preset text, from menu click Load Random">Synthmaster2</option>
+			<option data-hint="Click preset text, from menu click Load Random">SynthmasterOne</option>
+			<option data-hint="Click Dice button">Z3TA+2</option>
+		</select>
+	</div>
+	<div class="cell">
+        <span class="lock"></span>
+        <h1>Random Preset Instrument #2</h1>
+		<select name="random-preset-instrument1">
+			<option data-hint="Click Random button near volume">Alchemy</option>
+			<option data-hint="Click dice icon near preset">Cyclop</option>
+			<option data-hint="Click dice icon on each section">Egoist</option>
+			<option data-hint="Click Gear in Logo">Factory</option>			
+			<option data-hint="Click Random button near preset">IRIS 2</option>
+			<option data-hint="Click Random button">Reaktor Metaphysical Function A</option>
+			<option data-hint="Click Random button">Reaktor Metaphysical Function B</option>
+			<option data-hint="Click Randomize button">Reaktor Skrewell</option>
+			<option data-hint="Click preset text, from menu click Load Random">Synthmaster2</option>
+			<option data-hint="Click preset text, from menu click Load Random">SynthmasterOne</option>
+			<option data-hint="Click Dice button">Z3TA+2</option>
+		</select>
+	</div>
+	<div class="cell">
+        <span class="lock"></span>
+        <h1>Random Preset Instrument #3</h1>
+		<select name="random-preset-instrument2">
+			<option data-hint="Click Random button near volume">Alchemy</option>
+			<option data-hint="Click dice icon near preset">Cyclop</option>
+			<option data-hint="Click dice icon on each section">Egoist</option>
+			<option data-hint="Click Gear in Logo">Factory</option>			
+			<option data-hint="Click Random button near preset">IRIS 2</option>
+			<option data-hint="Click Random button">Reaktor Metaphysical Function A</option>
+			<option data-hint="Click Random button">Reaktor Metaphysical Function B</option>
+			<option data-hint="Click Randomize button">Reaktor Skrewell</option>
+			<option data-hint="Click preset text, from menu click Load Random">Synthmaster2</option>
+			<option data-hint="Click preset text, from menu click Load Random">SynthmasterOne</option>
+			<option data-hint="Click Dice button">Z3TA+2</option>
+		</select>
+	</div>
+	<div class="cell">
+        <span class="lock"></span>
+		<h1>Send Effect</h1>
+		<select name="send-effect">
+			<option data-hint="Click RND button in header">BowEcho</option>
+			<option data-hint="Click ? Arrow button in bottom">Cruelle</option>
+			<option data-hint="Click RANDOM button bottom right">Danaides</option>
+			<option data-hint="Click preset name, randomize parameters option">Dent2</option>
+			<option data-hint="Down arrow menu -> Randomize Patch">Echobode</option>
+			<option data-hint="Click !?! Buttons in each Module">Echomelt</option>
+			<option data-hint="Click CHAOS and RND Buttons">Effectrix</option>
+			<option data-hint="Click RND button bottom left">Eurydice CM</option>
+			<option data-hint="Click preset name, randomize parameters option">Fault</option>
+			<option data-hint="Click Random Button">Filter Jam</option>
+			<option data-hint="Click ? Button">Fracture XT</option>
+			<option data-hint="Click arrow buttons top left">FreeMod</option>
+			<option data-hint="Click Rand button for Scene">Glitch 2</option>
+			<option data-hint="Click Random Button">Hysteresis</option>
+			<option data-hint="Choose mode, click dice">HY-Delay2</option>
+			<option data-hint="Choose mode, click random, click R">HY-Delay3</option>
+			<option data-hint="Choose mode, click dice">HY-Filter2</option>
+			<option data-hint="Choose mode, click [R] buttons">HY-Filter3</option>
+			<option data-hint="Click preset name, randomize parameters option">Indent2</option>
+			<option data-hint="Click preset name, randomize parameters option">Instant Delay</option>
+			<option data-hint="Click Dice button in top middle">LitoteCM</option>
+			<option data-hint="Click Dice buttons">Looperator</option>
+			<option data-hint="Click Random button">Outer Space</option>
+			<option data-hint="Down arrow menu -> Randomize Instructions">Permut8</option>
+			<option data-hint="Click RND A/B buttons">R_MEM</option>
+			<option data-hint="Click ? Arrow button in bottom">Regressif</option>
+			<option data-hint="Click Random Button">Space Strip</option>
+			<option data-hint="Click preset name, randomize parameters option">SpecOps</option>
+			<option data-hint="Click Random in each Section">Tantra</option>
+			<option data-hint="Click Arrows Button">The Abuser</option>
+			<option data-hint="Click Random Button">The Orb</option>
+			<option data-hint="Click dice in header, twist knobs">Turnado</option>
+			<option data-hint="Click preset name, randomize parameters option">Sandman Pro</option>
+			<option data-hint="Click Random Button">Valve Filter VF-1</option>
+			<option data-hint="Click Random Button">Vinyl Strip</option>
+			<option data-hint="Click Random Button">Wave Box</option>
+			<option data-hint="Click Arrows Button">Xenoverb</option>
+		</select>
+	</div>
+	<p id="options"></p>
+	<script>
+		var debugging = true;
+		var fade_speed = 'normal';
+		var dice_rolls = 50;
+		var delay = 100;
+		var countdown_interval = null;
+        var timer_color = 'ff9900';
+        var timer_minutes = 0;
+        var key_ctrl_held = false;
+        var key_shift_held = false;
+        var key_alt_held = false;
+		var loop = null;
+		var alarm = new Audio('alarm-done.wav');
+		function dbg(msg) {
+			if (!debugging) {
+				return;
+			}
+			console.info(msg);
+		}
+		function do_options() {
+			dbg('do_options()');
+			var options = [];
+			$('#options').empty();
+			if ($('#time_constraint:checked').length) {
+				options.push('<strong>TIME CONSTRAINT</strong>: <span id="initial-timer"></span>');
+			}
+			if ($('#use_constraint:checked').length) {
+				var data = get_constraint();
+				options.push('<strong>USE CONSTRAINT</strong>: ' + data);
+			}
+			if ($('#theme:checked').length) {
+				var data = get_theme();
+				options.push('<strong>THEME IDEA</strong>: ' + data.theme + ' - ' + data.theme_idea);
+			}
+			if ($('#arrangment:checked').length) {
+				var data = get_arranging_theme();
+				options.push('<strong>ARRANGEMENT IDEA</strong>: ' + data.theme + ' - ' + data.theme_idea);
+			}
+			if ($('#sounddesign:checked').length) {
+				var data = get_sounddesign_theme();
+				options.push('<strong>SOUND DESIGN IDEA</strong>: ' + data.theme + ' - ' + data.theme_idea);
+			}
+			if ($('#mix:checked').length) {
+				var data = get_mix_theme();
+				options.push('<strong>MIX IDEA</strong>: ' + data.theme + ' - ' + data.theme_idea);
+			}
+			var html = '<ol>';
+			$.each(options, function(i, option) {
+				html += '<li>' + option + '</li>';
+			});
+			html += '</ol>';
+			$('#options').html(html);
+            var hours = (timer_minutes / 60 > 1) ? timer_minutes / 60 : 0;
+            if (hours) {
+                var minutes = timer_minutes % 60;
+            } else {
+                var minutes = timer_minutes;
+            }
+			var data = time_constraint();
+			$('#initial-timer').text(data + ' minutes');
+			countdown(data);
+		}
+		function initialize_selects() {
+			dbg('initialize_selects()');
+			$('select').not('.normal').each(function(i, el) { 
+                var locked = $(this).parent().find('.lock').hasClass('locked');
+                if (!locked) {
+                    $(this).val(''); 
+                    $(this).parent().find('span.hint').remove();
+                    $(this).parent().find('img').remove();
+                }
+            });
+            $('#options, #tempo, #countdown').hide();
+            $('#oblique-strategy').html('');
+		}
+		function choose_random_option(select_name) {
+			dbg('choose_random_option(select_name=' + select_name + ')');
+			var select = $('select[name="' + select_name + '"]');
+			var options = select.find('option');
+			options[Math.floor(Math.random() * options.length)].selected = true;
+			var hint = $('select[name="' + select_name + '"] option:contains("' + select.val() + '")').attr('data-hint');
+			if (hint != undefined) {
+				$(select).after('<span class="hint">' + hint + '</span>');
+			}
+			return select.val();
+		}
+		function make_filename(str) {
+			dbg('make_filename(str=' + str + ')');
+			return str.toLowerCase().replace(/ /g, '_') + '.png';
+		}
+		function make_select_name(str) {
+			dbg('make_select_name(str=' + str + ')');
+			return str.toString().replace(/_/g, '-');
+		}
+		function randomize(select_name, callback) {
+			dbg('randomize(select=' + select_name + ')');
+			var selector = 'select[name="' + select_name + '"]';
+            var locked = $(selector).parent().find('.lock').hasClass('locked');
+            if (locked) {
+				if (callback != null) {
+					callback();
+				}
+                return;
+            }
+			var img = make_filename(choose_random_option(select_name));
+			if ($(selector + ' + img').length > 0) {
+				$(selector).replace($('<img />', { src: img, style: 'display: none;' }));
+			} else {
+				$(selector).after($('<img />', { src: img, style: 'display: none;' }));
+			}
+			if (selector.indexOf('daw') == -1) {
+				$(selector + ' + img').on('click', function(e) {
+					display_modal($(this));
+				});
+			}
+			$(selector + ' + img').stop().fadeIn(fade_speed, function() {
+				if (callback != null) {
+					callback();
+				}
+			});
+		}
+		function display_modal(img) {
+			dbg('display_modal(img=' + img[0].src + ')');
+			lights_off(function() {
+				show_fullsize_img(img);
+			});
+		}
+		function show_fullsize_img(img) {
+			var w = img[0].naturalWidth;
+			var h = img[0].naturalHeight;
+			var hw = w / 2;
+			var hh = h / 2;
+			var css = {
+				'margin-top': '-' + parseInt(hh) + 'px',
+				'margin-left': '-' + parseInt(hw) + 'px'
+			};
+			dbg('show_fullsize_img(img=' + img[0].src + ', w=' + w + ', h=' + h + ')');
+			$('<img />', { src: img[0].src, id: 'fullsize_img' }).css(css).insertBefore('#lights_out').fadeIn(fade_speed);
+		}
+		function hide_fullsize_img() {
+			dbg('hide_fullsize_img()');
+			$('#fullsize_img').fadeOut(fade_speed, function() {
+				$(this).remove();
+			});
+		}
+		function lights_off(callback) {
+			dbg('lights_off()');
+			$('#lights_out').fadeIn(fade_speed, function() {
+				$('#lights_out').on('click', function(e) {
+					lights_on(function() {
+						hide_fullsize_img();
+					});
+				});
+			});
+			if (callback) {
+				console.info('lights_off:callback');
+				callback();
+			}
+		}
+		function lights_on(callback) {
+			dbg('lights_on()');
+			$('#lights_out').fadeOut(fade_speed, function () {
+			});
+			if (callback) {
+				console.info('lights_on:callback');
+				callback();
+			}
+		}
+		function choose(select_name) {
+			dbg('choose(select_name=' + select_name + ')');
+			var selector = 'select[name="' + select_name + '"]';
+			$(selector).parent().find('span.hint').remove();
+			$(selector).parent().find('img').remove();
+			$(selector).parent().find('h1').addClass('no-clicks');
+            if (select_name != 'random-preset-instrument-count' && select_name != 'time-constraint') {
+                var img = make_filename(choose_random_option(select_name));
+                $(selector).after($('<img />', { src: img, style: 'display: none;' }));
+                $(selector + ' + img').stop().fadeIn(fade_speed, function() {
+                    $(selector).parent().find('h1').removeClass('no-clicks');
+                });
+				if (select_name.indexOf('daw') == -1) {
+					$(selector + ' + img').on('click', function (e) {
+						display_modal($(this));
+					});
+				}
+            } else {
+                var locked = $(selector).parent().find('.lock').hasClass('locked');
+                if (!locked) {
+                    var random_preset_instrument_count = parseInt(choose_random_option(select_name));
+                } else {
+                    var random_preset_instrument_count = parseInt($(selector).val());
+                }
+                $('select[name=random-preset-instrument0], select[name=random-preset-instrument1], select[name=random-preset-instrument2]').each(function(i, el) {
+                    $(this).parent().find('img').remove();
+                    $(this).parent().find('span.hint').remove();
+                    $(this).val('');
+                });
+                switch(random_preset_instrument_count) {
+                    case 3:
+                        randomize('random-preset-instrument0', function() {
+                            randomize('random-preset-instrument1', function() {
+                                randomize('random-preset-instrument2');
+                            });
+                        });
+                        break;
+                    case 2:
+                        randomize('random-preset-instrument0', function() {
+                            randomize('random-preset-instrument1');
+                        });
+                        break;
+                    case 1:
+                        randomize('random-preset-instrument0');
+                        break;
+                    case 0:
+                        break;
+                }
+                $(selector).parent().find('h1').removeClass('no-clicks');
+            }
+		}
+		function countdown(minutes) {
+			dbg('countdown(minutes=' + minutes + ')');
+			total_min = minutes * 60;
+			var wind_down = function() {
+				var is_paused = $('#countdown').data('paused');
+				if (is_paused && $('#countdown').text() != '') {
+					return;
+				}
+				if ($('#countdown').text() != '') {
+					total_min--;
+				}
+				if (total_min == 0) {
+					$('#countdown-container').addClass('times-up');
+					$('#countdown').text('TIMES UP!');
+					clearInterval(loop);
+					loop = null;
+					alarm.loop = true;
+					alarm.play();
+					return;
+				} else {
+					$('#countdown-container').removeClass('times-up');
+				}
+				var minutes = parseInt(total_min / 60);
+				var seconds = parseInt(total_min % 60);
+				if (seconds < 10) {
+					seconds = '0' + seconds;
+				}
+				$('#countdown').text(minutes + ":" + seconds);
+			}
+			if (loop != null) {
+				clearInterval(loop);
+			}
+			loop = setInterval(wind_down, 1000);
+			timer_minutes = minutes;
+		}
+		function toggle_countdown(state) {
+			dbg('toggle_countdown(state=' + state + ')');
+			alarm.pause();
+			var use_state = (typeof(state) != 'undefined');
+			var the_state = (use_state) ? state : false;
+			if (!use_state) {
+				var is_paused = $('#countdown').data('paused') || false;
+			} else {
+				is_paused = the_state;
+			}
+			if (!is_paused) {
+				$('#countdown-container').attr('title', 'PAUSED - Click to UNPAUSE');
+				$('#countdown').data('paused', true);
+				$('#countdown-container').toggleClass('paused', true);
+				$('#countdown-remaining').text('Paused');
+				
+			} else {
+				$('#countdown-container').attr('title', 'Click to PAUSE');
+				$('#countdown').data('paused', false);				
+				$('#countdown-container').toggleClass('paused', false);
+				$('#countdown-remaining').text('Time Remaining:');
+			}
+		}
+		function init_countdown() {
+			dbg('init_countdown()');
+			$('#countdown-container').removeClass('paused', false);
+			$('#countdown-container').attr('title', 'Click to PAUSE');
+			$('#countdown').data('paused', false);			
+			$('#countdown').text('');	
+			$('#countdown-remaining').text('Time Remaining:');
+		}
+		function finish_dice_roll() {
+			dbg('finish_dice_roll()');
+			$('#randomize').attr('disabled', false);
+			$('#initialize').attr('disabled', false);
+			$('h1').removeClass('no-clicks');
+			$('#options').fadeIn(fade_speed);
+		}
+		function roll_the_dice() {
+			dbg('roll_the_dice()');
+			var randoms = {};
+            var locked = $('select[name=random-preset-instrument-count]').parent().find('.lock').hasClass('locked');
+            if (!locked) {
+			    var random_preset_instrument_count = parseInt(choose_random_option('random-preset-instrument-count'));
+            } else {
+                random_preset_instrument_count = parseInt($('select[name=random-preset-instrument-count]').val());
+            }
+			randoms.daw = randomize('daw', function() {
+				randomize('synth-instrument', function() {
+					randomize('synth-effect', function() {
+						randomize('drum-synth', function() {
+							randomize('drum-effect', function() {
+								switch(random_preset_instrument_count) {
+									case 3:
+										randomize('random-preset-instrument0', function() {
+											randomize('random-preset-instrument1', function() {
+												randomize('random-preset-instrument2', function() {
+													randomize('send-effect', function() {
+														finish_dice_roll()
+													});
+												});
+											});
+										});
+										break;
+									case 2:
+										randomize('random-preset-instrument0', function() {
+											randomize('random-preset-instrument1', function() {
+												randomize('send-effect', function() {
+													finish_dice_roll()
+												});
+											});
+										});
+										break;
+									case 1:
+										randomize('random-preset-instrument0', function() {
+											randomize('send-effect', function() {
+												finish_dice_roll()
+											});
+										});
+										break;
+									case 0:
+										randomize('send-effect', function() {
+											finish_dice_roll()
+										});
+										break;
+								}
+							});
+						});
+					});
+				});
+			});
+			$('#tempo').text(random_tempo()).fadeIn(fade_speed);
+			$('#oblique-strategy').text(oblique_strategy()).fadeIn(fade_speed);
+			if ($('#time_constraint:checked').length) {
+				$('#countdown-container, #countdown').fadeIn(fade_speed);
+				toggle_countdown(false);
+			}
+		}
+		function time_constraint() {
+			dbg('time_constraint()');
+			var time_blocks = [
+				15,
+				30,
+				45,
+				60, 
+				120,
+				180
+			];
+			var time_constraint_val = $('select[name="time-constraint"]').val();
+			if (time_constraint_val == 'Random') {
+				dbg('time_constraint is RANDOM');
+				return time_blocks[Math.floor(Math.random() * time_blocks.length)];
+			} else {
+				return time_constraint_val;
+			}
+		}
+		function random_tempo() {
+			dbg('random_tempo()');
+			var tempos = [
+				70,
+				85,
+				95,
+				105,
+				110,
+				115,
+				120,
+				125,
+				130,
+				128,
+				140,
+				160,
+				174,
+				180
+			]
+			return tempos[Math.floor(Math.random() * tempos.length)] + ' bpm';
+		}
+		function oblique_strategy() {
+			dbg('oblique_strategy()');
+			return quotes[Math.floor(Math.random() * quotes.length)];
+		}
+		function get_constraint() {
+			dbg('get_constraint()');
+			return constraints[Math.floor(Math.random() * constraints.length)];
+		}
+		function get_theme() {
+			dbg('get_theme()');
+			return ({
+				theme: themes[Math.floor(Math.random() * themes.length)],
+				theme_idea: theme_ideas[Math.floor(Math.random() * theme_ideas.length)]
+			});
+		}
+		function get_arranging_theme() {
+			dbg('get_arranging_theme()');
+			return ({
+				theme: arranging_themes[Math.floor(Math.random() * arranging_themes.length)],
+				theme_idea: arranging_ideas[Math.floor(Math.random() * arranging_ideas.length)]
+			});
+		}
+		function get_sounddesign_theme() {
+			dbg('get_sounddesign_theme()');
+			return ({
+				theme: sounddesign_themes[Math.floor(Math.random() * sounddesign_themes.length)],
+				theme_idea: sounddesign_ideas[Math.floor(Math.random() * sounddesign_ideas.length)]
+			});
+		}
+		function get_mix_theme() {
+			dbg('get_mix_theme()');
+			return ({
+				theme: mix_themes[Math.floor(Math.random() * mix_themes.length)],
+				theme_idea: mix_ideas[Math.floor(Math.random() * mix_ideas.length)]
+			});
+		}			
+
+		$(document).ready(function() {
+			initialize_selects();
+			$('h1:contains("DAW")').on('click', function() { choose('daw'); });
+			$('h1:contains("Synth Instrument")').on('click', function() { choose('synth-instrument'); });
+			$('h1:contains("Synth Effect")').on('click', function() { choose('synth-effect'); });
+			$('h1:contains("Drum Synth")').on('click', function() { choose('drum-synth'); });
+			$('h1:contains("Drum Effect")').on('click', function() { choose('drum-effect'); });
+			$('h1:contains("# Random Preset Instrument(s)")').on('click', function() { choose('random-preset-instrument-count'); });
+			$('h1:contains("Random Preset Instrument #1")').on('click', function() { choose('random-preset-instrument0'); });
+			$('h1:contains("Random Preset Instrument #2")').on('click', function() { choose('random-preset-instrument1'); });
+			$('h1:contains("Random Preset Instrument #3")').on('click', function() { choose('random-preset-instrument2'); });
+			$('h1:contains("Send Effect")').on('click', function() { choose('send-effect'); });
+			$('h1').attr('title', 'Click to randomize');
+			$('#initialize').on('click', function(e) {
+                $('.lock').removeClass('locked');
+				initialize_selects();
+				$(':checked').attr('checked', false);
+				$('#countdown-container').hide();
+			});
+			$('#randomize').on('click', function(e) {
+				$('#initialize').attr('disabled', true);
+				init_countdown();
+				$('#randomize').attr('disabled', true);
+				$('h1').not('.locked').addClass('no-clicks');
+				initialize_selects();
+				roll_the_dice();
+				do_options();
+			});
+			$('select').on('change', function(e) {
+				var scope = $(this).attr('name');
+				var selector = 'select[name="' + scope + '"]';
+				var selected = $(this).val();
+				var parent = $(selector).parent();
+                if (scope != 'random-preset-instrument-count' && scope != 'time-constraint') {
+                    var img = make_filename(selected);
+                    var hint = $($(selector).selector + ' option:contains("' + selected + '")').attr('data-hint');
+                    $(selector).parent().find('span.hint').remove();
+                    $(selector).parent().find('img').remove();
+                    $(selector).parent().find('h1').addClass('no-clicks');
+                    $(selector).after($('<img />', { src: img, style: 'display: none;' }));
+                    $(parent).find('img').stop().fadeIn(fade_speed, function() {
+                        $(selector).parent().find('h1').removeClass('no-clicks');
+                    });
+					if (selector.indexOf('daw') == -1) {
+						$(selector + ' + img').on('click', function (e) {
+							display_modal($(this));
+						});
+					}
+                } else {
+                    var hint = $($(selector).selector + ' option:contains("' + selected + '")').attr('data-hint');
+                    $(selector).parent().find('span.hint').remove();
+                    $(selector).parent().find('h1').addClass('no-clicks');
+                    $(selector).parent().find('h1').removeClass('no-clicks');
+                }                
+				if (hint != undefined) {
+					$(parent).find('img').after('<span class="hint">' + hint + '</span>');
+				}				
+			});
+            $('.lock').attr('title', 'Click to Lock/Unlock Random | Double-click = Unlock all');
+            $('.lock').on('click', function(e) {
+                $(this).toggleClass('locked');
+                $(this).parent().toggleClass('locked');
+				$(this).parent().find('h1').toggleClass('locked');
+            });
+            $('.lock').on('dblclick', function(e) {
+                $('*').removeClass('locked');
+            });
+			$('#countdown-container').on('click', function(e) {
+				toggle_countdown();
+			});
+		});
+		var constraints = [
+			'1 Synth ONLY',
+			'1 Loop ONLY',
+			'1 Arp ONLY',
+			'No editing; only recording',
+			'No sound design, only presets',
+			'No EQ',
+			'No Reverb',
+			'No Compressors',
+			'Single takes, then move on',
+			'Must bounce each pass',
+			'No track freezing',
+			'Only use your voice',
+			'Only use your guitar',
+			'Only DAW built-ins',
+			'Everything must be vocoded',
+			'No Filters',
+			'No Delays',
+			'No MultiFX',
+			'Use only plug-ins you don\'t know well yet',
+			'Only samplers',
+			'Base entire track on a single melody',
+			'No kick drums',
+			'No samplers'
+		];
+
+		var themes = [
+			'STACCATO',
+			'LEGATO',
+			'ACCELERATION',
+			'DECELERATION',
+			'ACCUMULATION',
+			'AUGMENTATION',
+			'DIMINUTION',
+			'DEVELOPMENT',
+			'INSERTION',
+			'INVERSION',
+			'MIRRORING',
+			'REPETITION',
+			'RETROGRADE',
+			'TRANSPOSITION',
+			'IMITATION',
+			'THINK SMALL',
+			'FEEL IT',
+			'LOUD',
+			'SOFT',
+			'POLYRHYTHMS',
+			'UNSYNC',
+			'BREAK IT',
+			'FLIP IT',
+			'FLIP IT',
+			'ADD LIMITS',
+			'ADD LIMITS',
+			'ADD LIMITS',
+			'ADD LIMITS',
+			'DISTORT',
+			'UNFAMILIAR',
+			'PRESET',
+			'TIME',
+			'SAMPLE',
+			'FOUND SOUND',
+			'FOUND SOUND',
+			'ARPEGGIATE',
+			'MAJOR',
+			'MINOR',
+			'PERCUSSION',
+			'STEAL',
+			'TEXTURE',
+			'DIVERSIFY',
+			'SUBTRACT',
+			'BREAK'
+		];
+
+		var theme_ideas = [
+			'Use short notes',
+			'Use longer sustained notes',
+			'Increase the speed with which the phrase is done',
+			'Decrease the speed with which the phrase is done',
+			'Sequence elements by repeatedly starting at the beginning i.e. 1 : 1, 2 : 1, 2, 3 : 1, 2, 3, 4 : etc.',
+			'Lengthen the time values of some or all of the elements',
+			'Condense the time values of some or all of the elements',
+			'Reuse an aspect or aspects of a phrase with new intention',
+			'Splice new material into a phrase',
+			'Reverse the pitch order of the notes being played',
+			'Repeat a phrase but with the repeat reversed',
+			'Repeat a phrase',
+			'Reverse the order of a phrase',
+			'Raise or lower the pitches of a phrase',
+			'Repeat the same musical phrase using a different voice',
+			'Use short loops',
+			'Turn the metronome off',
+			'Turn up the volume',
+			'Turn down the volume',
+			'Use polyrhythmic elements',
+			'Use loops not synced to the tempo',
+			'Misuse your tools',
+			'Use rhythmic inversions',
+			'Use chord inversions',
+			'Use only 2 chords',
+			'Use only 2 chords (with inversions)',
+			'Write a melody that moves only in 2nds (up or down)',
+			'Write a melody that moves only in 3rds (up or down)',
+			'Add distortion / saturation / overdrive / etc.',
+			'Use a plugin / device you\'ve never used or don\'t use often',
+			'Use a preset',
+			'Change time signature',
+			'Use a sample',
+			'Use a found sound as percussion',
+			'Create a melodic instrument from a found sound',
+			'Use arpeggios',
+			'Use only major chords',
+			'Use only minor chords',
+			'Use only percussion even for melody',
+			'Use an idea from another piece of music but make it your own',
+			'Add in a layer of texture i.e. a pad, noise or field recording',
+			'Use a typical / defining element from a genre you would otherwise never use (e.g. a dubstep wobble bass, a drum n bass ‘amen’ break or a glitch hop stutter effect)',
+			'Remove all but one element',
+			'Take a break'
+		];
+
+		var arranging_themes = [
+			'BORROW',
+			'WORROB',
+			'ALL CHORUS',
+			'ONCE',
+			'BE SUCCINCT',
+			'PROGRESS',
+			'ACCUMULATION',
+			'SUBTRACT',
+			'BRIDGE',
+			'CHORUS',
+			'BREAK'
+		];
+
+		var arranging_ideas = [
+			'Arrange',
+			'Use the form of an existing song',
+			'Use the form of an existing song, but in reverse',
+			'Start the song with a chorus',
+			'Use each section or phrase only once, i.e. don\'t repeat a section',
+			'Make a short song, stick to 1 or 2 min max and get your message across in that time',
+			'Create an arrangement by gradually bringing in parts and building to a climax',
+			'Sequence parts by repeatedly starting at the beginning, i.e. 1 ; 1, 2 ; 1, 2, 3 ; 1, 2, 3, 4 ; etc.',
+			'Remove all but one element',
+			'Write a bridge section. If you already have a bridge section write a variation',
+			'Write a chorus section. If you already have a chorus section write an alternate chorus',
+			'Take a break'
+		];
+
+		var sounddesign_themes = [
+			'PRESET',
+			'BREAK IT',
+			'RESAMPLE',
+			'BREAK',
+			'SUBTRACT',
+			'ADD',
+			'MULTIPLY',
+			'GRANULATE',
+			'SAMPLE',
+			'VERB',
+			'DELAY',
+			'DISTORT',
+			'WOBBLEOBBLE',
+			'LAYER',
+			'MOD',
+			'SIN',
+			'TRI',
+			'SQU',
+			'SAW'
+		];
+
+		var sounddesign_ideas = [
+			'Sound Design',
+			'Use a preset then tweak to taste',
+			'Use an instrument sample or preset in a way other than how it is meant to be used (i.e. play a bass patch like a chord or an FX like a lead)',
+			'Try sending something out of your DAW into the real world (through a speaker) and then recording it back in (via a microphone)',
+			'Take a break',
+			'Use Subtractive Synthesis',
+			'Use Additive Synthesis',
+			'Use Frequency Modulation Synthesis',
+			'Use Granular Synthesis',
+			'Use a sampler to create an instrument from audio',
+			'Use reverb',
+			'Use delay',
+			'Add distortion / saturation / overdrive / etc.',
+			'Use an LFO',
+			'Layer 2 or more sounds to create a composite sound',
+			'Use a modulation effect (Phaser, Flanger, Chorus, etc.)',
+			'Use sine waves as the basis of the sound',
+			'Use triangle waves as the basis of the sound',
+			'Use square waves as the basis of the sound',
+			'Use saw waves as the basis of the sound'
+		];
+
+		var mix_themes = [
+			'IT\'S THE 60s',
+			'IT\'S THE 70s',
+			'IT\'S THE 80s',
+			'AUTO',
+			'PAN IT',
+			'DO IT OLD SCHOOL',
+			'BREAK',
+			'SLAM IT',
+			'VERB',
+			'DELAY'
+		];
+
+		var mix_ideas = [
+			'Mix',
+			'Hard pan something (or everything!)',
+			'Automate something',
+			'Pan something',
+			'Use no automation only manual control and fader moves',
+			'Take a break (your ears probably need it)',
+			'Compress something WAAAY too much',
+			'Use reverb',
+			'Use delay'
+		];
+
+		var quotes = [
+			'(Organic) machinery',
+			'A line has two sides',
+			'A very small object - It\'s center',
+			'Abandon desire',
+			'Abandon normal instructions',
+			'Accept advice',
+			'Accretion',
+			'Adding on',
+			'Allow an easement (an easement is the abandonment of a stricture)',
+			'Always first steps',
+			'Always give yourself credit for having more than personality',
+			'Always the first steps',
+			'Are there sections? Consider transitions',
+			'Ask people to work against their better judgement',
+			'Ask your body',
+			'Assemble some of the elements in a group and treat the group',
+			'Back up a few steps. What else could you have done?',
+			'Balance the consistency principle with the inconsistency principle',
+			'Be dirty',
+			'Be extravagant',
+			'Be less critical more often',
+			'Breathe more deeply',
+			'Bridges -build -burn',
+			'Call your mother and ask her what to do.',
+			'Cascades',
+			'Change ambiguities to specifics',
+			'Change instrument roles',
+			'Change nothing and continue with immaculate consistency',
+			'Change specifics to ambiguities',
+			'Children\'s voices -speaking -singing',
+			'Cluster analysis',
+			'Consider different fading systems',
+			'Consider transitions',
+			'Consult other sources -promising -unpromising',
+			'Convert a melodic element into a rhythmic element',
+			'Courage!',
+			'Cut a vital connection',
+			'Decorate, decorate',
+			'Define an area as \'safe\' and use it as an anchor',
+			'Describe the landscape in which this belongs. (9 August)',
+			'Destroy nothing; Destroy the most important thing',
+			'Discard an axiom',
+			'Disciplined self-indulgence',
+			'Disconnect from desire',
+			'Discover the recipes you are using and abandon them',
+			'Discover your formulas and abandon them',
+			'Display your talent',
+			'Distorting time',
+			'Do nothing for as long as possible',
+			'Do something boring',
+			'Do something sudden, destructive and unpredictable',
+			'Do the last thing first',
+			'Do the washing up',
+			'Do the words need changing?',
+			'Do we need holes?',
+			'Don\'t avoid what is easy',
+			'Don\'t be afraid of things because they\'re easy to do',
+			'Don\'t be frightened of cliches',
+			'Don\'t be frightened to display your talents',
+			'Don\'t break the silence',
+			'Don\'t stress one thing more than another',
+			'Emphasize differences',
+			'Emphasize repetitions',
+			'Emphasize the flaws',
+			'Faced with a choice, do both',
+			'Feed the recording back out of the medium',
+			'Feedback recordings into an acoustic situation',
+			'Fill every beat with something',
+			'Find a safe part and use it as an anchor',
+			'First work alone, then work in unusual pairs.',
+			'From nothing to more than nothing',
+			'Get your neck massaged',
+			'Ghost echoes',
+			'Give the game away',
+			'Give way to your worst impulse',
+			'Go outside. Shut the door.',
+			'Go slowly all the way round the outside',
+			'Go to an extreme, move back to a more comfortable place',
+			'How would someone else do it?',
+			'How would you explain this to your parents?',
+			'How would you have done it?',
+			'Humanize something that is free of error.',
+			'Idiot glee (?)',
+			'Imagine the music as a moving chain or caterpillar',
+			'Imagine the music as a series of disconnected events',
+			'In total darkness, or in a very large room, very quietly',
+			'Infinitesimal gradations',
+			'Instead of changing the thing, change the world around it.',
+			'Intentions -credibility of -nobility of -humility of',
+			'Into the impossible',
+			'Is it finished?',
+			'Is something missing?',
+			'Is the intonation correct?',
+			'Is the style right?',
+			'Is the tuning appropriate?',
+			'Is the tuning intonation correct?',
+			'Is there something missing?',
+			'It is quite possible (after all)',
+			'It is simply a matter or work',
+			'Just carry on',
+			'Left channel, right channel, centre channel',
+			'List the qualities it has. List those you\'d like.',
+			'Listen in total darkness, or in a very large room, very quietly',
+			'Listen to the quiet voice',
+			'Look at a very small object, look at it\'s centre',
+			'Look at the order in which you do things',
+			'Look closely at the most embarrassing details and amplify.',
+			'Lost in useless territory',
+			'Lowest common denominator check -single beat -single note -single riff',
+			'Magnify the most difficult details',
+			'Make a blank valuable by putting it in an excquisite frame',
+			'Make a sudden, destructive unpredictable action; incorporate',
+			'Make an exhaustive list of everything you might do and do the last thing on the list',
+			'Make it more sensual',
+			'Make what\'s perfect more human',
+			'Mechanize something idiosyncratic',
+			'Move towards the unimportant',
+			'Mute and continue',
+			'Not building a wall but making a brick',
+			'Once the search has begun, something will be found',
+			'Only a part, not the whole',
+			'Only one element of each kind',
+			'Overtly resist change',
+			'Pae White\'s non-blank graphic metacard',
+			'Pay attention to distractions',
+			'Picture of a man spotlighted',
+			'Put in earplugs',
+			'Question the heroic approach',
+			'Remember those quiet evenings',
+			'Remove a restriction',
+			'Remove ambiguities and convert to specifics',
+			'Remove specifics and convert to ambiguities',
+			'Remove the middle, extend the edges',
+			'Repetition is a form of change',
+			'Retrace your steps',
+			'Revaluation (a warm feeling)',
+			'Reverse',
+			'Short circuit',
+			'Shut the door and listen from outside',
+			'Simple subtraction',
+			'Simply a matter of work',
+			'Slow preparation, fast execution',
+			'Spectrum analysis',
+			'State the problem in words as simply as possible',
+			'Steal a solution.',
+			'Take a break',
+			'Take away as much mystery as possible. What is left?',
+			'Take away the elements in order of apparent non-importance',
+			'Take away the important parts',
+			'Tape your mouth',
+			'The inconsistency principle',
+			'The most important thing is the thing most easily forgotten',
+			'The tape is now the music',
+			'Think - inside the work -outside the work',
+			'Think of the radio',
+			'Tidy up',
+			'Towards the insignificant',
+			'Trust in the you of now',
+			'Try faking it',
+			'Turn it upside down',
+			'Twist the spine',
+			'Use "unqualified" people.',
+			'Use an old idea',
+			'Use an unacceptable color',
+			'Use cliches',
+			'Use fewer notes',
+			'Use filters',
+			'Use something nearby as a model',
+			'Use your own ideas',
+			'Voice your suspicions',
+			'Water',
+			'What are the sections sections of? Imagine a caterpillar moving',
+			'What context would look right?',
+			'What do you do? Now, what do you do best?',
+			'What else is this like?',
+			'What is the reality of the situation?',
+			'What is the simplest solution?',
+			'What mistakes did you make last time?',
+			'What most recently impressed you? What can you learn from it? What could you take from it?',
+			'What to increase? What to reduce? What to maintain?',
+			'What were the branch points in the evolution of this entity',
+			'What were you really thinking about just now? Incorporate',
+			'What would make this really successful?',
+			'What would your closest friend do?',
+			'What wouldn\'t you do?',
+			'When is it for? Who is it for?',
+			'Where is the edge?',
+			'Which parts can be grouped?',
+			'Who would make this really successful?',
+			'Work at a different speed',
+			'Would anyone want it?',
+			'You are an engineer',
+			'You can only make one dot at a time',
+			'You don\'t have to be ashamed of using your own ideas',
+			'Your mistake was a hidden intention'
+		];
+	</script>
+</body>
+</html>

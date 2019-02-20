@@ -1,0 +1,1472 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Random Music Session</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<script src="bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="bower_components/jQuery-SlotMachine/dist/jquery.slotmachine.min.js"></script>
+	<link rel="stylesheet" href="bower_components/jQuery-SlotMachine/dist/jquery.slotmachine.min.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="index.css" media="screen" />
+	<style type="text/css">
+		#random1 {
+			width: 300px;
+			height: 300px;
+			overflow: hidden;
+		}
+		.slotMachine .slot {
+			width: 350px;
+			height: 300px;
+			background-repeat: no-repeat;
+			background-size: 300px auto;
+			overflow: hidden;
+			background-position: left center;
+			background-color: #000;
+			margin: 0;
+			border: 0;
+			border-radius: 0;
+		}
+	</style>
+	<script>
+	/*
+		$(document).ready(function() {
+			var random1 = $('#random1').slotMachine({
+				active: 0,
+				delay: 500
+			});
+			$('#active_slot').text(random1.active + ' - ' + $('#random1 .slot:eq(' + parseInt(random1.active+1) + ')').css('background-image').split('/').reverse()[0].split('.png')[0]);
+			$('#start_random1').on('click', function(e) {
+				random1.shuffle();
+			})
+			$('#stop_random1').on('click', function(e) {
+				random1.stop();
+				$('#active_slot').text(random1.active + ' - ' + $('#random1 .slot:eq(' + parseInt(random1.active+1) + ')').css('background-image').split('/').reverse()[0].split('.png')[0]);
+			})
+			$('#next_random1').on('click', function(e) {
+				random1.next();
+				$('#active_slot').text(random1.active + ' - ' + $('#random1 .slot:eq(' + parseInt(random1.active+1) + ')').css('background-image').split('/').reverse()[0].split('.png')[0]);
+			})
+			$('#prev_random1').on('click', function(e) {
+				random1.prev();
+				$('#active_slot').text(random1.active + ' - ' + $('#random1 .slot:eq(' + parseInt(random1.active+1) + ')').css('background-image').split('/').reverse()[0].split('.png')[0]);
+			})
+		});
+		*/
+	</script>
+</head>
+<body>
+<!--
+	<button id="start_random1">Start</button>
+	<button id="stop_random1">Stop</button>
+	<button id="prev_random1">Prev</button>
+	<button id="next_random1">Next</button>
+	<span id="active_slot"></span>
+	<div id="random1" class="slotMachine">
+ 		<div class="slot" style="background-image: url(alchemy.png)"></div>
+		<div class="slot" style="background-image: url(attack.png)"></div>
+		<div class="slot" style="background-image: url(autogun.png)"></div>
+		<div class="slot" style="background-image: url(cyclop.png)"></div>
+		<div class="slot" style="background-image: url(dagger.png)"></div>
+		<div class="slot" style="background-image: url(drumatic_4.png)"></div>
+		<div class="slot" style="background-image: url(echobode.png)"></div>
+		<div class="slot" style="background-image: url(egoist.png)"></div>
+		<div class="slot" style="background-image: url(firebird.png)"></div>
+		<div class="slot" style="background-image: url(fracture.png)"></div>
+		<div class="slot" style="background-image: url(gladiator_2.png)"></div>
+		<div class="slot" style="background-image: url(glitch_2.png)"></div>
+		<div class="slot" style="background-image: url(hysteresis.png)"></div>
+		<div class="slot" style="background-image: url(iris_2.png)"></div>
+		<div class="slot" style="background-image: url(minibit.png)"></div>
+		<div class="slot" style="background-image: url(ogun.png)"></div>
+		<div class="slot" style="background-image: url(permut8.png)"></div>
+		<div class="slot" style="background-image: url(reaktor_metaphysical_function_a.png)"></div>
+		<div class="slot" style="background-image: url(reaktor_metaphysical_function_b.png)"></div>
+		<div class="slot" style="background-image: url(reaktor_monark.png)"></div>
+		<div class="slot" style="background-image: url(reaktor_patasonix.png)"></div>
+		<div class="slot" style="background-image: url(reaktor_polyplex.png)"></div>
+		<div class="slot" style="background-image: url(reaktor_razor.png)"></div>
+		<div class="slot" style="background-image: url(reaktor_retrobeat_mk2.png)"></div>
+		<div class="slot" style="background-image: url(reaktor_skanner_xt.png)"></div>
+		<div class="slot" style="background-image: url(reaktor_skrewell.png)"></div>
+		<div class="slot" style="background-image: url(sunrizer.png)"></div>
+		<div class="slot" style="background-image: url(sylenth1.png)"></div>
+		<div class="slot" style="background-image: url(synplant.png)"></div>
+		<div class="slot" style="background-image: url(tantra.png)"></div>
+		<div class="slot" style="background-image: url(utonic.png)"></div>
+		<div class="slot" style="background-image: url(z3ta+_2.png)"></div>
+
+<div class="slot" style="background-image: url('test/VST3-Melodyne-f6242df1-98e836cc.png')"></div>
+<div class="slot" style="background-image: url('test/VST3-Saturation Knob-839ec077-a6160d9f.png')"></div>
+<div class="slot" style="background-image: url('test/VST3-Tonelux Tilt-95401399-f68a846f.png')"></div>
+<div class="slot" style="background-image: url('test/VST3-Tonelux Tilt Live-27bd7def-3f0f6f7d.png')"></div>
+<div class="slot" style="background-image: url('test/VST3-Z3TA+ 2-44c41929-87fa619f.png')"></div>
+<div class="slot" style="background-image: url('test/VST-6144-14ebc7b8-4e654571.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Aalto-64c4ca36-41616c74.png')"></div>
+<div class="slot" style="background-image: url('test/VST-ABL2_32-a4c93ac7-41424c33.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Absynth 5-46c9dcef-436c6d35.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Absynth 5 FX Surround-a8bd023b-436c6d37.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Absynth 5 FX-a408284f-436c6d36.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Absynth 5 Stereo-618af515-436c6d38.png')"></div>
+<div class="slot" style="background-image: url('test/VST-ADM_32-7606aaf0-6161646d.png')"></div>
+<div class="slot" style="background-image: url('test/VST-AgentCM_x86-63db8795-4167434d.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Alchemy-85432cb5-4361416c.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Ambience-ca219b1b-6d626e63.png')"></div>
+<div class="slot" style="background-image: url('test/VST-AmpliTube 3-a6e4e8f4-41747833.png')"></div>
+<div class="slot" style="background-image: url('test/VST-ANALOG87 BW-LIMIT(x32)-68ac025b-65524c31.png')"></div>
+<div class="slot" style="background-image: url('test/VST-ANALOG87 CS-STRIP(x32)-f512aa23-65525331.png')"></div>
+<div class="slot" style="background-image: url('test/VST-ANALOG87 MD-GATE(x32)-2b3b5ba1-65524733.png')"></div>
+<div class="slot" style="background-image: url('test/VST-ANALOG87 PR-EQUA(x32)-1bc3fbff-65525131.png')"></div>
+<div class="slot" style="background-image: url('test/VST-ANALOG87 SD-COMP(x32)-93387917-65524331.png')"></div>
+<div class="slot" style="background-image: url('test/VST-ANALOG87 SD-GATE(x32)-74a68edb-65524731.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Antresol-3c7441e9-416e5433.png')"></div>
+<div class="slot" style="background-image: url('test/VST-ARP 2600 V2 Efx-74f5f6-41524532.png')"></div>
+<div class="slot" style="background-image: url('test/VST-ARP 2600 V2-c4e95a3f-41525032.png')"></div>
+<div class="slot" style="background-image: url('test/VST-ASynth-2cc132f8-34377935.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Attack-88101160-33454472.png')"></div>
+<div class="slot" style="background-image: url('test/VST-basic65-9f91a8bc-62633635.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Bass-Station-51b07103-4e764232.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Bass-Station-Stereo-430a764e-4e766232.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Battery 4-4c17020d-4e426134.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Battery 4-7a225240-4e426134.png')"></div>
+<div class="slot" style="background-image: url('test/VST-BBE Harmonic Maximizer-8acc67a2-53574532.png')"></div>
+<div class="slot" style="background-image: url('test/VST-BBE Loudness Maximizer-a407711e-53574533.png')"></div>
+<div class="slot" style="background-image: url('test/VST-BBE Mach3 Bass-9d55b3d4-53574534.png')"></div>
+<div class="slot" style="background-image: url('test/VST-BBE Sonic Maximizer-117a4f4f-53574531.png')"></div>
+<div class="slot" style="background-image: url('test/VST-BiFilter2-fe0bed62-42494632.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Bionic Delay v1_3-9932da9b-62646c34.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Bionic Supa Delay - ED 1_0-474d025b-62646c36.png')"></div>
+<div class="slot" style="background-image: url('test/VST-BiT BOX-6cb057a7-6d64714f.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Bitspeek-1469d63e-4e755371.png')"></div>
+<div class="slot" style="background-image: url('test/VST-BlueARP-35d7a4d4-37645778.png')"></div>
+<div class="slot" style="background-image: url('test/VST-C700-91b4b211-43373030.png')"></div>
+<div class="slot" style="background-image: url('test/VST-CamelCrusher-727809ef-43614372.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Charlatan-79a366e5-68437764.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Chip32-b8c6e348-43686970.png')"></div>
+<div class="slot" style="background-image: url('test/VST-CLAS-7872798-37703132.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Classic Auto-Filter-6971a740-66713738.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Classic Chorus-56e1a548-34323333.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Classic Compressor-8a03eee7-6f313332.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Classic Delay-f2defcd-36663735.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Classic EQ-8ba7832e-71316938.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Classic Flanger-610e994b-63363138.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Classic Master Limiter-f7fd376c-32303869.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Classic Phaser-29d68979-63393334.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Classic Reverb-bcb1774-367a3976.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Cobalt-3ae68410-43626c74.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Cobalt-a281cf11-43626c74.png')"></div>
+<div class="slot" style="background-image: url('test/VST-ColourEQ_32-9e77a4b5-436f4571.png')"></div>
+<div class="slot" style="background-image: url('test/VST-CompressiveCM-c513760f-4d656133.png')"></div>
+<div class="slot" style="background-image: url('test/VST-COSMOS-4de3820a-434f534d.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Crystallizer-1b2f190c-53744352.png')"></div>
+<div class="slot" style="background-image: url('test/VST-CS-80 V2-94280d2b-43535632.png')"></div>
+<div class="slot" style="background-image: url('test/VST-CS-80 V2 10 voices-e891b86d-43534d32.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Cyclone-4f1dc6d6-4e754379.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Cyclop-b83ebe9d-73626379.png')"></div>
+<div class="slot" style="background-image: url('test/VST-D-707-9d0c0704-44373037.png')"></div>
+<div class="slot" style="background-image: url('test/VST-D-727-a075b842-44373237.png')"></div>
+<div class="slot" style="background-image: url('test/VST-D-808-d20059c6-44383038.png')"></div>
+<div class="slot" style="background-image: url('test/VST-D-909-6f4ac88-44393039.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Dagger-9834428a-44474752.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Decapitator-f1faea26-53744463.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Decimort2-db15520-44436d35.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Decimort-19363efe-44436d34.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Devastor2-574327db-44563538.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Devastor-b11a8e3-44563537.png')"></div>
+<div class="slot" style="background-image: url('test/VST-DevilLoc-5049dda0-44564c20.png')"></div>
+<div class="slot" style="background-image: url('test/VST-DevilLocDeluxe-47aca0f7-444c4420.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Dexed-21addde5-506c7567.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Dexed-21addde5-44657864.png')"></div>
+<div class="slot" style="background-image: url('test/VST-DirectionalEQ-86854405-44697251.png')"></div>
+<div class="slot" style="background-image: url('test/VST-DirectWave VSTi-13bbb0a3-41534457.png')"></div>
+<div class="slot" style="background-image: url('test/VST-DirectWave VSTi-d34e850f-41534457.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Diversion-6b1d46df-4476536e.png')"></div>
+<div class="slot" style="background-image: url('test/VST-D-Pole-9de59a39-44506f6c.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Driver-b96248d5-4e69243d.png')"></div>
+<div class="slot" style="background-image: url('test/VST-drsid-eeff3f8f-31323331.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Drumatic 4-8f5cbaa4-45504434.png')"></div>
+<div class="slot" style="background-image: url('test/VST-DtBlkFx-eaf1ed92-67333139.png')"></div>
+<div class="slot" style="background-image: url('test/VST-DtBlkFxS-753c80ad-68353236.png')"></div>
+<div class="slot" style="background-image: url('test/VST-DubStation_15-92033ecf-41446435.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Duet-27874fdd-4d656135.png')"></div>
+<div class="slot" style="background-image: url('test/VST-DUNE-60ea20c5-53575350.png')"></div>
+<div class="slot" style="background-image: url('test/VST-DUNE 2-298afa-44554532.png')"></div>
+<div class="slot" style="background-image: url('test/VST-DX10 VSTi-df48bbde-46443130.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Echobode-4a440310-4e754542.png')"></div>
+<div class="slot" style="background-image: url('test/VST-EchoBoy-e36ffc1b-53744542.png')"></div>
+<div class="slot" style="background-image: url('test/VST-EffectRack-2781b500-53744678.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Egoist-c6ee32dd-53424547.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Enhanced EQ-32a76835-4e69243a.png')"></div>
+<div class="slot" style="background-image: url('test/VST-ezdrummer-acba5a6b-64666865.png')"></div>
+<div class="slot" style="background-image: url('test/VST-EZkeys-8a80b4a6-657a6b73.png')"></div>
+<div class="slot" style="background-image: url('test/VST-famisynth2_v2_5-dc310a33-666d7332.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Fazortan-33c89b92-46325237.png')"></div>
+<div class="slot" style="background-image: url('test/VST-FilterFreak1-f0915c9e-53744631.png')"></div>
+<div class="slot" style="background-image: url('test/VST-FilterFreak2-f09f741f-53744632.png')"></div>
+<div class="slot" style="background-image: url('test/VST-FireBird-6dceafec-54324642.png')"></div>
+<div class="slot" style="background-image: url('test/VST-FM8-1c1be01d-4e696638.png')"></div>
+<div class="slot" style="background-image: url('test/VST-FM8 FX-564b030e-4e698638.png')"></div>
+<div class="slot" style="background-image: url('test/VST-FM8 FX-f6e82e61-4e698638.png')"></div>
+<div class="slot" style="background-image: url('test/VST-FM8-c8281290-4e696638.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Fracture-d4339bf-476c4672.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Fre(a)koscope-5df9b1a8-666b5831.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Frohmage_vst2win-40382e76-4f466d67.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Frontier-9475bd80-46526e37.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Gladiator-51c0d066-5432474c.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Glitch2-a064f049-69676c32.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Groove Machine-995c342e-476d5348.png')"></div>
+<div class="slot" style="background-image: url('test/VST-GS-201-329a0d4f-47323031.png')"></div>
+<div class="slot" style="background-image: url('test/VST-GS-201_mono-c3c7c0ff-47323031.png')"></div>
+<div class="slot" style="background-image: url('test/VST-GSnap-GJ-8152df3c-67794176.png')"></div>
+<div class="slot" style="background-image: url('test/VST-GTune-GJ-d5065f4e-67794174.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Guitar Rig 5-1cb29eef-4e694735.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Guitar Rig 5-533c7ddc-4e694735.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Hardcore-ab5c7df7-48435231.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Hbasms Stereoizer-edf797b3-68756173.png')"></div>
+<div class="slot" style="background-image: url('test/VST-HoRNetDrumShaper-950b7326-48724453.png')"></div>
+<div class="slot" style="background-image: url('test/VST-HoRNetFatFet-9d8366ab-48724646.png')"></div>
+<div class="slot" style="background-image: url('test/VST-HY-Delay-f32becbe-68793031.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Hydra-845f33d1-48594452.png')"></div>
+<div class="slot" style="background-image: url('test/VST-HY-Filter-7a915749-68793033.png')"></div>
+<div class="slot" style="background-image: url('test/VST-HY-Lofi-5e765517-68793032.png')"></div>
+<div class="slot" style="background-image: url('test/VST-HY-MBDrive-95913a10-68793035.png')"></div>
+<div class="slot" style="background-image: url('test/VST-HY-Phaser-c5982aa8-68793034.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Hysteresis-76cc1c54-476c4879.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Ice9-737d9aeb-63494345.png')"></div>
+<div class="slot" style="background-image: url('test/VST-IIEQPro-7e10ca0d-49494551.png')"></div>
+<div class="slot" style="background-image: url('test/VST-IL Autogun-83698321-4941676e.png')"></div>
+<div class="slot" style="background-image: url('test/VST-IL Delay Bank-a16f8595-446c426e.png')"></div>
+<div class="slot" style="background-image: url('test/VST-IL Delay-c95e78f3-46443256.png')"></div>
+<div class="slot" style="background-image: url('test/VST-IL Drumaxx-f2036eab-444d5331.png')"></div>
+<div class="slot" style="background-image: url('test/VST-IL Drumpad-e3279b1d-444d4d31.png')"></div>
+<div class="slot" style="background-image: url('test/VST-IL DrumSynth Live-c96744f2-44734c69.png')"></div>
+<div class="slot" style="background-image: url('test/VST-IL Edison-355f0be4-494c4564.png')"></div>
+<div class="slot" style="background-image: url('test/VST-IL EQUO-1bc2fce2-4551554f.png')"></div>
+<div class="slot" style="background-image: url('test/VST-IL Flangus-6c9d1262-466c6773.png')"></div>
+<div class="slot" style="background-image: url('test/VST-IL Gross Beat-f709d26e-49474265.png')"></div>
+<div class="slot" style="background-image: url('test/VST-IL Harmless-31e6c2c9-4948726d.png')"></div>
+<div class="slot" style="background-image: url('test/VST-IL Maximus-87db9596-494d6178.png')"></div>
+<div class="slot" style="background-image: url('test/VST-IL Minihost Modular-4d4a2912-4d484d31.png')"></div>
+<div class="slot" style="background-image: url('test/VST-IL Minihost Modular (FX)-17e49569-4d484d32.png')"></div>
+<div class="slot" style="background-image: url('test/VST-IL Multiband Compressor-b570d193-464d6243.png')"></div>
+<div class="slot" style="background-image: url('test/VST-IL Notebook-c5f04517-464e6f42.png')"></div>
+<div class="slot" style="background-image: url('test/VST-IL Ogun-eea7c1ad-494f676e.png')"></div>
+<div class="slot" style="background-image: url('test/VST-IL Parametric EQ 2-c9687bbe-50455132.png')"></div>
+<div class="slot" style="background-image: url('test/VST-IL Parametric EQ-c092062c-46504556.png')"></div>
+<div class="slot" style="background-image: url('test/VST-IL Spectroman-70d4c6c0-4653704d.png')"></div>
+<div class="slot" style="background-image: url('test/VST-IL Stereo Enhancer-39acb93c-46534556.png')"></div>
+<div class="slot" style="background-image: url('test/VST-IL Vocoder-6e20497c-464c566f.png')"></div>
+<div class="slot" style="background-image: url('test/VST-IL Vocodex-6e74d682-56636478.png')"></div>
+<div class="slot" style="background-image: url('test/VST-IL Wave Candy-d6d9c09a-494c7763.png')"></div>
+<div class="slot" style="background-image: url('test/VST-IL WaveShaper-5a7dff86-494c5773.png')"></div>
+<div class="slot" style="background-image: url('test/VST-IntelliCrusher_Brown-31f5bca2-49437535.png')"></div>
+<div class="slot" style="background-image: url('test/VST-iZotope Alloy 2-ddae09a9-5a6e4132.png')"></div>
+<div class="slot" style="background-image: url('test/VST-iZotope BreakTweaker-d2abe6ba-5a6e4254.png')"></div>
+<div class="slot" style="background-image: url('test/VST-iZotope DDLY Dynamic Delay-69cda44f-695a4444.png')"></div>
+<div class="slot" style="background-image: url('test/VST-iZotope iDrum-18a3c55b-695a6944.png')"></div>
+<div class="slot" style="background-image: url('test/VST-iZotope Insight-d24d4f24-5a6e4953.png')"></div>
+<div class="slot" style="background-image: url('test/VST-iZotope Iris 2-82f63685-5a697232.png')"></div>
+<div class="slot" style="background-image: url('test/VST-iZotope Meter Tap-8f2b0e78-5a6e536e.png')"></div>
+<div class="slot" style="background-image: url('test/VST-iZotope Nectar 2-8ea41e0b-5a6e4e32.png')"></div>
+<div class="slot" style="background-image: url('test/VST-iZotope Nectar 2 Breath Control-399ae07e-5a6e4442.png')"></div>
+<div class="slot" style="background-image: url('test/VST-iZotope Nectar 2 Pitch Editor-1a19d82e-5a6e4d50.png')"></div>
+<div class="slot" style="background-image: url('test/VST-iZotope Ozone 4-e4bcdc3c-5a6e4f34.png')"></div>
+<div class="slot" style="background-image: url('test/VST-iZotope Ozone 6 Dynamic EQ-d01e2d9b-5a6e5936.png')"></div>
+<div class="slot" style="background-image: url('test/VST-iZotope Ozone 6 Dynamics-1254e402-5a6e4436.png')"></div>
+<div class="slot" style="background-image: url('test/VST-iZotope Ozone 6 Equalizer-13aafad0-5a6e4536.png')"></div>
+<div class="slot" style="background-image: url('test/VST-iZotope Ozone 6 Exciter-e5364026-5a4f3658.png')"></div>
+<div class="slot" style="background-image: url('test/VST-iZotope Ozone 6 Imager-ab2c72e5-5a6e4936.png')"></div>
+<div class="slot" style="background-image: url('test/VST-iZotope Ozone 6 Maximizer-1e6e924-5a4f364d.png')"></div>
+<div class="slot" style="background-image: url('test/VST-iZotope Ozone 6-e4d90b3e-5a6e4f36.png')"></div>
+<div class="slot" style="background-image: url('test/VST-iZotope Ozone 7-9169f47e-5a6e4f37.png')"></div>
+<div class="slot" style="background-image: url('test/VST-iZotope Ozone 7 Dynamic EQ-457afc5b-5a6e5937.png')"></div>
+<div class="slot" style="background-image: url('test/VST-iZotope Ozone 7 Dynamics-721662c2-5a6e4437.png')"></div>
+<div class="slot" style="background-image: url('test/VST-iZotope Ozone 7 Equalizer-ac195410-5a6e4537.png')"></div>
+<div class="slot" style="background-image: url('test/VST-iZotope Ozone 7 Exciter-5be9e966-5a4f3758.png')"></div>
+<div class="slot" style="background-image: url('test/VST-iZotope Ozone 7 Imager-a6bea1a5-5a6e4937.png')"></div>
+<div class="slot" style="background-image: url('test/VST-iZotope Ozone 7 Maximizer-9a554264-5a4f374d.png')"></div>
+<div class="slot" style="background-image: url('test/VST-iZotope Ozone 7 Vintage Compressor-3cc59cd-5a4f3743.png')"></div>
+<div class="slot" style="background-image: url('test/VST-iZotope Ozone 7 Vintage EQ-7fa43414-5a4f3751.png')"></div>
+<div class="slot" style="background-image: url('test/VST-iZotope Ozone 7 Vintage Limiter-a3fabb4c-5a4f3756.png')"></div>
+<div class="slot" style="background-image: url('test/VST-iZotope Ozone 7 Vintage Tape-fc8e852a-5a4f3754.png')"></div>
+<div class="slot" style="background-image: url('test/VST-iZotope RX 5 De-click-a466a5ad-5a6e354b.png')"></div>
+<div class="slot" style="background-image: url('test/VST-iZotope RX 5 De-clip-cc1b7137-5a6e3550.png')"></div>
+<div class="slot" style="background-image: url('test/VST-iZotope RX 5 De-hum-3f93b8e5-5a6e3548.png')"></div>
+<div class="slot" style="background-image: url('test/VST-iZotope RX 5 Dialogue De-noise-e7e5e911-5a6e3544.png')"></div>
+<div class="slot" style="background-image: url('test/VST-iZotope Spectron-6aca3a38-695a536e.png')"></div>
+<div class="slot" style="background-image: url('test/VST-iZotope Stutter Edit-f7392529-695a5345.png')"></div>
+<div class="slot" style="background-image: url('test/VST-iZotope Trash 2-61a9f3d6-5a6e5432.png')"></div>
+<div class="slot" style="background-image: url('test/VST-iZotope Trash-c0486ec5-695a5431.png')"></div>
+<div class="slot" style="background-image: url('test/VST-iZotope Vinyl-4e47627a-695a566e.png')"></div>
+<div class="slot" style="background-image: url('test/VST-jb_auditor_pro-64d0a8ae-42524155.png')"></div>
+<div class="slot" style="background-image: url('test/VST-jb_barricade-13b7c92b-4a424252.png')"></div>
+<div class="slot" style="background-image: url('test/VST-jb_barricade_pro-da6b6199-42524344.png')"></div>
+<div class="slot" style="background-image: url('test/VST-jb_broadcast-d40b1003-4a424250.png')"></div>
+<div class="slot" style="background-image: url('test/VST-jb_ferox-4ac4787e-4a424645.png')"></div>
+<div class="slot" style="background-image: url('test/VST-jb_fsynth_pro-bb68752e-4a424653.png')"></div>
+<div class="slot" style="background-image: url('test/VST-jb_isone_pro_surround-2e52e11d-4a425353.png')"></div>
+<div class="slot" style="background-image: url('test/VST-jb_isone_pro-d54e87ac-4a424953.png')"></div>
+<div class="slot" style="background-image: url('test/VST-jb_omnisone-dec82956-4a424f53.png')"></div>
+<div class="slot" style="background-image: url('test/VST-jb_omniverb-c167b62-4a424f56.png')"></div>
+<div class="slot" style="background-image: url('test/VST-jb_pc2-e83001e1-4a425043.png')"></div>
+<div class="slot" style="background-image: url('test/VST-jb_red_phatt_pro-5e81ee2b-4a425250.png')"></div>
+<div class="slot" style="background-image: url('test/VST-jb_red_phatt_pro_alt-9626ef95-4a425250.png')"></div>
+<div class="slot" style="background-image: url('test/VST-jb_send-28834832-4a425344.png')"></div>
+<div class="slot" style="background-image: url('test/VST-jb_smash_pro-55fda48c-4a42534d.png')"></div>
+<div class="slot" style="background-image: url('test/VST-jb_timemachine-cc7fd09c-4a42544d.png')"></div>
+<div class="slot" style="background-image: url('test/VST-JuceOPLVSTi_win32-770ad83b-4a4f504c.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Junglist-ec386d3f-53534a47.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Kaivo-94281fbb-4b616976.png')"></div>
+<div class="slot" style="background-image: url('test/VST-KarmaFX Deelay-3817c0f5-6f36646c.png')"></div>
+<div class="slot" style="background-image: url('test/VST-KarmaFX Equalizer-455fff89-6f366571.png')"></div>
+<div class="slot" style="background-image: url('test/VST-KarmaFX Filter-f687314d-6f36666c.png')"></div>
+<div class="slot" style="background-image: url('test/VST-KarmaFX Reverb-238292a7-6f367276.png')"></div>
+<div class="slot" style="background-image: url('test/VST-KarmaFX Synth FX-7a77074b-6f366678.png')"></div>
+<div class="slot" style="background-image: url('test/VST-KarmaFX Synth-e2b3bf73-6f367379.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Kirnu-CreamCM-cae1409-32753935.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Komplete Kontrol-d347b43-4e694b4b.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Kontakt 5-6c621061-4e694f35.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Kontakt 5-9a6d6094-4e694f35.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Kontakt 5 8out-6d91774e-4e694f36.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Kontakt 5 16out-277f868a-4e694f37.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Kontakt 5 16out-ddaca47d-4e694f37.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Kraken-36d60457-67516257.png')"></div>
+<div class="slot" style="background-image: url('test/VST-LinComp-157bcef-4c69436f.png')"></div>
+<div class="slot" style="background-image: url('test/VST-LittleAlterBoy-9203e0e4-53744c61.png')"></div>
+<div class="slot" style="background-image: url('test/VST-LittleMicroShift-2eb4692c-53744c6d.png')"></div>
+<div class="slot" style="background-image: url('test/VST-LittlePrimalTap-8b7a2c70-53744c70.png')"></div>
+<div class="slot" style="background-image: url('test/VST-LittleRadiator-2a17cb58-53744c72.png')"></div>
+<div class="slot" style="background-image: url('test/VST-M1-127e7f73-4b4c4d31.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Maag EQ4-d4836522-4d455134.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Massive-597c5890-4e694d61.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Massive-e6741983-4e694d61.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Matrix-12 V-39b040ab-4d617472.png')"></div>
+<div class="slot" style="background-image: url('test/VST-MDE-X-460804b6-4b4c4656.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Medusa2-1a2d0a-3448366b.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Melodyne-7af4c4b4-4d6c7067.png')"></div>
+<div class="slot" style="background-image: url('test/VST-MicroShift-6b494a16-53744d73.png')"></div>
+<div class="slot" style="background-image: url('test/VST-microSTATION Plug-In Editor-62998556-4b4d5731.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Microtonic Multi-aaf1b222-4e754d6d.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Microtonic-d2d85fe9-4e754d54.png')"></div>
+<div class="slot" style="background-image: url('test/VST-MIDI Polysher(x32)-ed9c9d62-65524d70.png')"></div>
+<div class="slot" style="background-image: url('test/VST-midiChords-ef5d6795-6d437264.png')"></div>
+<div class="slot" style="background-image: url('test/VST-midiCurve-e31970dd-43757276.png')"></div>
+<div class="slot" style="background-image: url('test/VST-midiPBCurve-f18a712b-50426376.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Mini V2-98d2030d-4d494e.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Mini V2 Efx-eb2087c4-4d4945.png')"></div>
+<div class="slot" style="background-image: url('test/VST-miniBit_x86-9a1927bc-6d496274.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Modular V2-16d9696-4d324f.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Modular V2 Efx-ad452ecd-4d3245.png')"></div>
+<div class="slot" style="background-image: url('test/VST-MonoPoly-389ceb1e-4b4c4d50.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Mopis-c7566ea7-6e4d6f70.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Morphine-acb8cdc5-4d6f7246.png')"></div>
+<div class="slot" style="background-image: url('test/VST-MPXNativeReverb-721320ca-4e627231.png')"></div>
+<div class="slot" style="background-image: url('test/VST-MPXNativeReverb-ed7c484d-4e627231.png')"></div>
+<div class="slot" style="background-image: url('test/VST-MS-20-6cf8a6a2-4b4c4d56.png')"></div>
+<div class="slot" style="background-image: url('test/VST-MS-20FX-39987b74-4b4c4d46.png')"></div>
+<div class="slot" style="background-image: url('test/VST-MSED-933a1ca5-35363768.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Multiply-d130bf81-4d554c54.png')"></div>
+<div class="slot" style="background-image: url('test/VST-MUX-38064e36-4d586678.png')"></div>
+<div class="slot" style="background-image: url('test/VST-MUX (Vst Synth)-1e53cd4-4d587379.png')"></div>
+<div class="slot" style="background-image: url('test/VST-NESNoise-187fdf3b-4e45534e.png')"></div>
+<div class="slot" style="background-image: url('test/VST-NESPulse-4f027c3a-4e455350.png')"></div>
+<div class="slot" style="background-image: url('test/VST-NESTri-aa93980c-4e455354.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Nexus-9751ff2b-4e455855.png')"></div>
+<div class="slot" style="background-image: url('test/VST-NoLimits-adf29816-4c69506c.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Nora_CM-ca525288-534e434d.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Nostaljia-63751344-4e53544a.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Oberheim SEM V-6ea7a196-4f625345.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Ohmicide_vstwin-89abd9d4-4f6d6963.png')"></div>
+<div class="slot" style="background-image: url('test/VST-OP-X PRO-II-6ee61fed-4f505055.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PanMan-be356f5-5374506e.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Passive EQ-ab2992f2-4e692439.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PerfectSpace-964cdc56-30303774.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Permut8-5aabad35-4e755072.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PhaseMistress-a825431f-5374504d.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Pianoteq 4 STAGE-dd2476e6-5074346d.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PITCHMAP VST-b09b6013-50544d50.png')"></div>
+<div class="slot" style="background-image: url('test/VST-pitchproof-2e74ad81-7070726f.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Pitchwheel-970d959b-50745768.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Plucked String-b1af896e-53535053.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PM-Ambiosoniq-3e17e5b0-44433333.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PM-American Tweed-80bdae13-44433235.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PM-Analoger-333ad86f-44433135.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PM-Brightness-880caa23-44433032.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PM-British Tone-9c1f0641-44433234.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PM-California Tone-5a3a5414-44433236.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PM-Chainer-c5e98edb-504d4358.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PM-Chorus Ensemble-4232c3fd-44433132.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PM-Clarisonix-8e5313a4-44433036.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PM-Classic Flanger-b854f6ed-44433137.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PM-Classic Phaser-35cef97-44433136.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PM-Cool Vibe-51813867-44433133.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PM-Degradiator-829dd96a-44433231.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PM-Deluxe Tilt-be3d9540-44433332.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PM-Digital Plate-1f8d7408-44433139.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PM-Digital Reverb-31c3384c-44433134.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PM-Dimension 3D-7389093d-44433035.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PM-Distorted-706cda84-44433037.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PM-EchoFlex-bcc0aa10-44433230.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PM-Electro Optical-221cb0de-44433038.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PM-Electro Q-Tone-d2fe5f74-44433330.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PM-Granulizer-c337a4df-44433339.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PM-Liquid Air-Q-a376d6dc-44433337.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PM-LoFi-f49f01f8-44433431.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PM-LoudBass-2852ae23-44433335.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PM-LS-Rotator-eea223f9-44433430.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PM-Magic Queen-314cc471-44433233.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PM-Monster Boost-22593d57-44433232.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PM-Moogy Filter-300aa8eb-44433432.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PM-Multi-Tap Delay-1f7590c-44433433.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PM-OB LA WAH-eae43eba-44433239.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PM-Octaplexer-c4a62ef-44433237.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PM-Psycho Ring-5054aff6-44433238.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PM-Retro Compressor-7ebb979-44433033.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PM-Retro Equalizer-4801c6ca-44433034.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PM-Retro Filter-715799ac-44433131.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PM-Retro Limiter-5b835b20-44433031.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PM-Screamer-11fb342e-44433336.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PM-Stereolizer-20581f2c-44433334.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PM-Talking Tone-e70bc50e-44433331.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PM-ToneStack-f62ac750-44433434.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PM-TransControl-ac3ad267-44433130.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PM-TremoloPan-c619b203-44433138.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PM-UltraMaxIt-8980ee35-44433039.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PM-Vinylizer-ed0dd326-44433338.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PM-VowelComb-9cf93dc0-44433435.png')"></div>
+<div class="slot" style="background-image: url('test/VST-P-Nes_DARK_MONO-30cc217e-506e3335.png')"></div>
+<div class="slot" style="background-image: url('test/VST-P-Nes_DARK_MONO_SP-9c573e6a-506e3335.png')"></div>
+<div class="slot" style="background-image: url('test/VST-P-Nes_DARK_STEREO_SP-ead070f5-506e3335.png')"></div>
+<div class="slot" style="background-image: url('test/VST-P-Nes_DARK_STEREO-eb1bf2d3-506e3335.png')"></div>
+<div class="slot" style="background-image: url('test/VST-P-Nes_MONO-96c3de5d-506e3335.png')"></div>
+<div class="slot" style="background-image: url('test/VST-P-Nes_MONO_SP-b4db612b-506e3335.png')"></div>
+<div class="slot" style="background-image: url('test/VST-P-Nes_STEREO_SP-f2d6e776-506e3335.png')"></div>
+<div class="slot" style="background-image: url('test/VST-P-Nes_STEREO-b217f3f2-506e3335.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PoiZone-bfe4cb35-53617757.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Polysix-1257c613-4b4c5056.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PrimalTap-95b08646-53745074.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PSP Echo-70ad8715-50506543.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PSP MicroWarmer-5ed3a612-50706d57.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PSP N2O-8aa01307-50534e32.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PSP Nitro-ce16eed2-50534e54.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PSP PianoVerb-71420ec4-50705076.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PSP PseudoStereo-fd74c1c6-50705073.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PSP SpringBox-533111f7-50507358.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PSP StereoAnalyser-e31049e7-50705361.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PSP StereoController-16c19824-50705372.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PSP StereoEnhancer-8bd7908c-50705365.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PSP VintageWarmer2-6b623b4d-50505657.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PSP VintageWarmer-17a6b1f4-50705657.png')"></div>
+<div class="slot" style="background-image: url('test/VST-PulseTec EQs-2430f9e0-4e746563.png')"></div>
+<div class="slot" style="background-image: url('test/VST-quadraSID-d9d894c7-51534944.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Radiator-963dec2-53745264.png')"></div>
+<div class="slot" style="background-image: url('test/VST-RC 24-778aecdd-4e69243e.png')"></div>
+<div class="slot" style="background-image: url('test/VST-RC 24-51544e90-4e69243e.png')"></div>
+<div class="slot" style="background-image: url('test/VST-RC 48-7b2cfc1f-4e69243f.png')"></div>
+<div class="slot" style="background-image: url('test/VST-RC 48-54f65dd2-4e69243f.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Reaktor5-9ba69cdb-4e695235.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Reaktor5 16out-ad712731-4e523569.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Reaktor5 FX16x16-1b5ddfee-4e52356a.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Reaktor5 FX-28ea50e3-4e523566.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Reaktor5 FX-1626056-4e523566.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Reaktor5 FX 2x8-dc5a0da8-4e523567.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Reaktor5 Surround-21a85862-4e523568.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Reaktor5-ada6fa48-4e695235.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Reaktor 6 FX-c16fb642-4e52366a.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Reaktor 6 FX-f7f9952f-4e52366a.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Reaktor 6-b5af4bdc-4e695236.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Reaktor 6-e3ba9c0f-4e695236.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Redoptor-2db94b58-52645037.png')"></div>
+<div class="slot" style="background-image: url('test/VST-rhino2-8ed8f6bb-524e4234.png')"></div>
+<div class="slot" style="background-image: url('test/VST-RoughRider-4b92265e-41447272.png')"></div>
+<div class="slot" style="background-image: url('test/VST-s(M)exoscope-37e77a46-6f735832.png')"></div>
+<div class="slot" style="background-image: url('test/VST-s(M)exoscopeModular-a5d22190-6f735831.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Sakura-f5da3694-53616b52.png')"></div>
+<div class="slot" style="background-image: url('test/VST-SanfordAdsrEnvelope-40e3663b-53414576.png')"></div>
+<div class="slot" style="background-image: url('test/VST-SanfordArpeggiator-6a68d53c-53417270.png')"></div>
+<div class="slot" style="background-image: url('test/VST-SanfordLfo-d5b05ab8-534c666f.png')"></div>
+<div class="slot" style="background-image: url('test/VST-SanfordMixer-31882b4c-534d6978.png')"></div>
+<div class="slot" style="background-image: url('test/VST-SanfordPhaserCM-4d14ad8a-5350434d.png')"></div>
+<div class="slot" style="background-image: url('test/VST-SanfordReverb32-6753a43a-53527662.png')"></div>
+<div class="slot" style="background-image: url('test/VST-SanfordSuperChorus-277a2a84-53534368.png')"></div>
+<div class="slot" style="background-image: url('test/VST-SanfordSuperFilter-af683b56-53534674.png')"></div>
+<div class="slot" style="background-image: url('test/VST-SanfordSuperPhaser-fa6f0eb5-53535032.png')"></div>
+<div class="slot" style="background-image: url('test/VST-SanfordVectorPad-92efa193-53566563.png')"></div>
+<div class="slot" style="background-image: url('test/VST-SatsonBuss-c2b8961c-53614275.png')"></div>
+<div class="slot" style="background-image: url('test/VST-SatsonChannel-daa1a8e6-53614331.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Saturation Knob-87f2ef50-7361746e.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Sausage Fattener-b56fa4fb-4d59504c.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Sawer-77d93eb5-53615752.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Scarlett Compressor-c4ad6bfb-66736370.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Scarlett EQ-93595442-66736571.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Scarlett Gate-b7e06d01-66736774.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Scarlett Reverb-55463e88-66737662.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Scorpion-a4f9a628-53535350.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Serum-3eee39a4-58667358.png')"></div>
+<div class="slot" style="background-image: url('test/VST-SerumFX-647555f6-58667359.png')"></div>
+<div class="slot" style="background-image: url('test/VST-SFX Machine Pro-8df8d628-53465870.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Sigmund-5a5a0688-53474d4e.png')"></div>
+<div class="slot" style="background-image: url('test/VST-SimSynth VSTi-2ad4bc8c-53695379.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Solid Bus Comp-3999ee71-4e692436.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Solid Dynamics-3926c736-4e692437.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Solid EQ-c08800ae-4e692438.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Solina V-14458c26-536f6c69.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Sonalksis Creative Filter Mono-8a766d95-54424b4d.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Sonalksis Creative Filter Stereo-bbc1992a-54424b4e.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Sonalksis Digital Grimebox Mono-695e8b97-5442324d.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Sonalksis Digital Grimebox Stereo-811a3eac-5442324e.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Sonalksis FreeG Mono-33ad1de3-4672474d.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Sonalksis FreeG Stereo-f20d6df8-46724753.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Sonalksis StereoTools-10ad3e94-53745453.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Sonalksis SV-315Mk2 Mono Compressor SC-c92c0c42-3331356c.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Sonalksis SV-315Mk2 Mono Compressor-d142879a-3331356d.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Sonalksis SV-315Mk2 Stereo Compressor SC-2de48e97-3331356b.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Sonalksis SV-315Mk2 Stereo Compressor-adc82d65-3331356e.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Sonalksis SV-517Mk2 Mono EQ-597efedd-3131396d.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Sonalksis SV-517Mk2 Stereo EQ-5b8090a8-3131396e.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Sonalksis SV-719 Mono Gate-5cddc298-3731396a.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Sonalksis SV-719 Mono Gate SC-ee820884-3731396c.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Sonalksis SV-719 Stereo Gate SC-ce21bc99-3731396b.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Sonalksis SV-719 Stereo Gate-de5f8ea3-37313969.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Sonalksis Uber Compressor Mono-c9351033-5442334d.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Sonalksis Uber Compressor Stereo-45620c48-5442334e.png')"></div>
+<div class="slot" style="background-image: url('test/VST-SOUND Canvas VA-4b1324b4-73637661.png')"></div>
+<div class="slot" style="background-image: url('test/VST-SPAN Plus-4332a65f-66396332.png')"></div>
+<div class="slot" style="background-image: url('test/VST-SpectrumWorx-ddede2ec-4c455357.png')"></div>
+<div class="slot" style="background-image: url('test/VST-SPL Bass Ranger-a70f6674-53504252.png')"></div>
+<div class="slot" style="background-image: url('test/VST-SPL Full Ranger-f8601cc4-53504652.png')"></div>
+<div class="slot" style="background-image: url('test/VST-SPL Transient Designer-2692cc2f-53505444.png')"></div>
+<div class="slot" style="background-image: url('test/VST-SPL TwinTube-240bbe5a-53505454.png')"></div>
+<div class="slot" style="background-image: url('test/VST-SPL Vox Ranger-de65bf24-53505652.png')"></div>
+<div class="slot" style="background-image: url('test/VST-SQ8L-7e5adbaf-5351384c.png')"></div>
+<div class="slot" style="background-image: url('test/VST-SR-88_x86.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Sunrizer-23a16dc4-534e525a.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Supercharger GT-d090de9-4e692441.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Superior Drummer-2f7662e5-64666832.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Sylenth1-d2b2c26e-73796c31.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Synplant-bb7da80-4e755350.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Synth1 VST-aeba47e2-53315673.png')"></div>
+<div class="slot" style="background-image: url('test/VST-SynthMaster2-6752720f-536d3269.png')"></div>
+<div class="slot" style="background-image: url('test/VST-SynthMaster2FX-4ad1fa1-536d3266.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Syntorus-801b05e0-536e3752.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Sytrus VSTi-112d770f-53797472.png')"></div>
+<div class="slot" style="background-image: url('test/VST-TAL-BassLine-101-5a34ad83-62417331.png')"></div>
+<div class="slot" style="background-image: url('test/VST-TAL-Bitcrusher-70a93ba6-36353133.png')"></div>
+<div class="slot" style="background-image: url('test/VST-TAL-Chorus-LX-2426b8b4-63484c31.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Tal-Dub-1a8498d2-61313768.png')"></div>
+<div class="slot" style="background-image: url('test/VST-TAL-Dub-2-f464f8f7-37716a37.png')"></div>
+<div class="slot" style="background-image: url('test/VST-TAL-Dub-3-f4731078-78673730.png')"></div>
+<div class="slot" style="background-image: url('test/VST-TAL-Filter-2-8ea99408-30323565.png')"></div>
+<div class="slot" style="background-image: url('test/VST-TAL-Filter-a2eac023-3539376f.png')"></div>
+<div class="slot" style="background-image: url('test/VST-TAL-NoiseMaker-563b5a75-6e637574.png')"></div>
+<div class="slot" style="background-image: url('test/VST-TAL-Reverb-2-6a5206e2-35386838.png')"></div>
+<div class="slot" style="background-image: url('test/VST-TAL-Reverb-3-6a601e63-52455633.png')"></div>
+<div class="slot" style="background-image: url('test/VST-TAL-Reverb-4-6a6e35e4-72655634.png')"></div>
+<div class="slot" style="background-image: url('test/VST-TAL-Sampler-14695ce6-68456c31.png')"></div>
+<div class="slot" style="background-image: url('test/VST-TAL-U-NO-LX-V2-ad7def74-756e6f34.png')"></div>
+<div class="slot" style="background-image: url('test/VST-TAL-USE-50751568-79313331.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Tantra-78e40162-546e7452.png')"></div>
+<div class="slot" style="background-image: url('test/VST-tb_peach_1_3-bb263d03-74627065.png')"></div>
+<div class="slot" style="background-image: url('test/VST-tb_toad_1_3-19268344-7462746f.png')"></div>
+<div class="slot" style="background-image: url('test/VST-TDR Feedback Compressor II-eaa69f7b-54643939.png')"></div>
+<div class="slot" style="background-image: url('test/VST-The Drop-8dd95dbb-44727031.png')"></div>
+<div class="slot" style="background-image: url('test/VST-The Glue-f14c9c24-43795467.png')"></div>
+<div class="slot" style="background-image: url('test/VST-TheStrip-8776d104-54685374.png')"></div>
+<div class="slot" style="background-image: url('test/VST-TinyPops-86d829bf-54504f50.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Tonelux Tilt-664b3c40-54696c74.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Tonelux Tilt Live-3fb99d18-54696c76.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Toraverb-a858557c-54345638.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Toxic-7b85d9a6-54784963.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Toxic Biohazard-66d22cf0-546f7834.png')"></div>
+<div class="slot" style="background-image: url('test/VST-ToxicIII-a992c77f-546f7833.png')"></div>
+<div class="slot" style="background-image: url('test/VST-TP Basslane-cfce825e-7470626c.png')"></div>
+<div class="slot" style="background-image: url('test/VST-TP Compadre - Mono SC-c833d32-74636232.png')"></div>
+<div class="slot" style="background-image: url('test/VST-TP Compadre - Mono-eaf27caa-74636231.png')"></div>
+<div class="slot" style="background-image: url('test/VST-TP Compadre - Stereo SC-abd3e6bd-74636234.png')"></div>
+<div class="slot" style="background-image: url('test/VST-TP Compadre - Stereo-ed7636ff-74636233.png')"></div>
+<div class="slot" style="background-image: url('test/VST-TP Sonitex STX-1260-c5f6be14-74737431.png')"></div>
+<div class="slot" style="background-image: url('test/VST-TRackS3 Brickwall Lim-96677b02-54643035.png')"></div>
+<div class="slot" style="background-image: url('test/VST-TRackS3 Classic Clipper-b6d20c86-54643034.png')"></div>
+<div class="slot" style="background-image: url('test/VST-TRackS3 Classic Comp-71a37b22-54643032.png')"></div>
+<div class="slot" style="background-image: url('test/VST-TRackS3 Classic EQ-bb2c955f-54643031.png')"></div>
+<div class="slot" style="background-image: url('test/VST-TRackS3 Classic MBand Lim-60bf130b-54643033.png')"></div>
+<div class="slot" style="background-image: url('test/VST-TRackS3 Lin Phase EQ-304df1e5-54643036.png')"></div>
+<div class="slot" style="background-image: url('test/VST-TRackS3 Metering-c5425a5e-54643130.png')"></div>
+<div class="slot" style="background-image: url('test/VST-TRackS3 Opto Comp-f8e401da-54643037.png')"></div>
+<div class="slot" style="background-image: url('test/VST-TRackS3 Prog EQ 1A-bd39ce43-54643039.png')"></div>
+<div class="slot" style="background-image: url('test/VST-TRackS3 Vint Comp 670-cb7cf14c-54643038.png')"></div>
+<div class="slot" style="background-image: url('test/VST-TRackS3-a17adc27-54525333.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Trackspacer-550b0ce6-546b5372.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Transient Master-f795ecc5-4e692435.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Tremolator-1a8b6c51-5374546d.png')"></div>
+<div class="slot" style="background-image: url('test/VST-TyrellN6-917e45fd-74596e36.png')"></div>
+<div class="slot" style="background-image: url('test/VST-UltraChannel-229c10b7-556c4368.png')"></div>
+<div class="slot" style="background-image: url('test/VST-UVIWorkstationVST-8fcb73cb-55564957.png')"></div>
+<div class="slot" style="background-image: url('test/VST-ValhallaFreqEchoMkI-802697d6-46715631.png')"></div>
+<div class="slot" style="background-image: url('test/VST-ValhallaRoom-5ade15c2-5275756d.png')"></div>
+<div class="slot" style="background-image: url('test/VST-ValhallaShimmer-498e73e9-73686d72.png')"></div>
+<div class="slot" style="background-image: url('test/VST-ValhallaUberMod-680df48d-75626572.png')"></div>
+<div class="slot" style="background-image: url('test/VST-ValhallaVintageVerb-16540aca-76656533.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Vanguard-a3d09fbf-56475244.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Vari Comp-e058c3cc-4e69243b.png')"></div>
+<div class="slot" style="background-image: url('test/VST-VAZ2010Effect-ed6f87ac-565a4632.png')"></div>
+<div class="slot" style="background-image: url('test/VST-VAZ2010VSTi-8f6680cd-56415a32.png')"></div>
+<div class="slot" style="background-image: url('test/VST-VC 2A-a31d3c21-4e692433.png')"></div>
+<div class="slot" style="background-image: url('test/VST-VC 76-ab0a74b1-4e692434.png')"></div>
+<div class="slot" style="background-image: url('test/VST-VC 160-78e24345-4e692432.png')"></div>
+<div class="slot" style="background-image: url('test/VST-vielklang2CM-ef0c1a7a-5632434d.png')"></div>
+<div class="slot" style="background-image: url('test/VST-VirtualCZ-5bbc1d31-76637a31.png')"></div>
+<div class="slot" style="background-image: url('test/VST-VolumeShaper4-4a441558-43475634.png')"></div>
+<div class="slot" style="background-image: url('test/VST-VOPM-75345233-564f504d.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Vox V-e4fefddd-41766953.png')"></div>
+<div class="slot" style="background-image: url('test/VST-VoxengoRecorder-87de11ba-564f5849.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Voyager-6296f662-4153564f.png')"></div>
+<div class="slot" style="background-image: url('test/VST-VPS philta XL-31bce154-5670686c.png')"></div>
+<div class="slot" style="background-image: url('test/VST-VPS Scope (CM edition)-5c977aec-56734350.png')"></div>
+<div class="slot" style="background-image: url('test/VST-V-Station-5441bdac-4e765330.png')"></div>
+<div class="slot" style="background-image: url('test/VST-VstSpeek3-defd914b-73706b33.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Wasp VSTi-4d93654a-57617370.png')"></div>
+<div class="slot" style="background-image: url('test/VST-WaveShaperCM-cfc72911-43574331.png')"></div>
+<div class="slot" style="background-image: url('test/VST-WOW2-e78af0d0-73627732.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Wurlitzer V-7121c6c2-5775726c.png')"></div>
+<div class="slot" style="background-image: url('test/VST-X-Poly-a250b8be-5358504c.png')"></div>
+<div class="slot" style="background-image: url('test/VST-YM2612-c2eb24f6-32363132.png')"></div>
+<div class="slot" style="background-image: url('test/VST-ymVST v1.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Z3TA+ 2-6cafdfe1-7a337432.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Zebra2-cfb5e909-534d4432.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Zebralette-5b84923-534d4433.png')"></div>
+<div class="slot" style="background-image: url('test/VST-Zebrify-2afd4b90-534d5932.png')"></div>
+<div class="slot" style="background-image: url('test/VST-ZOOM MS Decoder-bf4139e3-4d534443.png')"></div>
+<div class="slot" style="background-image: url('test/VST-ZRev-d9834026-72655630.png')"></div>
+	</div>
+ -->
+
+
+	<p class="clear">
+		<label><input type="checkbox" id="time_constraint" /> Time Constraint</label>
+		<label><input type="checkbox" id="use_constraint" /> Use Constraint</label>
+		<label><input type="checkbox" id="theme" /> Theme Idea</label>
+		<label><input type="checkbox" id="arrangment" /> Arrangement Idea</label>
+		<label><input type="checkbox" id="sounddesign" /> Sound Design Idea</label>
+		<label><input type="checkbox" id="mix" /> Mix Idea</label>
+		<button id="randomize">Randomize</button><button id="initialize">Initialize</button><span id="tempo"></span><span id="oblique-strategy"></span>
+	</p>
+	<div class="cell">
+		<h1>DAW / Host / Program</h1>
+		<select name="daw">
+			<option>Ableton Live</option>
+			<option>Reason</option>
+			<option>Renoise</option>
+			<option>Tracktion</option>
+		</select>
+	</div>
+	<div class="cell">
+		<h1>Synth Instrument</h1>
+		<select name="synth-instrument">
+			<option data-hint="Click Randomize All from Pattern Menu Button">ABL2</option>
+			<option data-hint="Click next preset button">Autogun</option>
+			<option data-hint="Press CTRL-R">Dagger</option>
+			<option data-hint="Click and Drag Dice in Modulation Matrix">Factory</option>
+			<option data-hint="Click Random button">Firebird</option>
+			<option data-hint="Click Random button">Gladiator 2</option>
+			<option data-hint="Click RANDOM button">Loom</option>
+			<option data-hint="Click dice button">MiniBit</option>
+			<option data-hint="Click dice button">Ogun</option>
+			<option data-hint="Click Utils -> Randomize">Sunrizer</option>
+			<option data-hint="Press SHIFT-R">Sylenth1</option>
+			<option data-hint="CTRL-click seed in GUI">Synplant</option>
+			<option data-hint="Click Randomize in Snapshot">Reaktor Monark</option>
+			<option data-hint="Click Randomize in Snapshot">Reaktor Razor</option>
+			<option data-hint="Click Randomize in Snapshot">Reaktor Skanner XT</option>
+			<option data-hint="Click RAND! buttons on Parts">VacuumPro</option>
+		</select>
+	</div>
+	<div class="cell">
+		<h1>Synth Effect</h1>
+		<select name="synth-effect">
+			<option data-hint="Down arrow menu -> Randomize Patch">Echobode</option>
+			<option data-hint="Click Random Button">Filter Jam</option>
+			<option data-hint="Click Rand button for Scene">Glitch 2</option>
+			<option data-hint="Click Random button">Outer Space</option>
+			<option data-hint="Down arrow menu -> Randomize Instructions">Permut8</option>
+			<option data-hint="Click Random Button">Space Strip</option>
+			<option data-hint="Click Random in each Section">Tantra</option>
+			<option data-hint="Click Random Button">Vinyl Strip</option>
+		</select>
+	</div>
+	<div class="cell">
+		<h1>Drum Synth</h1>
+		<select name="drum-synth">
+			<option data-hint="Options -> Library -> Empty -> Part Randomize">ADM2</option>
+			<option data-hint="Preset -> ROM -> Random Kit">Attack</option>
+			<option data-hint="Right click pad, randomize all">Drumatic 4</option>
+			<option data-hint="Down arrow menu -> Randomize All">uTonic</option>
+			<option data-hint="Click Dice buttons">Reaktor Polyplex</option>
+			<option data-hint="Turn Random and IUS on">Reaktor Patasonix</option>
+			<option data-hint="Use Randomize in Snapshot">Reaktor Retrobeat MK2</option>
+			<option data-hint="Use Randomize Buttons">AudioThing SR-88</option>
+		</select>
+	</div>
+	<div class="cell">
+		<h1>Drum Effect</h1>
+		<select name="drum-effect">
+			<option data-hint="Down arrow menu -> Randomize Patch">Echobode</option>
+			<option data-hint="Click Random Button">Filter Jam</option>
+			<option data-hint="Click Rand button for Scene">Glitch 2</option>
+			<option data-hint="Click Random button">Outer Space</option>
+			<option data-hint="Down arrow menu -> Randomize Instructions">Permut8</option>
+			<option data-hint="Click Random Button">Space Strip</option>
+			<option data-hint="Click Random in each Section">Tantra</option>
+			<option data-hint="Click Random Button">Vinyl Strip</option>
+		</select>
+	</div>
+	<div class="cell">
+		<h1># Random Preset Instrument(s)</h1>
+		<select name="random-preset-instrument-count">
+			<option>0</option>
+			<option>1</option>
+			<option>2</option>
+			<option>3</option>
+		</select>
+	</div>
+	<div class="cell">
+		<h1>Random Preset Instrument #1</h1>
+		<select name="random-preset-instrument0">
+			<option data-hint="Click Random button near volume">Alchemy</option>
+			<option data-hint="Click dice icon near preset">Cyclop</option>
+			<option data-hint="Click dice icon on each section">Egoist</option>
+			<option data-hint="Click Gear in Logo">Factory</option>
+			<option data-hint="Click Random button near preset">IRIS 2</option>
+			<option data-hint="Click Random button">Reaktor Metaphysical Function A</option>
+			<option data-hint="Click Random button">Reaktor Metaphysical Function B</option>
+			<option data-hint="Click Randomize button">Reaktor Skrewell</option>
+			<option data-hint="Click dice button near preset">Z3ta+ 2</option>
+		</select>
+	</div>
+	<div class="cell">
+		<h1>Random Preset Instrument #2</h1>
+		<select name="random-preset-instrument1">
+			<option data-hint="Click Random button near volume">Alchemy</option>
+			<option data-hint="Click dice icon near preset">Cyclop</option>
+			<option data-hint="Click dice icon on each section">Egoist</option>
+			<option data-hint="Click Gear in Logo">Factory</option>			
+			<option data-hint="Click Random button near preset">IRIS 2</option>
+			<option data-hint="Click Random button">Reaktor Metaphysical Function A</option>
+			<option data-hint="Click Random button">Reaktor Metaphysical Function B</option>
+			<option data-hint="Click Randomize button">Reaktor Skrewell</option>
+			<option data-hint="Click dice button near preset">Z3ta+ 2</option>
+		</select>
+	</div>
+	<div class="cell">
+		<h1>Random Preset Instrument #3</h1>
+		<select name="random-preset-instrument2">
+			<option data-hint="Click Random button near volume">Alchemy</option>
+			<option data-hint="Click dice icon near preset">Cyclop</option>
+			<option data-hint="Click dice icon on each section">Egoist</option>
+			<option data-hint="Click Gear in Logo">Factory</option>			
+			<option data-hint="Click Random button near preset">IRIS 2</option>
+			<option data-hint="Click Random button">Reaktor Metaphysical Function A</option>
+			<option data-hint="Click Random button">Reaktor Metaphysical Function B</option>
+			<option data-hint="Click Randomize button">Reaktor Skrewell</option>
+			<option data-hint="Click dice button near preset">Z3ta+ 2</option>
+		</select>
+	</div>
+	<div class="cell">
+		<h1>Send Effect</h1>
+		<select name="send-effect">
+			<option data-hint="Down arrow menu -> Randomize Patch">Echobode</option>
+			<option data-hint="Click Random Button">Filter Jam</option>
+			<option data-hint="Click Rand button for Scene">Glitch 2</option>
+			<option data-hint="Click Random button">Outer Space</option>
+			<option data-hint="Down arrow menu -> Randomize Instructions">Permut8</option>
+			<option data-hint="Click Random Button">Space Strip</option>
+			<option data-hint="Click Random in each Section">Tantra</option>
+			<option data-hint="Click Random Button">Vinyl Strip</option>
+		</select>
+	</div>
+	<p id="options"></p>
+	<script>
+		var fade_speed = 'normal';
+		var dice_rolls = 50;
+		var delay = 100;
+		var countdown_interval = null;
+		var loop = null;
+		function do_options() {
+			var options = [];
+			$('#options').empty();
+			if ($('#time_constraint:checked').length) {
+				var data = time_constraint();
+				options.push('<strong>TIME CONSTRAINT</strong>: ' + data + ' minutes; <span id="countdown"></span> remaining');
+				countdown(data);
+			}
+			if ($('#use_constraint:checked').length) {
+				var data = get_constraint();
+				options.push('<strong>USE CONSTRAINT</strong>: ' + data);
+			}
+			if ($('#theme:checked').length) {
+				var data = get_theme();
+				options.push('<strong>THEME IDEA</strong>: ' + data.theme + ' - ' + data.theme_idea);
+			}
+			if ($('#arrangment:checked').length) {
+				var data = get_arranging_theme();
+				options.push('<strong>ARRANGEMENT IDEA</strong>: ' + data.theme + ' - ' + data.theme_idea);
+			}
+			if ($('#sounddesign:checked').length) {
+				var data = get_sounddesign_theme();
+				options.push('<strong>SOUND DESIGN IDEA</strong>: ' + data.theme + ' - ' + data.theme_idea);
+			}
+			if ($('#mix:checked').length) {
+				var data = get_mix_theme();
+				options.push('<strong>MIX IDEA</strong>: ' + data.theme + ' - ' + data.theme_idea);
+			}
+			var html = '<ol>';
+			$.each(options, function(i, option) {
+				html += '<li>' + option + '</li>';
+			});
+			html += '</ol>';
+			$('#options').html(html);
+		}
+		function initialize_selects() {
+			$('select').each(function(i, el) { $(this).val(''); });
+			$('.hint').remove();
+			$('img').remove();
+			$('#options, #tempo, #countdown, #oblique-strategy').hide();
+		}
+		function choose_random_option(select_name) {
+			var select = $('select[name="' + select_name + '"]');
+			var options = select.find('option');
+			options[Math.floor(Math.random() * options.length)].selected = true;
+			var hint = $('select[name="' + select_name + '"] option:contains("' + select.val() + '")').attr('data-hint');
+			if (hint != undefined) {
+				$(select).after('<span class="hint">' + hint + '</span>');
+			}
+			return select.val();
+		}
+		function make_filename(str) {
+			return str.toLowerCase().replace(/ /g, '_') + '.png';
+		}
+		function make_select_name(str) {
+			return str.toString().replace(/_/g, '-');
+		}
+		function randomize(select_name, callback) {
+			var img = make_filename(choose_random_option(select_name));
+			var selector = 'select[name="' + select_name + '"]';
+			if ($(selector + ' + img').length > 0) {
+				$(selector).replace($('<img />', { src: img, style: 'display: none;' }));
+			} else {
+				$(selector).after($('<img />', { src: img, style: 'display: none;' }));
+			}
+			$(selector + ' + img').stop().fadeIn(fade_speed, function() {
+				if (callback != null) {
+					callback();
+				}
+			});
+		}
+		function choose(select_name) {
+			var selector = 'select[name="' + select_name + '"]';
+			$(selector).parent().find('span').remove();
+			$(selector).parent().find('img').remove();
+			$(selector).parent().find('h1').addClass('no-clicks');
+			var img = make_filename(choose_random_option(select_name));
+			$(selector).after($('<img />', { src: img, style: 'display: none;' }));
+			$(selector + ' + img').stop().fadeIn(fade_speed, function() {
+				$(selector).parent().find('h1').removeClass('no-clicks');
+			});
+		}
+		function countdown(minutes) {
+			total_min = minutes * 60;
+			var wind_down = function() {
+				total_min--;
+				if (total_min == 0) {
+					clearInterval(loop);
+				}
+				var minutes = parseInt(total_min / 60);
+				var seconds = parseInt(total_min % 60);
+				if (seconds < 10) {
+					seconds = '0' + seconds;
+				}
+				$('#countdown').text(minutes + ":" + seconds);
+			}
+			if (loop != null) {
+				clearInterval(loop);
+			}
+			loop = setInterval(wind_down, 1000);
+			$('#countdown').fadeIn(fade_speed);
+		}
+		function finish_dice_roll() {
+			$('#randomize').attr('disabled', false);
+			$('#initialize').attr('disabled', false);
+			$('h1').removeClass('no-clicks');
+			$('#options').fadeIn(fade_speed);
+		}
+		function roll_the_dice() {
+			var randoms = {};
+			var random_preset_instrument_count = parseInt(choose_random_option('random-preset-instrument-count'));
+			randoms.daw = randomize('daw', function() {
+				randomize('synth-instrument', function() {
+					randomize('synth-effect', function() {
+						randomize('drum-synth', function() {
+							randomize('drum-effect', function() {
+								switch(random_preset_instrument_count) {
+									case 3:
+										randomize('random-preset-instrument0', function() {
+											randomize('random-preset-instrument1', function() {
+												randomize('random-preset-instrument2', function() {
+													randomize('send-effect', function() {
+														finish_dice_roll()
+													});
+												});
+											});
+										});
+										break;
+									case 2:
+										randomize('random-preset-instrument0', function() {
+											randomize('random-preset-instrument1', function() {
+												randomize('send-effect', function() {
+													finish_dice_roll()
+												});
+											});
+										});
+										break;
+									case 1:
+										randomize('random-preset-instrument0', function() {
+											randomize('send-effect', function() {
+												finish_dice_roll()
+											});
+										});
+										break;
+									case 0:
+										randomize('send-effect', function() {
+											finish_dice_roll()
+										});
+										break;
+								}
+							});
+						});
+					});
+				});
+			});
+			$('#tempo').text(random_tempo()).fadeIn(fade_speed);
+			$('#oblique-strategy').text(oblique_strategy()).fadeIn(fade_speed);
+		}
+		function time_constraint() {
+			var time_blocks = [
+				15,
+				30,
+				60, 
+				120,
+				180
+			];
+			return time_blocks[Math.floor(Math.random() * time_blocks.length)];
+		}
+		function random_tempo() {
+			var tempos = [
+				70,
+				85,
+				95,
+				105,
+				110,
+				115,
+				120,
+				125,
+				130,
+				128,
+				140,
+				160,
+				174,
+				180
+			]
+			return tempos[Math.floor(Math.random() * tempos.length)] + ' bpm';
+		}
+		function oblique_strategy() {
+			return quotes[Math.floor(Math.random() * quotes.length)];
+		}
+		function get_constraint() {
+			return constraints[Math.floor(Math.random() * constraints.length)];
+		}
+		function get_theme() {
+			return ({
+				theme: themes[Math.floor(Math.random() * themes.length)],
+				theme_idea: theme_ideas[Math.floor(Math.random() * theme_ideas.length)]
+			});
+		}
+		function get_arranging_theme() {
+			return ({
+				theme: arranging_themes[Math.floor(Math.random() * arranging_themes.length)],
+				theme_idea: arranging_ideas[Math.floor(Math.random() * arranging_ideas.length)]
+			});
+		}
+		function get_sounddesign_theme() {
+			return ({
+				theme: sounddesign_themes[Math.floor(Math.random() * sounddesign_themes.length)],
+				theme_idea: sounddesign_ideas[Math.floor(Math.random() * sounddesign_ideas.length)]
+			});
+		}
+		function get_mix_theme() {
+			return ({
+				theme: mix_themes[Math.floor(Math.random() * mix_themes.length)],
+				theme_idea: mix_ideas[Math.floor(Math.random() * mix_ideas.length)]
+			});
+		}			
+
+		$(document).ready(function() {
+			initialize_selects();
+			$('h1:contains("DAW")').on('click', function() { choose('daw'); });
+			$('h1:contains("Synth Instrument")').on('click', function() { choose('synth-instrument'); });
+			$('h1:contains("Synth Effect")').on('click', function() { choose('synth-effect'); });
+			$('h1:contains("Drum Synth")').on('click', function() { choose('drum-synth'); });
+			$('h1:contains("Drum Effect")').on('click', function() { choose('drum-effect'); });
+			$('h1:contains("Random Preset Instrument #1")').on('click', function() { choose('random-preset-instrument0'); });
+			$('h1:contains("Random Preset Instrument #2")').on('click', function() { choose('random-preset-instrument1'); });
+			$('h1:contains("Random Preset Instrument #3")').on('click', function() { choose('random-preset-instrument2'); });
+			$('h1:contains("Send Effect")').on('click', function() { choose('send-effect'); });
+			$('h1').attr('title', 'Click to randomize');
+			$('#initialize').on('click', function(e) {
+				initialize_selects();
+				$(':checked').attr('checked', false);
+			});
+			$('#randomize').on('click', function(e) {
+				$('#initialize').attr('disabled', true);
+				$('#randomize').attr('disabled', true);
+				$('h1').addClass('no-clicks');
+				initialize_selects();
+				roll_the_dice();
+				do_options();
+			});
+			$('select').on('change', function(e) {
+				var scope = $(this).attr('name');
+				var selector = 'select[name="' + scope + '"]';
+				var selected = $(this).val();
+				var parent = $(selector).parent();
+				var img = make_filename(selected);
+				var hint = $($(selector).selector + ' option:contains("' + selected + '")').attr('data-hint');
+				$(selector).parent().find('span').remove();
+				$(selector).parent().find('img').remove();
+				$(selector).parent().find('h1').addClass('no-clicks');
+				$(selector).after($('<img />', { src: img, style: 'display: none;' }));
+				$(parent).find('img').stop().fadeIn(fade_speed, function() {
+					$(selector).parent().find('h1').removeClass('no-clicks');
+				});
+				if (hint != undefined) {
+					$(parent).find('img').after('<span class="hint">' + hint + '</span>');
+				}
+				
+			});
+		});
+		var constraints = [
+			'1 Synth ONLY',
+			'1 Loop ONLY',
+			'1 Arp ONLY',
+			'No editing; only recording',
+			'No sound design, only presets',
+			'No EQ',
+			'No Reverb',
+			'No Compressors',
+			'Single takes, then move on',
+			'Must bounce each pass',
+			'No track freezing',
+			'Only use your voice',
+			'Only use your guitar',
+			'Only DAW built-ins',
+			'Everything must be vocoded',
+			'No Filters',
+			'No Delays',
+			'No MultiFX',
+			'Use only plug-ins you don\'t know well yet',
+			'Only samplers',
+			'Base entire track on a single melody',
+			'No kick drums',
+			'No samplers'
+		];
+
+		var themes = [
+			'STACCATO',
+			'LEGATO',
+			'ACCELERATION',
+			'DECELERATION',
+			'ACCUMULATION',
+			'AUGMENTATION',
+			'DIMINUTION',
+			'DEVELOPMENT',
+			'INSERTION',
+			'INVERSION',
+			'MIRRORING',
+			'REPETITION',
+			'RETROGRADE',
+			'TRANSPOSITION',
+			'IMITATION',
+			'THINK SMALL',
+			'FEEL IT',
+			'LOUD',
+			'SOFT',
+			'POLYRHYTHMS',
+			'UNSYNC',
+			'BREAK IT',
+			'FLIP IT',
+			'FLIP IT',
+			'ADD LIMITS',
+			'ADD LIMITS',
+			'ADD LIMITS',
+			'ADD LIMITS',
+			'DISTORT',
+			'UNFAMILIAR',
+			'PRESET',
+			'TIME',
+			'SAMPLE',
+			'FOUND SOUND',
+			'FOUND SOUND',
+			'ARPEGGIATE',
+			'MAJOR',
+			'MINOR',
+			'PERCUSSION',
+			'STEAL',
+			'TEXTURE',
+			'DIVERSIFY',
+			'SUBTRACT',
+			'BREAK'
+		];
+
+		var theme_ideas = [
+			'Use short notes',
+			'Use longer sustained notes',
+			'Increase the speed with which the phrase is done',
+			'Decrease the speed with which the phrase is done',
+			'Sequence elements by repeatedly starting at the beginning i.e. 1 : 1, 2 : 1, 2, 3 : 1, 2, 3, 4 : etc.',
+			'Lengthen the time values of some or all of the elements',
+			'Condense the time values of some or all of the elements',
+			'Reuse an aspect or aspects of a phrase with new intention',
+			'Splice new material into a phrase',
+			'Reverse the pitch order of the notes being played',
+			'Repeat a phrase but with the repeat reversed',
+			'Repeat a phrase',
+			'Reverse the order of a phrase',
+			'Raise or lower the pitches of a phrase',
+			'Repeat the same musical phrase using a different voice',
+			'Use short loops',
+			'Turn the metronome off',
+			'Turn up the volume',
+			'Turn down the volume',
+			'Use polyrhythmic elements',
+			'Use loops not synced to the tempo',
+			'Misuse your tools',
+			'Use rhythmic inversions',
+			'Use chord inversions',
+			'Use only 2 chords',
+			'Use only 2 chords (with inversions)',
+			'Write a melody that moves only in 2nds (up or down)',
+			'Write a melody that moves only in 3rds (up or down)',
+			'Add distortion / saturation / overdrive / etc.',
+			'Use a plugin / device you\'ve never used or don\'t use often',
+			'Use a preset',
+			'Change time signature',
+			'Use a sample',
+			'Use a found sound as percussion',
+			'Create a melodic instrument from a found sound',
+			'Use arpeggios',
+			'Use only major chords',
+			'Use only minor chords',
+			'Use only percussion even for melody',
+			'Use an idea from another piece of music but make it your own',
+			'Add in a layer of texture i.e. a pad, noise or field recording',
+			'Use a typical / defining element from a genre you would otherwise never use (e.g. a dubstep wobble bass, a drum n bass ‘amen’ break or a glitch hop stutter effect)',
+			'Remove all but one element',
+			'Take a break'
+		];
+
+		var arranging_themes = [
+			'BORROW',
+			'WORROB',
+			'ALL CHORUS',
+			'ONCE',
+			'BE SUCCINCT',
+			'PROGRESS',
+			'ACCUMULATION',
+			'SUBTRACT',
+			'BRIDGE',
+			'CHORUS',
+			'BREAK'
+		];
+
+		var arranging_ideas = [
+			'Arrange',
+			'Use the form of an existing song',
+			'Use the form of an existing song, but in reverse',
+			'Start the song with a chorus',
+			'Use each section or phrase only once, i.e. don\'t repeat a section',
+			'Make a short song, stick to 1 or 2 min max and get your message across in that time',
+			'Create an arrangement by gradually bringing in parts and building to a climax',
+			'Sequence parts by repeatedly starting at the beginning, i.e. 1 ; 1, 2 ; 1, 2, 3 ; 1, 2, 3, 4 ; etc.',
+			'Remove all but one element',
+			'Write a bridge section. If you already have a bridge section write a variation',
+			'Write a chorus section. If you already have a chorus section write an alternate chorus',
+			'Take a break'
+		];
+
+		var sounddesign_themes = [
+			'PRESET',
+			'BREAK IT',
+			'RESAMPLE',
+			'BREAK',
+			'SUBTRACT',
+			'ADD',
+			'MULTIPLY',
+			'GRANULATE',
+			'SAMPLE',
+			'VERB',
+			'DELAY',
+			'DISTORT',
+			'WOBBLEOBBLE',
+			'LAYER',
+			'MOD',
+			'SIN',
+			'TRI',
+			'SQU',
+			'SAW'
+		];
+
+		var sounddesign_ideas = [
+			'Sound Design',
+			'Use a preset then tweak to taste',
+			'Use an instrument sample or preset in a way other than how it is meant to be used (i.e. play a bass patch like a chord or an FX like a lead)',
+			'Try sending something out of your DAW into the real world (through a speaker) and then recording it back in (via a microphone)',
+			'Take a break',
+			'Use Subtractive Synthesis',
+			'Use Additive Synthesis',
+			'Use Frequency Modulation Synthesis',
+			'Use Granular Synthesis',
+			'Use a sampler to create an instrument from audio',
+			'Use reverb',
+			'Use delay',
+			'Add distortion / saturation / overdrive / etc.',
+			'Use an LFO',
+			'Layer 2 or more sounds to create a composite sound',
+			'Use a modulation effect (Phaser, Flanger, Chorus, etc.)',
+			'Use sine waves as the basis of the sound',
+			'Use triangle waves as the basis of the sound',
+			'Use square waves as the basis of the sound',
+			'Use saw waves as the basis of the sound'
+		];
+
+		var mix_themes = [
+			'ITS THE 60s',
+			'ITS THE 70s',
+			'ITS THE 80s',
+			'AUTO',
+			'PAN IT',
+			'DO IT OLD SCHOOL',
+			'BREAK',
+			'SLAM IT',
+			'VERB',
+			'DELAY'
+		];
+
+		var mix_ideas = [
+			'Mix',
+			'Hard pan something (or everything!)',
+			'Automate something',
+			'Pan something',
+			'Use no automation only manual control and fader moves',
+			'Take a break (your ears probably need it)',
+			'Compress something WAAAY too much',
+			'Use reverb',
+			'Use delay'
+		];
+
+		var quotes = [
+			'(Organic) machinery',
+			'A line has two sides',
+			'A very small object - Its center',
+			'Abandon desire',
+			'Abandon normal instructions',
+			'Accept advice',
+			'Accretion',
+			'Adding on',
+			'Allow an easement (an easement is the abandonment of a stricture)',
+			'Always first steps',
+			'Always give yourself credit for having more than personality',
+			'Always the first steps',
+			'Are there sections? Consider transitions',
+			'Ask people to work against their better judgement',
+			'Ask your body',
+			'Assemble some of the elements in a group and treat the group',
+			'Back up a few steps. What else could you have done?',
+			'Balance the consistency principle with the inconsistency principle',
+			'Be dirty',
+			'Be extravagant',
+			'Be less critical more often',
+			'Breathe more deeply',
+			'Bridges -build -burn',
+			'Call your mother and ask her what to do.',
+			'Cascades',
+			'Change ambiguities to specifics',
+			'Change instrument roles',
+			'Change nothing and continue with immaculate consistency',
+			'Change specifics to ambiguities',
+			'Children\'s voices -speaking -singing',
+			'Cluster analysis',
+			'Consider different fading systems',
+			'Consider transitions',
+			'Consult other sources -promising -unpromising',
+			'Convert a melodic element into a rhythmic element',
+			'Courage!',
+			'Cut a vital connection',
+			'Decorate, decorate',
+			'Define an area as \'safe\' and use it as an anchor',
+			'Describe the landscape in which this belongs. (9 August)',
+			'Destroy nothing; Destroy the most important thing',
+			'Discard an axiom',
+			'Disciplined self-indulgence',
+			'Disconnect from desire',
+			'Discover the recipes you are using and abandon them',
+			'Discover your formulas and abandon them',
+			'Display your talent',
+			'Distorting time',
+			'Do nothing for as long as possible',
+			'Do something boring',
+			'Do something sudden, destructive and unpredictable',
+			'Do the last thing first',
+			'Do the washing up',
+			'Do the words need changing?',
+			'Do we need holes?',
+			'Don\'t avoid what is easy',
+			'Don\'t be afraid of things because they\'re easy to do',
+			'Don\'t be frightened of cliches',
+			'Don\'t be frightened to display your talents',
+			'Don\'t break the silence',
+			'Don\'t stress one thing more than another',
+			'Emphasize differences',
+			'Emphasize repetitions',
+			'Emphasize the flaws',
+			'Faced with a choice, do both',
+			'Feed the recording back out of the medium',
+			'Feedback recordings into an acoustic situation',
+			'Fill every beat with something',
+			'Find a safe part and use it as an anchor',
+			'First work alone, then work in unusual pairs.',
+			'From nothing to more than nothing',
+			'Get your neck massaged',
+			'Ghost echoes',
+			'Give the game away',
+			'Give way to your worst impulse',
+			'Go outside. Shut the door.',
+			'Go slowly all the way round the outside',
+			'Go to an extreme, move back to a more comfortable place',
+			'How would someone else do it?',
+			'How would you explain this to your parents?',
+			'How would you have done it?',
+			'Humanize something that is free of error.',
+			'Idiot glee (?)',
+			'Imagine the music as a moving chain or caterpillar',
+			'Imagine the music as a series of disconnected events',
+			'In total darkness, or in a very large room, very quietly',
+			'Infinitesimal gradations',
+			'Instead of changing the thing, change the world around it.',
+			'Intentions -credibility of -nobility of -humility of',
+			'Into the impossible',
+			'Is it finished?',
+			'Is something missing?',
+			'Is the intonation correct?',
+			'Is the style right?',
+			'Is the tuning appropriate?',
+			'Is the tuning intonation correct?',
+			'Is there something missing?',
+			'It is quite possible (after all)',
+			'It is simply a matter or work',
+			'Just carry on',
+			'Left channel, right channel, centre channel',
+			'List the qualities it has. List those you\'d like.',
+			'Listen in total darkness, or in a very large room, very quietly',
+			'Listen to the quiet voice',
+			'Look at a very small object, look at its centre',
+			'Look at the order in which you do things',
+			'Look closely at the most embarrassing details and amplify.',
+			'Lost in useless territory',
+			'Lowest common denominator check -single beat -single note -single riff',
+			'Magnify the most difficult details',
+			'Make a blank valuable by putting it in an excquisite frame',
+			'Make a sudden, destructive unpredictable action; incorporate',
+			'Make an exhaustive list of everything you might do and do the last thing on the list',
+			'Make it more sensual',
+			'Make what\'s perfect more human',
+			'Mechanize something idiosyncratic',
+			'Move towards the unimportant',
+			'Mute and continue',
+			'Not building a wall but making a brick',
+			'Once the search has begun, something will be found',
+			'Only a part, not the whole',
+			'Only one element of each kind',
+			'Overtly resist change',
+			'Pae White\'s non-blank graphic metacard',
+			'Pay attention to distractions',
+			'Picture of a man spotlighted',
+			'Put in earplugs',
+			'Question the heroic approach',
+			'Remember those quiet evenings',
+			'Remove a restriction',
+			'Remove ambiguities and convert to specifics',
+			'Remove specifics and convert to ambiguities',
+			'Remove the middle, extend the edges',
+			'Repetition is a form of change',
+			'Retrace your steps',
+			'Revaluation (a warm feeling)',
+			'Reverse',
+			'Short circuit',
+			'Shut the door and listen from outside',
+			'Simple subtraction',
+			'Simply a matter of work',
+			'Slow preparation, fast execution',
+			'Spectrum analysis',
+			'State the problem in words as simply as possible',
+			'Steal a solution.',
+			'Take a break',
+			'Take away as much mystery as possible. What is left?',
+			'Take away the elements in order of apparent non-importance',
+			'Take away the important parts',
+			'Tape your mouth',
+			'The inconsistency principle',
+			'The most important thing is the thing most easily forgotten',
+			'The tape is now the music',
+			'Think - inside the work -outside the work',
+			'Think of the radio',
+			'Tidy up',
+			'Towards the insignificant',
+			'Trust in the you of now',
+			'Try faking it',
+			'Turn it upside down',
+			'Twist the spine',
+			'Use "unqualified" people.',
+			'Use an old idea',
+			'Use an unacceptable color',
+			'Use cliches',
+			'Use fewer notes',
+			'Use filters',
+			'Use something nearby as a model',
+			'Use your own ideas',
+			'Voice your suspicions',
+			'Water',
+			'What are the sections sections of? Imagine a caterpillar moving',
+			'What context would look right?',
+			'What do you do? Now, what do you do best?',
+			'What else is this like?',
+			'What is the reality of the situation?',
+			'What is the simplest solution?',
+			'What mistakes did you make last time?',
+			'What most recently impressed you? What can you learn from it? What could you take from it?',
+			'What to increase? What to reduce? What to maintain?',
+			'What were the branch points in the evolution of this entity',
+			'What were you really thinking about just now? Incorporate',
+			'What would make this really successful?',
+			'What would your closest friend do?',
+			'What wouldn\'t you do?',
+			'When is it for? Who is it for?',
+			'Where is the edge?',
+			'Which parts can be grouped?',
+			'Who would make this really successful?',
+			'Work at a different speed',
+			'Would anyone want it?',
+			'You are an engineer',
+			'You can only make one dot at a time',
+			'You don\'t have to be ashamed of using your own ideas',
+			'Your mistake was a hidden intention'
+		];
+	</script>
+</body>
+</html>

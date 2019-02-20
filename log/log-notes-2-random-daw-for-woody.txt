@@ -1,0 +1,155 @@
+Couple non related to the actual video comments:
+------------------------------------------------
+
+0a. I spent over 2 hours working live in Waveform. This is invaluable user testing that you should 100% appreciate :P 
+0b. I spent over 2 hours detailing these notes walking through this footage and annotating for your benefit - you're welcome :P
+0c. If you read nothing else because TL;DR PLEASE READ THE PART ABOUT THE MIDI GRID at [USE CASE: Iterative recording/editing MIDI] THANKS AND PLEASE MAKE THIS BETTER!
+0d. I apologize for the f-bombs in the MIDI section, but we're men, and we swear. Translate every F bomb as an underscore or a place where there should be emphasis.
+0e. 1:20:00ish I almost give up and consider removing Tracktion from my use at all because of my frustration.
+
+1. The first Random DAW Session video I made used Ableton, and you can find that here: https://www.youtube.com/watch?v=WmpL8NCnWuI&t=25s
+
+2. I didn't know Collective came with upgraded waveform. Had I known I would have been using it already. It's quite good, and I'm very happy that it was included in my upgrade.
+
+3. A super specific and weird idea, if we could have presets in the DAW also show thumbnails and have them somehow show up in that picker, that'd be cool. For plugins that have bigger presets in them like Kontakt/Reaktor I try to remember all of those every chance I can by creating an accessible way to see them/get to them natively in every DAW I use (see 0:13:59 below) - this works really great in Waveform with the tagging system and after the video (not recorded) I deeply learned the tagging system and the browser, and they are great! But when you right click to load something it only shows racks, tracktion plugs, and plugins - not presets. And to that end if presets were available in there and if they could have a preset image that would be great because then I could quickly find Polyplex for example. Just an idea. Along these lines though I would definitely appreciate the ability to have filters in that right-click + filter menu modal to locate by tags. Both are browsing contexts, and yes they are unique but they are a little samey too in that we can find plugins in the browser. In this way maybe there is a elegant approach to allow unified organization which maintains feature parity despite the UX context. (see 0:17:50 below) - in the same way you have pulled out settings in the browser and let us change order of loops, plug-ins, and so on. In this regard, it might be neat also to know which Tracktion filter has a mini UI in the filter on the right side pane with some symbol in it's name? (Vol/Pan has a UI, EQ has a little graph overlay, etc. it would be neat to see which of these filters would have special mini UI modes by postfixing maybe a * or + or something to the name?) just an idea.
+
+4. I wish waveform could disable animation on the panes showing/hiding as an option - instant snap to states kind of thing. (see 0:28:00ish)
+
+5. When will we get an actual theme editor? The theme is OK, but I miss this old feature from Tracktion.
+
+6. LFO lacks musical interval frequency support when locked to tempo using Beat mode. If the LFO could also support a custom shape or something that would be nice. (see 0:50:43) Maybe a good way to do this would be to add a multplier for the frequency of each Beat type, quarter, half, whole, etc. Though that's a little less immediate, I think a setup like: 4/1, 3/1, 2/1, 1/1, 1/2, 1/4, 1/8, 1/16, 1/32, 1/64 would be OK too. But the ultimate flexibility would be a multiplier sometimes people might want things that you can't anticipate like 16/1 for long filter sweeps, or 1/256 for crazy glitchy sounds. Dunno just an idea.
+
+7. When will we have/are there plans for other modlators besides LFO? I think you should add envelope followers, graphed step sequencers, etc. And in the same way we right now just get an LFO, a little menu could show up giving us the other options - this would be amazing and very very helpful and make Waveform much more competitive with Ableton Max for Live users, Bitwig users, and Reason users. In this light can we use LFOs in a Rack? I don't know just thinking to myself now. :) If we can't, we should be able to, and we should be able to use the modulators in Racks, too. 
+
+8. When I was trying to setup a brickwall limiter using Compressor / Limiter filter native to Waveform, I couldn't just type into the field, I can do this almost everywhere else in native Waveform inputs/controls in property pane. That was a little weird.
+
+9. It wasn't clear to me what the meters above the dedicated mixer view tab window were for - later I understood through trial and error and process of elimination that those meters are for each track, but it wasn't clear immediately FYI.
+
+10. Can you please let us resize the left input rail section and not compress the type? It drives my OCD nuts. Along those lines, please allow us to resize the right pane of the new MIDI editor window/panel where it shows teh clips and the lock, eyeblal, and edit icons so that we don't stretch the text. Text is a huge issue for me as I have trouble seeing and in that context, as you can see in 1:10:06 it's ridiculously crushed. If i could simply resize the damn pane that problem would go away.
+
+
+
+
+[COMMENT: "Ehh it's just tracktion"]
+1:00:00ish - Let me clarify - I meant that Waveform seemed like a rebranding, a new approach to break away from the Mackie way, and thus far the features that were added to Waveform were not ground breaking, and in fact you guys took features away from us (Theme editor), so I percevied waveform as a sort of money grab. My first experience with T7 wasn't too great either. That said you guys have really done an excellent job cleaning up quite a few of the old Tracktion issues. The new UX is quite a bit better, and more consistent. The new piano roll is a nice and must have feature but I think the UX needs a little help and the overall approach needs help. I got very confused by that later. I think you need to do a better job marketing and highlighting what differentiates Waveform from Tracktion by showing highlights - maybe videos, screenshots, etc. better on your web site. Also you need a better YouTube presence. Look at Propellerheads for an example you should follow those guys are amazing and have AWESOME YT videos and strategy. They have not posted as much lately but they used to (with James Bernard) have a lot more useful and frequent content.
+
+
+
+[USE CASE: Organizing my plugins for rapid use / customization]
++ 0:03:17 - Showing off Waveform custom plug-in menu and setup - images, organization, etc. (YOU GUYS KNOCKED THIS OUT OF THE PARK!)
+- 0:10:28 - Showing how the plug-in image scanner failed on Nexus (1 out of 400 plug-ins not a big deal just sayin')
+
+[USE CASE: Surface mega-plugins that have expensive or very useful presets - Reaktor/Kontakt/etc. - for instant recall/search]
++ 0:13:59 - Looking for a way to save and recall many presets - discovered tagging and search later, i'll show this setup and it's bad ass.
+* 0:14:05 - Explaining what I'm trying to do to recall Reaktor ensembles in the DAW simple - mention of Ableton Live rack strategy I used - that's in my first video.
+- 0:14:29 - Lost in the UI a bit - trying to avoid as many clicks as I can and finally switching from a Rack setup to a Preset Load setup to keep things as easy as possible.
+- 0:15:00 - Tracktion sometimes takes a bit of time to do something and seems to "lock", I explain it's "thinking" - maybe it could have a progress indicator or something. I like how it works now already but it's a little bit of a worrisome moment when the DAW stops responding to input as big load happens like Rack Polyplex->Unrack Polyplex. Maybe a spinning indicator on the filter or in the top right or something - we're accustomed to looking top right for wait state loading inidicators on web stuff. Just an idea.
+- 0:15:54 - Wish I could replace the existing plugin by dragging a new one right onto it instead of to each side, then delete the existing.
+- 0:16:40 - "I don't mind that extra step" - but actually I do mind and found how to do the same thing using the preset system. This wasn't obvious to me and I wasted some time trying to learn it. I don't blame the software but I think you should mention this kind of use case in the manual - which is in beta still? A beta manual is kind of odd BTW. Just sayin'
++ 0:17:25 - Ideal solution discovered - same amount of clicks achieved.
+- 0:17:50 - Trying to find the preset I just added in the right click + menu "it only finds rack presets that's ok"
+- 0:18:20 - "Maybe I didn't do it right" (in hindsight I realize I was looking at "Plug-in Racks" -> "New from PRESET" - which is specific to RACKS I get it now, but in the heat of the moment I was hot on the trail of a solution and that nomenclature "new from preset" threw me a bit as it's used also with plugins. I get it as a Human but in the heat of that moment I'm not sure if a different name would have disambiguated it or not - just a comment not a bug at all)
+* 0:21:40 - "Interesting to see if it saves the preset in a disabled state or not" (I wasn't sure if I had a filter disabled if it would save it in a disabled state in hindsight I know now that it would be a little odd to save a filter in a disabled state so when it's loaded it's instantly disabled, but it could be helpful if it did so based on this very very specific setup LOL! Skrewell and Reaktor sound generators are very loud and chaotic as part of their design, and there are plug-ins that do this with randomization that could destroy speakers, etc. just sayin')
+
+[USE CASE: Customizing my layout]
+- 0:20:05 - Renaming tracks - can't resize the track "pane" width on the left (I could have sworn we could do this in the old days - why can't we now? - I understand  how waveform tries to show me an accessible view at all times by resizing/squishing fonts, but I wish it would give me an option not to squish the text at all)
+- 0:45:10 - "I don't know why they chose to not let you do that over here" (refering to the inability to resize the left title input/section.)
+
+[USE CASE: Limiter]
+- 0:24:50 - Looking for a limiter - found filter  through Compressor / "Limiter" mention (I try to setup a brickwall and don't seem to get that to work)
+- 0:25:44 - Trying to get the volume to clip as a demo to test limiter (is there a reason the range of volume only goes to +6 dB? I know that's a multiple of how much louder it needs to be for perceieved volume doubling I think it is, but why? I think higher ranges would be nice. I get it you want to protect us too, so maybe that's why and it was a tradeoff kind of thing - I quickly figure out stacking Vol/Pan filters can achieve what I was trying to do but it was just more steps to get there. If you guys are worried about +6dB maximum on this filter, maybe you could expose an additional control under Volume in the filter properties - something like Range: -Inf to +6DB, -Inf to +36DB, etc. and have a default set to always use the standard. This way the filter is much more flexible. Also it would be nice if this Volume and Pan plugin had some kind of stereo width since it's such a common utility, with the ability to toggle Mono on/off - this is something I really love in Live's Utility device that Waveform could definitely benefit from having)
+- 0:26:00 - Giving up on tracktion native compressor and falling back to a VST just to move on with my life :0
+
+[USE CASE: Sends]
+- 0:40:10 - Setting up (from rough memory) aux sends/aux returns. It wasn't obvious to me which order the return and sends were working and I struggled a bit with the concept or pre-fader/post-fader. Later I realized how simple it is in Waveform as it literally has a pre/post fader position for whatever it is, but it might be worth mentioning in your manual about this).
+- 0:41:20 - I rationalize that right to left, Glitch2 would feed the aux return filter to reach the aux send (But I discover this thinking is backwards. It's actually the return goes first, then the plug-in. Which actually makes sense in hindsight since we'd be patching to a destination container, the plugin is in the container, and the output of the track is the destination output / aux return.)
+- 0:56:00 - Struggling with pre/post-fader learning through discovery and process of elimination.
+- 0:58:15 - "Ah I configure pre or post fader myself" - I was looking for an option like "Pre/post fade" toggle like in Ableton, in the filter properties window but none existed for obvious reasons :) - However I quickly lose confidence since what I'm REALLY trying to do is modify the volume hitting the sends AND the volume that is output for the non send track - this was a jumbled mess in my head. :)
+- 1:45:50 - "AHA! Pre-fader and post-fader in my brain" - Finally got it sorted explained what I was thinking.
+
+[USE CASE: LFO]
+- 0:50:43 - To creatively tame Skrewell, I am decide to modulate the volume using a predictable rhythm pattern. This time in the video will give you an understanding why I mentioned "tame"
+- 0:53:10 - "Oh the LFO doesn't run until you hit play" (I was hoping I guess that the LFO would somehow magically also work in the non-play mode but this is dumb ignore, I mention only for flavor)
+- 0:53:18 - The LFO is fine, but I struggled with the inability to change the speed of the LFO when it was set to Beat mode - I was hoping for musical intervals like almost every other tempo-syncable LFO I've used ever; 4/1, 3/1, 2/1, 1/1, 1/2, 1/4, 1/8, 1/16, 1/32, 1/64 etc. This isn't possible with LFOs - yet we do have the ability to modify frequency in non-tempo synced LFO - can you please add tempo interval to Beat mode of LFO?
+
+[USE CASE: Navigation]
+- 0:56:45 - Scrolling distraction, opened browser and was trying to scroll vertically. Eventually I discovered the option "Enable scrolling vertically over clip area" which surprised and delighted me. I think a lot of my gotcha moments though you can learn from. Clearly you guys had the same issue :) Is the browser in focus and that's why scrolling was weird? If so, you could maybe highlight what has input focus I don't know - Renoise does th is well with alt-click to give input focus. It's difficult because there are arbitrary states and so many things happening to understand/articulate better to watch video.
+0:56:59 - Erroneously I stumbled into "Options" -> "Scroll behavior" - this made immediate sense to me at the time - i'm adjusting what happens when I scroll the wheel on my mouse via screen scrolling - reinforced verbiage through the action and the keyword used here threw me a bit. Then I remembered the more explicit "Mouse wheel action". These little stumbles could desuade others though - maybe a rename to Follow behaviour - which I believe is a standard in other DAWs. Yes, the window scrolls but it's ambiguous what this means in this pop-up menu. Simply changing it to "Transport Follow Behaviour" or something like that might help.
+0:57:21 - But then I stumble again just navigating trying to figure out how the heck to scroll horizontally while that option "Enable scrolling vertically over clip area" is enabled. 
+0:57:40 - "How do I scroll horizontally" - ah right-click and drag. Totally not a wheel thing. These little learned behaviors are great and it's great that the flexibility exists but I think there needs to be some deeper understanding and some opportunity for improvement exists here - i was simply trying to "scroll" my mind fixated on scrolling, using my wheel on my mouse. I was curious enough to stumble onto right click and drag, but man that's a stretch too. Something to consider.
+
+
+[USE CASE: Mixing]
+- 0:59:57 - "I don't understand that" refering to the iconography choices on the side rail of the mixer pane. It makes sense only after I toggled it on and off, there was no tooltip that I saw in the top right h int section and I had popup help disabled.
++ 1:00:56 - Mixer compliment / "wow" moment
+
+*** BUG *** - Reproduce - setup settings to double click filter to open, pop-out mixer view to pane, double click on filter to edit - flickers endlessly. I was able to figure out how to prevent the bug by closing the mixer pane - other users might not though and this is obviously a bug.
+
+- 1:03:00 - Mixer flaking out, flashing / "wha" moment - "that seemed like a bug"
+- 1:03:20 - Hiding the mixer view, can't get the plugin window to show up
+- 1:03:50 - Recovered by closing mixer view tab
+
+[USE CASE: Metronome]
+- 1:05:00 Customizing the metronome - I was looking for "Metronome" not "click track" maybe rename to Click Track / Metronome to prevent in future?
+
+[USE CASE: Iterative recording/editing MIDI - this use case is where I consistently keep shaking my head at Trackion and wind up going back to Live until you guys release another version honestly]
+- 1:08:51 - Start watching here to get an understanding of where my frustration with the grid and the size of notes not being aligned to grid - setting up Input quantize "1/16" should mean the LENGTH of the notes are 1/16 too? I got really side tracked.
+- 1:09:40 - Checking for first note drop loop bug. Old habits die hard. No note was dropped! *APPLAUSE*
+- 1:11:15 - Trying to get the fucking MIDI editor to just show me 16th notes - Simple thing I can do in Ableton takes me almost 10 minutes and I give up in Waveform saying oh well... I don't understand the realtionship of the grid, the minor divisions, and the obtuse way the quantisze and resize things work at all. I think those minor subdivisions in the grid ruler are really fucking me up. Ironically I was one of the guys hoping Tracktion would get a "proper piano roll" and now that it has it, LOL, I went back to the inline view because I got frustrated with the grid which was less prevalent in the inline view (it's still there! it's just not as opaque/harder to see it so easier to get less distracted by it). I think you are on the right track with piano roll and ADORE the background audio clip function for lining up transients to MIDI notes etc, but man PLEASE for the love of PETE help me understand this grid. I expected when I drew notes to have their lengths be the size of the grid square, NOT the len: 1/4 beat thing - and this len: option would be 100% fine if it made any fucking sense at all but I resized the grid to be exactly 1/16 and it was showing MORE THAN 16 grid divisions per bar. What in the flying Fuck am I doing wrong? How am I supposed to understand this? PLEASE FIX THIS OR SHOW ME MY ERROR. Maybe I found a bug? I don't know but if we get this sorted man, I'm a huge Waveform fan already. :) You are winning me over again. Just need a little help here to get more comfy for MIDI. Also, what is a "block" device in the MIDI section it mentions that. Is this some kind of pattern based novation external control thing that you guys are manufacturing like Ableton Push or such? I went on the website to find out information about this and found 0 things about it. 
+    - So look at MIDI clip contents in Bar 2 - at the top it shows 2|2 around 1:11:51 in the video. How is it possible that I have a note there if I quantized to 1/16th on recording? I see it's aligned to a teriary grid line - and FFS why are there 3 opacity levels for the grid? Major and Minor i get, but FFS 3 levels is confusing as hell to me! Unless I'm missing something if I snap to a resolution and it says snap to 1/16 then that grid should show me Major at bar and Minor at 1/16 but it doesn't look like this is happening OR the grid line opacities are not obvious enough to my dumb ass to make sense of it. I think there is too much anticipation of flexibility needed here - Ableton does this REALLY well using Coarse / Fine grid options, and it's hotkey-able. So you can get as many rules or as few as you want at any zoom - the grid is not interedependent on the resolution of your zoom in ableton, though by default it is linked, one can override it and force a musical grid that is constant.
+    - Also I wish wish wish that we could have an interlinked MIDI clip editor pane to the above arrange window so that the zoom grid could OPTIONALLY be shared between piano roll and arrange above. This would save me boat loads of time from trying to coax tracktion into getting the Snap resolution with the zoom controls finally setup to be ready for use for me. I love the flexibility and intuitiveness of the Snap resolution IDEA, but man the implemntation needs help. What about some overriding thing like in the bottom of the MIDI pane where all the menus and shit is saying "GRID: 1/16" etc. Done. No snap sliding zooming right click bullshit needed, just pick the fucking option and move on.
+    - Also, WTF would I ever care about 1|2|480? WTF is 480? Ticks? Why would I want to see individual fucking ticks ever? :) Do I ever do anything at the tick level? What the hell is a tick anyway? ARGH!
+    - Is tick = pulse in say the way Cubarse uses PPQ?
+- 1:13:28 - Tring to put a 1/16 note in - ugh.
+- 1:13:54 - Look at how miniscule the notes I am entering are. I see now Len: 1 tick somehow got set - but I didn't do that! :(
+- 1:14:08 - Setting len to 1/4 beat, while I'm zoomed in to show only a full bar (from Bar 1 to Bar 2) - those quarter notes are not quarter notes, to me a quarter note would be a quarter of a measure? Isn't a bar a measure? I must be dumb. In this configuration at this time in the video quarter note = 1/16 note actually as you can fit 16 fucking quarter notes in a bar. This is where I start to lose my patience. Also the snapping isn't working when I move a note it seems - I would fully expect if I have snap enabled, that it SNAPS! WTF
+- 1:14:25 - Seriously, look at the ruler at this level of zoom - there are so many grid lines it's almost a constant line. This is ridiculous and would never be used in any way IMO. Can you please selectively reduce the number of grid lines in the damned zoom window at the top, I'm really having a hard time with this. Lots of work to do here.
+- 1:14:50 - Restating the problem "The issue that I have right now"
+- 1:15:45 - Snap resolution 1/16 - Len: 1/16 beat - enter a note = tiny as heck, not 16 divisions of the grid size, totally perplexed.
+- 1:16:15 - Also note that the track name on the left pane of the arrange window is obfuscated significantly by the piano keys in the piano roll overlay - if you let us resize the name side of this pane, this wouldn't be an issue. I think there is an option about where to place these keys though if memory serves me correctly.. 
+- 1:17:00 - When I am at Snap resolution: 1/16 beat, the grid lines show 8 minor subdivisions and major divisions on the bars. I get the major divisions but why 8 fucking grid subdivisions if I'm at snapping of 1/16 beat?!
+- 1:17:20 - Giving up - "man i don't know" - completely mystified/frustrated - HEAVY WORK NEEDS TO HAPPEN HERE IMO!
+- 1:18:00 - The notes in the arrange view clip look like they are off the grid - by much less than 1/16 note, which is what INPUT QUANTIZE was set for!
+- 1:18:30 - Snap is off. "Oh shit. was snap off that whole time?" :)
+- 1:18:40 - Snap is at least snapping but it's not snapping to the grid lines I think it should snap to - it's way too fine at this point, I expected the grid to snap to the minor divisions (where major divisions in terms of opactiy are the bar divisions, and minor are the snap resolution - at least that's how it should be!?)
+- 1:19:09 - Reaffirming that I'm not crazy - "nope that's not a 1/16th note"
+    - If time signature is 4/4
+        - 1/16th = 16 notes per 4/4 time right?
+            - It isn't 1/15th of 1/4 of that bar? 
+    - What is "BEAT" ? then? I'm so confused. help!
+- 1:20:00ish - "Fuck it I might remove tracktion and just use Ableton and Renoise" - THIS IS A HUGE PROBLEM for you guys if this is true because I'm giving you free advertising by using your software. You did not solicit me to do this. This is a "pull" model - I am pulling you aren't pushing anything at me. If I bail out now, you will lose. Contrarily if I continue and I struggle, my audience will lose confidence in tracktion too. I'm not saying I have a massive audience, I have less than 1000 subscribers (but I don't measure success through this manner in the type of content I have 1 person making 1 comment saying "inspired me" is enough - yes this is a justification but I want to explain how important it is that you get this MIDI stuff right once and for all). I'm just 1 YT guy, there are more of us, a lot more. You are trying to position your product to compete in a crowded space that are already exceeding what you can do in a more friendly way, granted your approach is unique and different it's the workflow that sets Tracktion apart from the crowd and in this case it's a clusterfuck. Please for the love of pete fix the MIDI stuff. I'll do whatever I can to help you.
+
+[USE CASE: Edit clip?]
+- 1:28:20 - "What's an Edit clip" no mention of this anywhere that I can see anywhere in docs, in help, etc. I can't also figure out how to link an edit into an edit clip. No idea how this works. Total distraction. :(
+- 1:29:20 - "How do I get a source edit' - I assumed, incorrectly I think that if I had other edits active in my Projects tab that I could choose them from the ... list in the Source edit - this seems a logical thing to me. But nope, I can't.
+- 1:31:15 - "Create new edit" - blank screen - "uh what the hell"
+    - What is this feature supposed to do? If it lets us embed edits and edits that's awesome but I have no idea how it works and couldn't find any mention in any documentation (beta or otherwise)
+
+[USE CASE: Arm and play > 1 instruments at a time]
+- 1:34:19 - I can't assign the same input to the same track - I remembered the Virtual MIDI things, but holy crap that's obtuse.
+- 1:34:49 - "Alias Copy of" - uh, not sure why it only says Copy of and won't let me rename it?
+    - Why can't I rename a virtual midi input? Once I've created it I cannot rename it. To rename it I  have to delete it, then recreate it. Why not let us rename it? confusing.
+- 1:35:27 - "How do I change the device name?"
+
+[USE CASE: Pattern linking]
+- 1:43:23 - "Where the fuck are the clip names?" - For some reason I was thinking they would be on top, and separate from the pattern mention with the link icon - but there they were undeneath and associated with the link icon the entire time.
+
+[USE CASE: Pad synth]
+- 2:11:24 - "I wonder if they added a chord module?" - Nice :) this thing is REALLY cool. Nice work!
+- 2:15:06 - Trying to select multiple notes for "audition notes/preview" and it doesn't audition them. This was something I just expected would happen, is this possible to add? It'd be nice for the exact reason of the chord filter but also just in general. This is an expected behavior based on your contemporary competititors setting that expectation.
+
+[USE CASE: Mute notes]
+- 2:18:29 - "Can I mute these notes at all?" - I was looking for a mute tool in the section with select, pencil, erase, line, and brush. It wasn't clear to me that I could mute notes even though I can do so through a deeper option in MIDI events property window for modify notes (i think) ? 
+- 2:18:35 - I expected if I had selected notes already, clicking erase on ANY notes would erase the group of selected notes, not just the individual ones. This wasn't mentioned in the video, but it was going through my mind. I was thinking all the tool options would be context sensitive to the selected notes. Maybe it's better they aren't, this was a shallow thought I thought worth mentioning though.
+
+[USE CASE: Copy between clips]
+- 2:19:45 - "Oh I can't copy between clips?" - In this section I was trying to copy between fully exposed clips in the arrange piano roll. My logic was I can see all the notes, that means I can edit them. but the reality is I cannot. And actually to copy notes between those clips I have to use work arounds to edit each clip in turn. This isn't a problem I get it, but it wasn't intuitive and gotcha'd me - it would be extremely cool to be able to copy/paste freely between any open / visibly expanded, clip.
+
+[USE CASE: Route MIDI to an FX VST]
+- 2:21:42 - "I think I need to route MIDI to this thing" - Was trying to figure out how to get MIDI into the master FX VST. This is really specific and odd, and I later abandoned it but it was difficult to wrap my head around what was happening. I thought hrm, maybe I need a rack for some reason - remembering that MIDI input wire showing up in all racks, but that wasn't it either. I later use a aux send with MIDI right on it.
+
+[USE CASE: Unsolo everything]
+- 2:32:09 - "Let's unsolo everything" - Is it possible to Unsolo/Unmute all tracks at once? I looked in the master section area by BPM and transport buttons, expecting to see a rude Mute/Solo button to indicate that things were soloed or muted and a press to normalize back to unmuted all unsoloed all, but none existed. Is there another way to do this? I also tried to alt-click and ctrl-click and shift-click the Mute/Solo buttons on any track hoping for a unsolo/unmute all function.
+
+[USE CASE: Retrospective record]
+2:34:15 - "Retrospective record might be enabled" - It's was not obvious that the little icon in the top right by the CPU meter for retrospective record would paste the recorded notes into a track. I think I just needed to learn this behavior though. More of a mention for your benefit than anything else really. It's an odd icon.
