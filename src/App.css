@@ -1,0 +1,359 @@
+body {
+  overflow-y: scroll;			
+  user-select: none; /* Keep user-select none if intended */
+  background-color: #222;
+  color: #ccc;
+  margin: 20px; /* Use simpler margin, remove top offset */
+}
+
+body, button, h1, select {
+  font-family: sans-serif;
+}
+
+label, input[type="checkbox"], button {
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.cells-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 3px;
+  justify-content: center;
+}
+
+.cell {
+  background: #333;
+  width: 19.5%;
+  height: 390px;
+  border: 3px solid #555;
+  position: relative;
+  overflow: hidden;
+  pointer-events: auto;
+}
+
+.cell.locked {
+  border: 3px solid #fff;
+}
+
+.cell-spinning {
+  pointer-events: none; /* Disable all interactions during animation */
+  opacity: 0.8;
+}
+
+.cell-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.cell-image-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.hint-text {
+  text-align: center;
+  font-size: 14px;
+  color: #aaa;
+  padding: 5px;
+  margin-top: 5px;
+}
+
+h1 {
+  font-size: 16px;
+  background: #555;
+  color: #ccc;
+  padding: 16px;
+  margin: 0;
+  text-align: center;
+  cursor: pointer;
+  opacity: 1;
+
+  text-transform: uppercase;
+}
+
+h1:hover {
+  color: #fff;
+  background:	#777;
+}
+
+.cell.locked h1,
+.cell.locked h1:hover {
+  background: #999;
+  color: #fff;
+}
+
+select:not(.normal) {
+  display: block;
+  background-color: #000;
+  border: none;
+  line-height: 16px;
+  text-align: center;
+  font-size: 16px;
+  text-transform: uppercase;
+  height: 32px;
+  padding: 0 6px;
+  width: 100%;
+  color: #fff;	
+}
+
+select:not(.normal):hover {
+  background: #111;
+  color: #ccc;
+}
+
+button {
+  border: 3px solid #fff;
+  background: transparent;
+  padding: 8px 16px;
+  margin: 0px 8px;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 24px;
+}
+
+.no-clicks {
+  pointer-events: none;
+  opacity: 0.3;
+
+}
+
+*:disabled, .no-clicks {
+  opacity: 0.3;
+  cursor: default;
+
+}
+
+#oblique-strategy {
+  font-size: 2rem;
+  font-family: serif;
+  display: block;
+  font-style: oblique;
+  word-wrap: break-word;
+  padding: 1em;
+  text-align: center;
+}
+
+#tempo {
+  display: inline-block;
+  font-size: 32px;
+  font-family: sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  text-transform: uppercase;
+  background: #000;
+  color: #fff;
+  padding: 9px 32px;
+  margin-left: 8px;
+}
+
+.cell-image-container {
+  display: flex;           /* Enable flexbox for centering */
+  align-items: center;     /* Center vertically */
+  width: 100%;             /* Take full width of its parent (.cell) */
+  height: 250px;           /* Adjusted height */
+  justify-content: stretch;
+  margin-top: 5px;         /* Add some space above the image */
+}
+
+.cell-image {
+  max-width: 100%;         /* Ensure image doesn't exceed container width */
+  max-height: 100%;        /* Ensure image doesn't exceed container height */
+  object-fit: contain;     /* Scale image down to fit while preserving aspect ratio */
+  display: block;          /* Ensure image behaves as a block element */
+}
+
+.hint {
+  display: block;
+  position: relative;
+  top: 24px;
+  width: 100%;
+  text-align: center;
+  font-style: oblique;
+  font-size: medium;
+  font-family: serif;			
+  color: #666;
+  font-size: 0.8em;
+  color: #777;
+}
+
+.lock {
+  background: transparent url('../public/lock-icon.png') no-repeat 0 0;
+  width: 35px;
+  height: 35px;
+  display: block;
+  position: absolute;
+  top: 8px;
+  right: 0px;
+  opacity: 0.25;
+  cursor: pointer;
+  z-index: 99;
+}
+
+.lock:hover {
+  opacity: 0.75;
+}
+
+.locked .lock {
+  opacity: 1.0;
+}
+
+/* --- Control Panel Styles --- */
+.control-panel {
+  background: #1a1a1a; /* Dark background for the panel */
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: 1px solid #444;
+}
+
+.control-panel h2 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #eee;
+  font-size: 18px;
+  padding-bottom: 5px;
+}
+
+.constraints-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive columns */
+  gap: 10px; /* Spacing between items */
+  margin-bottom: 15px;
+}
+
+.constraints-section label {
+  display: flex; /* Align checkbox and text */
+  align-items: center;
+  background: #333;
+  padding: 8px 10px;
+  border-radius: 3px;
+  border: 1px solid #555;
+}
+
+.constraints-section input[type="checkbox"] {
+  margin-right: 8px; /* Space between checkbox and text */
+}
+
+.constraints-section .time-input {
+  padding: 5px;
+  border: 1px solid #555;
+  background: #222;
+  color: #ccc;
+  max-width: 80px; /* Limit width */
+}
+
+.actions-section {
+  margin-top: 15px;
+  padding-top: 15px;
+  text-align: center; /* Center buttons */
+}
+
+#tempo {
+  /* Adjust tempo display if needed */
+  display: block; /* Make it block to center */
+  text-align: center;
+  margin-top: 15px;
+}
+
+/* --- End Control Panel Styles --- */
+
+/* --- Timer Display Styles --- */
+#time_constraints {
+  background-color: #111; /* Dark background */
+  color: #fff; /* White text */
+  padding: 15px;
+  border-radius: 4px;
+  border: 1px solid #444;
+  text-align: center;
+  position: fixed; /* Make it fixed at the top */
+  top: 0;
+  left: 0;
+  width: 100%; /* Span full width */
+  z-index: 100; /* Ensure it's above other content */
+  box-sizing: border-box; /* Include padding/border in width */
+}
+
+#time_constraints span {
+  margin: 0 10px; /* Spacing around timer elements */
+  font-size: 1.1em;
+}
+
+#time_constraints button {
+  margin-left: 15px; /* Space before buttons */
+  padding: 5px 10px;
+  font-size: 1em; /* Adjust button size */
+  border-width: 2px;
+}
+
+/* --- End Timer Display Styles --- */
+
+/* --- Selected Constraints Display --- */
+.selected-constraints {
+  background: #2a2a2a;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: 1px solid #444;
+}
+
+.selected-constraints h2 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #eee;
+  font-size: 18px;
+  border-bottom: 1px solid #444;
+  padding-bottom: 5px;
+}
+
+.selected-constraints ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.selected-constraints li {
+  margin-bottom: 5px;
+  color: #ccc;
+}
+
+/* --- End Selected Constraints --- */
+
+.App {
+  padding-top: 40px; /* Add space at the top for the timer bar */
+}
+
+#countdown-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #000;
+  color: #fff;
+  padding: 8px;
+  text-align: center;
+  font-size: 24px;
+  z-index: 100;
+}
+
+#countdown-container.paused * {
+  background-color: transparent;
+  animation: blinker-subtle 0.25s linear infinite;
+}
+
+@keyframes blinker {  
+  50% { opacity: 0; }
+}
+
+@keyframes blinker-subtle {
+  50% { opacity: 0.5; }
+}
+
+.constraints-section > h2:nth-child(1) {
+  display: none;
+}
