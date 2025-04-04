@@ -413,6 +413,7 @@ function App() {
           onLock={() => toggleLock('daw')}
           onChange={(value) => handleCellChange('daw', value)}
           isAnimating={!!animatingCells.daw}
+          hint={daws.find(opt => opt.name === cells.daw.selected)?.hint}
         />
         <Cell 
           title="Synth Instrument"
@@ -423,6 +424,7 @@ function App() {
           onLock={() => toggleLock('synthInstrument')}
           onChange={(value) => handleCellChange('synthInstrument', value)}
           isAnimating={!!animatingCells.synthInstrument}
+          hint={synthInstruments.find(opt => opt.name === cells.synthInstrument.selected)?.hint}
         />
         <Cell 
           title="Synth Effect"
@@ -433,6 +435,7 @@ function App() {
           onLock={() => toggleLock('synthEffect')}
           onChange={(value) => handleCellChange('synthEffect', value)}
           isAnimating={!!animatingCells.synthEffect}
+          hint={synthEffects.find(opt => opt.name === cells.synthEffect.selected)?.hint}
         />
         <Cell 
           title="Drum Instrument"
@@ -443,6 +446,7 @@ function App() {
           onLock={() => toggleLock('drumInstrument')}
           onChange={(value) => handleCellChange('drumInstrument', value)}
           isAnimating={!!animatingCells.drumInstrument}
+          hint={drumInstruments.find(opt => opt.name === cells.drumInstrument.selected)?.hint}
         />
         <Cell 
           title="Drum Effect"
@@ -453,6 +457,7 @@ function App() {
           onLock={() => toggleLock('drumEffect')}
           onChange={(value) => handleCellChange('drumEffect', value)}
           isAnimating={!!animatingCells.drumEffect}
+          hint={drumEffects.find(opt => opt.name === cells.drumEffect.selected)?.hint}
         />
         
         <Cell 
@@ -480,6 +485,7 @@ function App() {
             onLock={() => toggleLock('randomPresetInstrument0')}
             onChange={(value) => handleCellChange('randomPresetInstrument0', value)}
             isAnimating={!!animatingCells.randomPresetInstrument0}
+            hint={randomPresetInstruments.find(opt => opt.name === cells.randomPresetInstrument0.selected)?.hint}
           />
         )}
         {actualPresetCount >= 2 && (
@@ -493,6 +499,7 @@ function App() {
             onLock={() => toggleLock('randomPresetInstrument1')}
             onChange={(value) => handleCellChange('randomPresetInstrument1', value)}
             isAnimating={!!animatingCells.randomPresetInstrument1}
+            hint={randomPresetInstruments.find(opt => opt.name === cells.randomPresetInstrument1.selected)?.hint}
           />       
         )}
         {actualPresetCount >= 3 && (
@@ -506,6 +513,7 @@ function App() {
             onLock={() => toggleLock('randomPresetInstrument2')}
             onChange={(value) => handleCellChange('randomPresetInstrument2', value)}
             isAnimating={!!animatingCells.randomPresetInstrument2}
+            hint={randomPresetInstruments.find(opt => opt.name === cells.randomPresetInstrument2.selected)?.hint}
           />
         )}
         

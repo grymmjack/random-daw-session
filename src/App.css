@@ -20,12 +20,13 @@ label, input[type="checkbox"], button {
   flex-wrap: wrap;
   gap: 6px;
   padding: 3px;
+  justify-content: center;
 }
 
 .cell {
   background: #333;
-  width: 19%;
-  height: 350px;
+  width: 19.5%;
+  height: 390px;
   border: 3px solid #555;
   position: relative;
   overflow: hidden;
@@ -46,6 +47,21 @@ label, input[type="checkbox"], button {
   max-height: 100%;
   object-fit: contain;
   display: block;
+}
+
+.cell-image-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.hint-text {
+  text-align: center;
+  font-size: 14px;
+  color: #aaa;
+  padding: 5px;
+  margin-top: 5px;
 }
 
 h1 {
@@ -114,7 +130,7 @@ button {
 }
 
 #oblique-strategy {
-  font-size: 24px;
+  font-size: 2rem;
   font-family: serif;
   display: block;
   font-style: oblique;
@@ -138,11 +154,10 @@ button {
 
 .cell-image-container {
   display: flex;           /* Enable flexbox for centering */
-  justify-content: center; /* Center horizontally */
   align-items: center;     /* Center vertically */
   width: 100%;             /* Take full width of its parent (.cell) */
-  height: 200px;           /* Increased height */
-  overflow: hidden;        /* Hide parts of image that overflow (shouldn't happen with object-fit) */
+  height: 250px;           /* Adjusted height */
+  justify-content: stretch;
   margin-top: 5px;         /* Add some space above the image */
 }
 
@@ -310,7 +325,7 @@ button {
 /* --- End Selected Constraints --- */
 
 .App {
-  padding-top: 60px; /* Add space at the top for the timer bar */
+  padding-top: 40px; /* Add space at the top for the timer bar */
 }
 
 #countdown-container {
@@ -320,7 +335,7 @@ button {
   width: 100%;
   background: #000;
   color: #fff;
-  padding: 16px;
+  padding: 8px;
   text-align: center;
   font-size: 24px;
   z-index: 100;
@@ -339,3 +354,6 @@ button {
   50% { opacity: 0.5; }
 }
 
+.constraints-section > h2:nth-child(1) {
+  display: none;
+}

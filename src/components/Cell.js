@@ -22,7 +22,8 @@ const Cell = ({
   onChange, 
   placeholder = "SELECT...", 
   hideImage = false,
-  isAnimating = false 
+  isAnimating = false,
+  hint = null
 }) => {
   const imageUrl = getImageUrl(value, hideImage);
 
@@ -56,7 +57,7 @@ const Cell = ({
           </option>
         ))}
       </select>
-      {/* Render image only if imageUrl is valid AND hideImage is false */}
+      {/* Render image and hint only if imageUrl is valid AND hideImage is false */}
       {!hideImage && imageUrl &&
         <div className="cell-image-container">
           <img 
@@ -65,6 +66,7 @@ const Cell = ({
             className={imageClasses}
             onError={(e) => { e.target.style.display = 'none'; console.error(`Failed to load image: ${imageUrl}`); }}
           />
+          {hint && <div className="hint-text">{hint}</div>}
         </div>
       }
     </div>
