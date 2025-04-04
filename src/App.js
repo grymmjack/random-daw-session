@@ -293,7 +293,7 @@ function App() {
       setCells(prevCells => ({ ...prevCells, ...cellsToUpdate }));
       // Reset animation state after applying values
       setAnimatingCells({});
-    }, 2000); // Delay to match animation duration
+    }, 0);
 
   }, [settings, cells, timeSelectValue, countdown.isTimerRunning, startTimer]); // Added dependencies
 
