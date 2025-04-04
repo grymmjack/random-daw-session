@@ -30,3 +30,8 @@ npm run build
 - Sound design ideas
 - Mix ideas
 - Oblique Strategies integration
+- Conditional randomization (50% chance) for Synth, Drum, and Send Effects.
+- Lock individual parameters to prevent them from being randomized using the padlock icon.
+- Visual feedback: Displays corresponding images for most selected items (images expected in `public/images/`).
+- Select and randomize a configurable number of specific preset instruments (up to 3).
+- Optional time constraint with a visible countdown timer.

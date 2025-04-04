@@ -1,6 +1,17 @@
 import React from 'react';
 
-const Cell = ({ title, name, options = [], value, locked, onLock, onChange, placeholder = "SELECT...", hideImage = false }) => {
+const Cell = ({ 
+  title, 
+  name, 
+  options = [], 
+  value, 
+  locked, 
+  onLock, 
+  onChange, 
+  placeholder = "SELECT...", 
+  hideImage = false,
+  isAnimating = false // Add isAnimating prop with default value
+}) => {
   const selectedOption = Array.isArray(options) ? options.find(opt => opt.name === value) : null;
   const hint = selectedOption ? selectedOption.hint : null;
 
@@ -29,8 +40,11 @@ const Cell = ({ title, name, options = [], value, locked, onLock, onChange, plac
     }
   };
 
+  // Add the isAnimating class conditionally
+  const cellClassName = `cell ${locked ? 'locked' : ''} ${isAnimating ? 'cell-spinning' : ''}`;
+
   return (
-    <div className={`cell ${locked ? 'locked' : ''}`}>
+    <div className={cellClassName}>
       <span className="lock" onClick={onLock}></span>
       <h1 onClick={handleRandomizeClick}>
         {title}

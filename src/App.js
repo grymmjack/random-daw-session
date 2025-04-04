@@ -63,6 +63,8 @@ function App() {
   const [displayedSoundDesign, setDisplayedSoundDesign] = useState('');
   const [displayedMix, setDisplayedMix] = useState('');
 
+  const [animatingCells, setAnimatingCells] = useState({});
+
   const handleCellChange = (cellName, value) => {
     setCells(prev => ({
       ...prev,
@@ -118,8 +120,7 @@ function App() {
 
   // Reset Timer
   const resetTimer = () => {
-    let minutesToReset = timeSelectValue === 'Random' ? 15 : parseInt(timeSelectValue, 10);
-    if (isNaN(minutesToReset) || minutesToReset <= 0) minutesToReset = 15; // Default if invalid or Random
+    const minutesToReset = 15; // Always initialize with 15 minutes
     const initialTimeSeconds = minutesToReset * 60;
     setCountdown({
       initialTime: initialTimeSeconds,
@@ -176,15 +177,6 @@ function App() {
          newTimeValue = 15;
          if (timeSelectValue === 'Random') setTimeSelectValue('15');
       }
-
-      // Update countdown state with new random time, but keep it paused
-      const newTimeSeconds = newTimeValue * 60;
-      setCountdown({
-        initialTime: newTimeSeconds,
-        timeRemaining: newTimeSeconds,
-        isTimerRunning: false, // Ensure timer doesn't auto-start
-        paused: false
-      });
     }
 
     // 3. Select and store ideas for other checked constraints
@@ -198,36 +190,38 @@ function App() {
     setDisplayedSoundDesign(selectedSoundDesign);
     setDisplayedMix(selectedMix);
 
-    // --- Cell Randomization --- 
+    // Get a new Oblique Strategy
+    setObliqueStrategy(getRandomItem(quotes));
 
-    // Determine the random preset instrument count *first* if it's not locked
-    let presetCount = parseInt(cells.randomPresetInstrumentCount.selected, 10);
-    if (isNaN(presetCount)) presetCount = 0; // Default to 0 if not selected or invalid
+    // Get a new Tempo
+    setTempo(`${Math.floor(Math.random() * (180 - 60 + 1)) + 60} BPM`);
 
-    let newPresetCount = presetCount;
-    if (!cells.randomPresetInstrumentCount.locked) {
-        // Note: instrumentCounts might need adjustment if it includes '0' as a string
-        const countOptions = instrumentCounts.map(opt => opt.name).filter(n => n !== '0'); // Exclude 0 for random selection if needed
-        const randomCountName = getRandomItem(countOptions);
-        newPresetCount = parseInt(randomCountName, 10);
-        // Update the state for the count cell directly
-        setCells(prev => ({
-            ...prev,
-            randomPresetInstrumentCount: { ...prev.randomPresetInstrumentCount, selected: randomCountName }
-        }));
-    } else {
-        newPresetCount = presetCount; // Use locked value
-    }
-
+    // Start slot machine animation sequence
     const cellsToUpdate = {};
+    const cellsToAnimate = {};
 
-    // Handle randomization for all cells EXCEPT the specific preset instruments
+    // First, mark all cells as spinning
     Object.keys(cells).forEach(cellName => {
-        const cell = cells[cellName]; // Get the current cell state
+      const cell = cells[cellName];
+      if (!cell.locked) {
+        cellsToUpdate[cellName] = { ...cell, selected: cell.selected }; // Keep current value
+        cellsToAnimate[cellName] = true;
+      }
+    });
 
+    // Apply spinning animation
+    setCells(prevCells => ({ ...prevCells, ...cellsToUpdate }));
+    setAnimatingCells(cellsToAnimate);
+
+    // After initial spin, update values with a delay
+    setTimeout(() => {
+      // Generate new random values for all cells
+      Object.keys(cells).forEach(cellName => {
+        const cell = cells[cellName];
+        
         // Skip locked cells and the specific preset instruments (handled later)
         if (cell.locked || cellName.startsWith('randomPresetInstrument')) {
-            return;
+          return;
         }
  
         let options = [];
@@ -246,52 +240,60 @@ function App() {
                 options = cellName === 'synthEffect' ? synthEffects : (cellName === 'drumEffect' ? drumEffects : sendEffects);
                 applyRandomization = Math.random() < 0.5; // 50% chance for effects if unlocked
                 break;
-            // Add other cases if necessary, but they might default to clearing if not handled
         }
 
         if (applyRandomization && Array.isArray(options) && options.length > 0) {
              const randomOption = getRandomItem(options);
-             cellsToUpdate[cellName] = { ...cell, selected: randomOption.name };
+             if (cells[cellName].selected !== randomOption.name) {
+                 cellsToUpdate[cellName] = { ...cell, selected: randomOption.name };
+             }
           } else if (!cells[cellName].locked) {
             // If not randomized (either by chance or because it's not an applicable cell type), clear it.
-            // Ensure we don't clear already locked cells (though they should be skipped earlier)
-            cellsToUpdate[cellName] = { ...cell, selected: '' };
+            if (cells[cellName].selected !== '') {
+                cellsToUpdate[cellName] = { ...cell, selected: '' };
+            }
           }
       });
 
-    // --- Force Randomization for Preset Instruments based on count ---
-    const presetCells = ['randomPresetInstrument0', 'randomPresetInstrument1', 'randomPresetInstrument2'];
-    presetCells.forEach((cellName, index) => {
-        const cell = cells[cellName];
-        if (!cell.locked && index < newPresetCount) {
-             // ALWAYS randomize if unlocked and index is within the count
+      // Handle randomization for preset instruments
+      const presetCells = ['randomPresetInstrument0', 'randomPresetInstrument1', 'randomPresetInstrument2'];
+      const presetCount = parseInt(cells.randomPresetInstrumentCount.selected, 10) || 0;
+
+      // Randomize preset count if not locked
+      if (!cells.randomPresetInstrumentCount.locked) {
+        const countOptions = instrumentCounts.map(opt => opt.name).filter(n => n !== '0');
+        const randomCountName = getRandomItem(countOptions);
+        const newPresetCount = parseInt(randomCountName, 10);
+        cellsToUpdate.randomPresetInstrumentCount = { ...cells.randomPresetInstrumentCount, selected: randomCountName };
+
+        // Update preset instruments based on new count
+        presetCells.forEach((cellName, index) => {
+          const cell = cells[cellName];
+          if (!cell.locked && index < newPresetCount) {
             const randomOption = getRandomItem(randomPresetInstruments);
             cellsToUpdate[cellName] = { ...cell, selected: randomOption.name };
-        } else if (!cell.locked && index >= newPresetCount) {
-            // Clear if unlocked and index is outside the count
+          } else if (!cell.locked && index >= newPresetCount) {
             cellsToUpdate[cellName] = { ...cell, selected: '' };
-        } else if (cell.locked && index >= newPresetCount) {
-             // If it's locked but outside the new count, keep its locked value (don't clear)
-             // No action needed here, it won't be in cellsToUpdate
-        } else if (cell.locked && index < newPresetCount) {
-             // If it's locked AND inside the count, keep its locked value
-             // No action needed here
-        }
-    });
+          }
+        });
+      } else {
+        // If preset count is locked, update instruments based on locked count
+        presetCells.forEach((cellName, index) => {
+          const cell = cells[cellName];
+          if (!cell.locked && index < presetCount) {
+            const randomOption = getRandomItem(randomPresetInstruments);
+            cellsToUpdate[cellName] = { ...cell, selected: randomOption.name };
+          } else if (!cell.locked && index >= presetCount) {
+            cellsToUpdate[cellName] = { ...cell, selected: '' };
+          }
+        });
+      }
 
-    // Apply all updates together
-    setCells(prevCells => ({ ...prevCells, ...cellsToUpdate }));
-
-    // Get a new Oblique Strategy
-    setObliqueStrategy(getRandomItem(quotes));
-
-    // Get a new Tempo
-    setTempo(`${Math.floor(Math.random() * (180 - 60 + 1)) + 60} BPM`);
-
-    // Start timer only if constraint is active AND timer isn't already running
-    if (currentSettings.timeConstraint && !countdown.isTimerRunning) {
-       startTimer(); // Call startTimer logic which uses the (potentially updated) timeSelectValue
-    }
+      // Apply all updates together
+      setCells(prevCells => ({ ...prevCells, ...cellsToUpdate }));
+      // Reset animation state after applying values
+      setAnimatingCells({});
+    }, 2000); // Delay to match animation duration
 
   }, [settings, cells, timeSelectValue, countdown.isTimerRunning, startTimer]); // Added dependencies
 
@@ -405,6 +407,7 @@ function App() {
           locked={cells.daw.locked}
           onLock={() => toggleLock('daw')}
           onChange={(value) => handleCellChange('daw', value)}
+          isAnimating={!!animatingCells.daw}
         />
         <Cell 
           title="Synth Instrument"
@@ -414,6 +417,7 @@ function App() {
           locked={cells.synthInstrument.locked}
           onLock={() => toggleLock('synthInstrument')}
           onChange={(value) => handleCellChange('synthInstrument', value)}
+          isAnimating={!!animatingCells.synthInstrument}
         />
         <Cell 
           title="Synth Effect"
@@ -423,6 +427,7 @@ function App() {
           locked={cells.synthEffect.locked}
           onLock={() => toggleLock('synthEffect')}
           onChange={(value) => handleCellChange('synthEffect', value)}
+          isAnimating={!!animatingCells.synthEffect}
         />
         <Cell 
           title="Drum Instrument"
@@ -432,6 +437,7 @@ function App() {
           locked={cells.drumInstrument.locked}
           onLock={() => toggleLock('drumInstrument')}
           onChange={(value) => handleCellChange('drumInstrument', value)}
+          isAnimating={!!animatingCells.drumInstrument}
         />
         <Cell 
           title="Drum Effect"
@@ -441,6 +447,7 @@ function App() {
           locked={cells.drumEffect.locked}
           onLock={() => toggleLock('drumEffect')}
           onChange={(value) => handleCellChange('drumEffect', value)}
+          isAnimating={!!animatingCells.drumEffect}
         />
         
         <Cell 
@@ -453,6 +460,7 @@ function App() {
           onChange={(value) => handleCellChange('randomPresetInstrumentCount', value)}
           placeholder="COUNT..."
           hideImage={true} // Don't show image for the count selector
+          isAnimating={!!animatingCells.randomPresetInstrumentCount}
         />
         
         {/* Conditionally Render Preset Instrument Cells */}
@@ -466,6 +474,7 @@ function App() {
             locked={cells.randomPresetInstrument0.locked}
             onLock={() => toggleLock('randomPresetInstrument0')}
             onChange={(value) => handleCellChange('randomPresetInstrument0', value)}
+            isAnimating={!!animatingCells.randomPresetInstrument0}
           />
         )}
         {actualPresetCount >= 2 && (
@@ -478,6 +487,7 @@ function App() {
             locked={cells.randomPresetInstrument1.locked}
             onLock={() => toggleLock('randomPresetInstrument1')}
             onChange={(value) => handleCellChange('randomPresetInstrument1', value)}
+            isAnimating={!!animatingCells.randomPresetInstrument1}
           />       
         )}
         {actualPresetCount >= 3 && (
@@ -490,6 +500,7 @@ function App() {
             locked={cells.randomPresetInstrument2.locked}
             onLock={() => toggleLock('randomPresetInstrument2')}
             onChange={(value) => handleCellChange('randomPresetInstrument2', value)}
+            isAnimating={!!animatingCells.randomPresetInstrument2}
           />
         )}
         
@@ -501,6 +512,7 @@ function App() {
           locked={cells.sendEffect.locked}
           onLock={() => toggleLock('sendEffect')}
           onChange={(value) => handleCellChange('sendEffect', value)}
+          isAnimating={!!animatingCells.sendEffect}
         />
       </div>
     </div>
