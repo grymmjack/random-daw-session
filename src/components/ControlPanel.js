@@ -30,6 +30,7 @@ const ControlPanel = ({
             style={{ marginLeft: '8px' }} 
           >
             <option value="Random">Random</option>
+            <option value="1">1 min</option>
             <option value="15">15 min</option>
             <option value="30">30 min</option>
             <option value="45">45 min</option>

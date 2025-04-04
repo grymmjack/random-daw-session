@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 
 import './App.css';
 import Cell from './components/Cell';
@@ -23,6 +23,7 @@ const formatTime = (totalSeconds) => {
 };
 
 function App() {
+  const alarmSound = useRef(new Audio('/audio/alarm-done.wav'));
   const [cells, setCells] = useState({
     daw: { locked: false, selected: '' },
     synthInstrument: { locked: false, selected: '' },
@@ -128,6 +129,9 @@ function App() {
       isTimerRunning: false,
       paused: false
     });
+    // Stop alarm sound when reset
+    alarmSound.current.pause();
+    alarmSound.current.currentTime = 0;
   };
 
   // --- Timer Logic --- 
@@ -141,8 +145,9 @@ function App() {
     } else if (countdown.timeRemaining <= 0 && countdown.isTimerRunning) {
       // Timer reached zero
       setCountdown(prev => ({ ...prev, isTimerRunning: false })); 
-      // Optionally add an alert or sound effect here
-      alert("Time's up!"); 
+      // Play alarm sound in loop
+      alarmSound.current.loop = true;
+      alarmSound.current.play();
     }
 
     // Cleanup function to clear interval when component unmounts or dependencies change
