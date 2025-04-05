@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { animationTimings } from '../constants/animations';
 
 // Helper to generate image URL
 const getImageUrl = (value, hideImage) => {
@@ -65,7 +66,11 @@ const Cell = ({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.3 }}
+            transition={{
+              duration: animationTimings.cellFade.duration,
+              ease: animationTimings.cellFade.ease,
+              delay: animationTimings.cellFade.delay
+            }}
             className="cell-image-container"
           >
             <img 
