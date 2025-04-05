@@ -1,5 +1,17 @@
 import React from 'react';
 
+/**
+ * @function ControlPanel
+ * @description React component for the control panel in the app.
+ * @param {Object} settings - The current settings of the app.
+ * @param {Function} setSettings - Function to update the settings.
+ * @param {Function} onRandomize - Function to call when the randomize button is clicked.
+ * @param {Function} onInitialize - Function to call when the initialize button is clicked.
+ * @param {Number} tempo - The current tempo of the app.
+ * @param {String} timeSelectValue - The value of the time constraint select element.
+ * @param {Function} onTimeInputChange - Function to call when the time constraint select element changes.
+ * @returns {ReactElement} The control panel component.
+ */
 const ControlPanel = ({ 
   settings, 
   setSettings, 
@@ -27,7 +39,6 @@ const ControlPanel = ({
             onChange={onTimeInputChange}
             className="time-input"
           >
-            <option value="Random">Random</option>
             <option value="1">1 min</option>
             <option value="15">15 min</option>
             <option value="30">30 min</option>

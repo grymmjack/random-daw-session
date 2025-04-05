@@ -3,7 +3,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { animationTimings } from '../constants/animations';
 import Modal from './Modal';
 
-// Helper to generate image URL
+/**
+ * Helper function to generate image URL given a value and hideImage flag.
+ * @param {String} value The value to generate an image URL for.
+ * @param {Boolean} hideImage Whether to hide the image for this cell.
+ * @returns {String | null} The generated image URL or null if no image should be shown.
+ */
 const getImageUrl = (value, hideImage) => {
   if (!value || value === 'None' || value === '# Random Preset Instruments' || hideImage) {
     return null; // No image for these cases
@@ -15,6 +20,23 @@ const getImageUrl = (value, hideImage) => {
   return `/images/${imageName}.png`;
 };
 
+/**
+ * Cell component
+ * 
+ * @param {String} title The title of the cell
+ * @param {String} name The name of the cell
+ * @param {Array} options The list of options for the select
+ * @param {String} value The currently selected value
+ * @param {Boolean} locked Whether the cell is locked
+ * @param {Function} onLock The function to call when the lock button is clicked
+ * @param {Function} onChange The function to call when the select value changes
+ * @param {String} placeholder The placeholder text for the select
+ * @param {Boolean} hideImage Whether to hide the image for this cell
+ * @param {Boolean} isAnimating Whether to animate the cell
+ * @param {String} hint The hint text to display
+ * @param {Number} index The index of the cell in the grid
+ * @returns {ReactElement} The cell component
+ */
 const Cell = ({ 
   title, 
   name, 

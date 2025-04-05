@@ -14,7 +14,11 @@ import {
 // Helper to get random item from array
 const getRandomItem = (arr) => arr[Math.floor(Math.random() * arr.length)];
 
-// Helper function to format time (seconds to MM:SS)
+/**
+ * Format time in seconds to MM:SS string
+ * @param {number} totalSeconds Time in seconds
+ * @return {string} Formatted time string
+ */
 const formatTime = (totalSeconds) => {
   if (totalSeconds < 0) totalSeconds = 0;
   const minutes = Math.floor(totalSeconds / 60);
@@ -22,6 +26,22 @@ const formatTime = (totalSeconds) => {
   return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 };
 
+/**
+ * The App component serves as the main interface for managing a music creation workflow.
+ * It provides functionalities such as selecting and locking various musical elements,
+ * managing a countdown timer with start, pause, resume, and reset capabilities, and 
+ * randomizing selections based on user settings. The component maintains state for
+ * different musical constraints, displays selected constraints, and handles user 
+ * interactions through a Control Panel.
+ */
+/**
+ * The App component serves as the main interface for managing a music creation workflow.
+ * It provides functionalities such as selecting and locking various musical elements,
+ * managing a countdown timer with start, pause, resume, and reset capabilities, and 
+ * randomizing selections based on user settings. The component maintains state for
+ * different musical constraints, displays selected constraints, and handles user 
+ * interactions through a Control Panel.
+ */
 function App() {
   const alarmSound = useRef(new Audio('/audio/alarm-done.wav'));
   const [cells, setCells] = useState({
@@ -66,6 +86,16 @@ function App() {
 
   const [animatingCells, setAnimatingCells] = useState({});
 
+  /**
+   * Handles changes to the musical elements in the grid.
+   * When an option is selected, this function updates the state of the cell
+   * with the name of the selected option.
+   * If the changed cell is the count of random preset instruments, this function
+   * also clears the selected option for the higher number instruments if the count
+   * is lower than their index.
+   * @param {string} cellName The name of the cell that was changed
+   * @param {Object} option The selected option
+   */
   const handleCellChange = (cellName, option) => {
     setCells(prev => ({
       ...prev,
@@ -82,6 +112,10 @@ function App() {
     }
   };
 
+  /**
+   * Toggles the lock state of a cell.
+   * @param {string} cellName The name of the cell to toggle the lock for.
+   */
   const toggleLock = (cellName) => {
     setCells(prev => ({
       ...prev,
@@ -93,6 +127,14 @@ function App() {
   };
 
   // Start Timer
+  /**
+   * Starts the timer when called.
+   * If the time constraint is enabled and the timer isn't already running,
+   * this function sets the initial time to the selected time constraint value
+   * and resets the time remaining to the initial time.
+   * It also sets the timer to be running and not paused.
+   * If the time constraint value is invalid or "Random", it defaults to 15 minutes.
+   */
   const startTimer = () => {
     if (settings.timeConstraint && !countdown.isTimerRunning) {
       let minutesToStart = timeSelectValue === 'Random' ? 15 : parseInt(timeSelectValue, 10);
@@ -109,17 +151,29 @@ function App() {
     }
   };
 
-  // Pause Timer
+  /**
+   * Pauses the timer when called.
+   * If the timer is running, this function sets the timer to be paused and not running.
+   */
   const pauseTimer = () => {
     setCountdown(prev => ({ ...prev, paused: true, isTimerRunning: false }));
   };
-
-  // Resume Timer
-  const resumeTimer = () => {
+  
+  /**
+   * Resumes the timer when called.
+   * If the timer is paused, this function sets the timer to be running and not paused.
+   */
+    const resumeTimer = () => {
     setCountdown(prev => ({ ...prev, paused: false, isTimerRunning: true }));
   }; 
 
-  // Reset Timer
+  /**
+   * Resets the timer to its initial state.
+   * If the timer is running, this function stops the timer and resets the time remaining to the initial time.
+   * If the timer is paused, this function resets the timer to its initial state.
+   * This function does not update the time constraint value.
+   * It also stops the alarm sound if it is playing.
+   */
   const resetTimer = () => {
     // Only reset timer state, don't touch time constraint value
     const initialTimeSeconds = parseInt(timeSelectValue, 10) * 60;
@@ -134,7 +188,6 @@ function App() {
     alarmSound.current.currentTime = 0;
   };
 
-  // --- Timer Logic --- 
   useEffect(() => {
     let intervalId = null;
 

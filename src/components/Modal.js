@@ -1,6 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+/**
+ * Modal component
+ * 
+ * @param {Boolean} isOpen Whether the modal is open
+ * @param {Function} onClose The function to call when the modal is closed
+ * @param {String} imageUrl The URL of the image to display
+ * @param {String} hint The hint text to display
+ * @param {Number} maxImageWidth The maximum width of the image
+ * @param {String} selectedOption The currently selected option
+ * @returns {ReactElement} The modal component
+ */
 const Modal = ({ isOpen, onClose, imageUrl, hint, maxImageWidth = 800, selectedOption }) => {
   const [isAnimating, setIsAnimating] = useState(false);
 
