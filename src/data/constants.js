@@ -570,6 +570,12 @@ export const sendEffects = [
   { name: 'Xenoverb', hint: 'Click Arrows Button' },
 ];
 
+// Modal configuration
+export const modalConfig = {
+  maxImageWidth: 800, // Maximum width for modal images in pixels
+  animationDuration: 0.3 // Duration of modal animations in seconds
+};
+
 // Options for the number of random preset instruments
 export const instrumentCounts = [
   { name: '1' }, 

@@ -23,11 +23,9 @@ const ControlPanel = ({
           Time Constraint:
           <select 
             name="timeConstraintValue"
-            className="normal time-input" 
-            value={timeSelectValue} 
-            onChange={onTimeInputChange} 
-            disabled={!settings.timeConstraint} 
-            style={{ marginLeft: '8px' }} 
+            value={timeSelectValue}
+            onChange={onTimeInputChange}
+            className="time-input"
           >
             <option value="Random">Random</option>
             <option value="1">1 min</option>
@@ -39,17 +37,7 @@ const ControlPanel = ({
             <option value="180">180 min</option>
           </select>
         </label>
-        
-        <label>
-          <input
-            type="checkbox"
-            name="useConstraint"
-            checked={settings.useConstraint}
-            onChange={(e) => setSettings(prev => ({ ...prev, useConstraint: e.target.checked }))}
-          />
-          Use Constraint
-        </label>
-        
+
         <label>
           <input
             type="checkbox"

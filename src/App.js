@@ -66,14 +66,14 @@ function App() {
 
   const [animatingCells, setAnimatingCells] = useState({});
 
-  const handleCellChange = (cellName, value) => {
+  const handleCellChange = (cellName, option) => {
     setCells(prev => ({
       ...prev,
-      [cellName]: { ...prev[cellName], selected: value },
+      [cellName]: { ...prev[cellName], selected: option.name },
     }));
     // Special handling if the count changes, clear higher number instruments if needed
     if (cellName === 'randomPresetInstrumentCount') {
-        const count = parseInt(value, 10);
+        const count = parseInt(option.name, 10);
         setCells(prev => ({
             ...prev,
             randomPresetInstrument1: count < 2 ? { ...prev.randomPresetInstrument1, selected: '' } : prev.randomPresetInstrument1,
@@ -121,8 +121,8 @@ function App() {
 
   // Reset Timer
   const resetTimer = () => {
-    const minutesToReset = 15; // Always initialize with 15 minutes
-    const initialTimeSeconds = minutesToReset * 60;
+    // Only reset timer state, don't touch time constraint value
+    const initialTimeSeconds = parseInt(timeSelectValue, 10) * 60;
     setCountdown({
       initialTime: initialTimeSeconds,
       timeRemaining: initialTimeSeconds,
@@ -155,33 +155,26 @@ function App() {
 
   }, [countdown.isTimerRunning, countdown.paused, countdown.timeRemaining]); // Dependencies for the effect
 
+  useEffect(() => {
+    const minutes = timeSelectValue === 'Random' ? 15 : parseInt(timeSelectValue, 10);
+    const timeInSeconds = minutes * 60;
+    setCountdown(prev => ({
+      ...prev,
+      initialTime: timeInSeconds,
+      timeRemaining: timeInSeconds
+    }));
+  }, [timeSelectValue]);
+
   // Randomize function update
   const randomize = useCallback(() => {
     // Use existing settings, DO NOT randomize checkboxes
     const currentSettings = settings;
-    let newTimeValue = timeSelectValue; // Keep current unless overridden
 
-    // 2. Randomize Time Constraint value if checked
+    // Randomize Time Constraint value if checked
     if (currentSettings.timeConstraint) {
-      const timeOptions = [15, 30, 45, 60, 120, 180];
-      let chosenTime = timeSelectValue;
-      if (chosenTime === 'Random') {
-        chosenTime = getRandomItem(timeOptions);
-      }
-      // Ensure chosenTime is a number before proceeding
-      const numericTime = parseInt(chosenTime, 10);
-
-      if (!isNaN(numericTime) && numericTime > 0) {
-         // Update the select dropdown display value if it was Random
-         if (timeSelectValue === 'Random') {
-            setTimeSelectValue(numericTime.toString());
-         }
-         newTimeValue = numericTime; // Store the numeric value for countdown setup
-      } else {
-         // Fallback if something went wrong (e.g., parsing failed)
-         newTimeValue = 15;
-         if (timeSelectValue === 'Random') setTimeSelectValue('15');
-      }
+      const timeOptions = ['1', '15', '30', '45', '60', '120', '180'];
+      const randomTime = getRandomItem(timeOptions);
+      setTimeSelectValue(randomTime);
     }
 
     // 3. Select and store ideas for other checked constraints
@@ -245,6 +238,8 @@ function App() {
                 options = cellName === 'synthEffect' ? synthEffects : (cellName === 'drumEffect' ? drumEffects : sendEffects);
                 applyRandomization = Math.random() < 0.5; // 50% chance for effects if unlocked
                 break;
+            default:
+                break;
         }
 
         if (applyRandomization && Array.isArray(options) && options.length > 0) {
@@ -300,7 +295,7 @@ function App() {
       setAnimatingCells({});
     }, 0);
 
-  }, [settings, cells, timeSelectValue, countdown.isTimerRunning, startTimer]); // Added dependencies
+  }, [settings, cells]); // Removed unnecessary dependencies
 
   // Recalculate displayed count for rendering
   const displayPresetCount = parseInt(cells.randomPresetInstrumentCount.selected, 10);
@@ -331,24 +326,22 @@ function App() {
       <div id="lights_out"></div>
       <div id="corner-logo"></div>
       
-      {settings.timeConstraint && (
-        <div id="countdown-container" className={countdown.paused ? 'paused' : ''}>
-          <span id="countdown-remaining">Time Remaining:</span>
-          <span id="countdown">{formatTime(countdown.timeRemaining)}</span>
-          {!countdown.isTimerRunning && !countdown.paused && countdown.timeRemaining === countdown.initialTime && (
-             <button onClick={startTimer} disabled={!timeSelectValue || timeSelectValue <= 0}>Start</button>
-          )}
-          {countdown.isTimerRunning && !countdown.paused && (
-             <button onClick={pauseTimer}>Pause</button>
-          )}
-          {countdown.paused && (
-            <button onClick={resumeTimer}>Resume</button>
-          )}
-          {(countdown.isTimerRunning || countdown.paused || countdown.timeRemaining < countdown.initialTime) && (
-            <button onClick={resetTimer}>Reset</button>
-          )}
-        </div>
-      )}
+      <div id="countdown-container" className={countdown.paused ? 'paused' : ''}>
+        <span id="countdown-remaining">Time Remaining:</span>
+        <span id="countdown">{formatTime(countdown.timeRemaining)}</span>
+        {!countdown.isTimerRunning && !countdown.paused && countdown.timeRemaining === countdown.initialTime && (
+           <button onClick={startTimer} disabled={!timeSelectValue || timeSelectValue <= 0}>Start</button>
+        )}
+        {countdown.isTimerRunning && !countdown.paused && (
+           <button onClick={pauseTimer}>Pause</button>
+        )}
+        {countdown.paused && (
+          <button onClick={resumeTimer}>Resume</button>
+        )}
+        {(countdown.isTimerRunning || countdown.paused || countdown.timeRemaining < countdown.initialTime) && (
+          <button onClick={resetTimer}>Reset</button>
+        )}
+      </div>
       
       <div id="oblique-strategy">{obliqueStrategy}</div>
       
@@ -411,9 +404,10 @@ function App() {
           value={cells.daw.selected}
           locked={cells.daw.locked}
           onLock={() => toggleLock('daw')}
-          onChange={(value) => handleCellChange('daw', value)}
+          onChange={(option) => handleCellChange('daw', option)}
           isAnimating={!!animatingCells.daw}
           hint={daws.find(opt => opt.name === cells.daw.selected)?.hint}
+          index={0}
         />
         <Cell 
           title="Synth Instrument"
@@ -422,9 +416,10 @@ function App() {
           value={cells.synthInstrument.selected}
           locked={cells.synthInstrument.locked}
           onLock={() => toggleLock('synthInstrument')}
-          onChange={(value) => handleCellChange('synthInstrument', value)}
+          onChange={(option) => handleCellChange('synthInstrument', option)}
           isAnimating={!!animatingCells.synthInstrument}
           hint={synthInstruments.find(opt => opt.name === cells.synthInstrument.selected)?.hint}
+          index={1}
         />
         <Cell 
           title="Synth Effect"
@@ -433,9 +428,10 @@ function App() {
           value={cells.synthEffect.selected}
           locked={cells.synthEffect.locked}
           onLock={() => toggleLock('synthEffect')}
-          onChange={(value) => handleCellChange('synthEffect', value)}
+          onChange={(option) => handleCellChange('synthEffect', option)}
           isAnimating={!!animatingCells.synthEffect}
           hint={synthEffects.find(opt => opt.name === cells.synthEffect.selected)?.hint}
+          index={2}
         />
         <Cell 
           title="Drum Instrument"
@@ -444,9 +440,10 @@ function App() {
           value={cells.drumInstrument.selected}
           locked={cells.drumInstrument.locked}
           onLock={() => toggleLock('drumInstrument')}
-          onChange={(value) => handleCellChange('drumInstrument', value)}
+          onChange={(option) => handleCellChange('drumInstrument', option)}
           isAnimating={!!animatingCells.drumInstrument}
           hint={drumInstruments.find(opt => opt.name === cells.drumInstrument.selected)?.hint}
+          index={3}
         />
         <Cell 
           title="Drum Effect"
@@ -455,22 +452,24 @@ function App() {
           value={cells.drumEffect.selected}
           locked={cells.drumEffect.locked}
           onLock={() => toggleLock('drumEffect')}
-          onChange={(value) => handleCellChange('drumEffect', value)}
+          onChange={(option) => handleCellChange('drumEffect', option)}
           isAnimating={!!animatingCells.drumEffect}
           hint={drumEffects.find(opt => opt.name === cells.drumEffect.selected)?.hint}
+          index={4}
         />
         
         <Cell 
           title="# Random Preset Instruments"
           name="randomPresetInstrumentCount"
-          options={instrumentCounts} // Use the new constant
+          options={instrumentCounts}
           value={cells.randomPresetInstrumentCount.selected}
           locked={cells.randomPresetInstrumentCount.locked}
           onLock={() => toggleLock('randomPresetInstrumentCount')}
-          onChange={(value) => handleCellChange('randomPresetInstrumentCount', value)}
+          onChange={(option) => handleCellChange('randomPresetInstrumentCount', option)}
           placeholder="COUNT..."
-          hideImage={true} // Don't show image for the count selector
+          hideImage={true}
           isAnimating={!!animatingCells.randomPresetInstrumentCount}
+          index={5}
         />
         
         {/* Conditionally Render Preset Instrument Cells */}
@@ -483,9 +482,10 @@ function App() {
             value={cells.randomPresetInstrument0.selected}
             locked={cells.randomPresetInstrument0.locked}
             onLock={() => toggleLock('randomPresetInstrument0')}
-            onChange={(value) => handleCellChange('randomPresetInstrument0', value)}
+            onChange={(option) => handleCellChange('randomPresetInstrument0', option)}
             isAnimating={!!animatingCells.randomPresetInstrument0}
             hint={randomPresetInstruments.find(opt => opt.name === cells.randomPresetInstrument0.selected)?.hint}
+            index={6}
           />
         )}
         {actualPresetCount >= 2 && (
@@ -497,10 +497,11 @@ function App() {
             value={cells.randomPresetInstrument1.selected}
             locked={cells.randomPresetInstrument1.locked}
             onLock={() => toggleLock('randomPresetInstrument1')}
-            onChange={(value) => handleCellChange('randomPresetInstrument1', value)}
+            onChange={(option) => handleCellChange('randomPresetInstrument1', option)}
             isAnimating={!!animatingCells.randomPresetInstrument1}
             hint={randomPresetInstruments.find(opt => opt.name === cells.randomPresetInstrument1.selected)?.hint}
-          />       
+            index={7}
+          />
         )}
         {actualPresetCount >= 3 && (
           <Cell 
@@ -511,9 +512,10 @@ function App() {
             value={cells.randomPresetInstrument2.selected}
             locked={cells.randomPresetInstrument2.locked}
             onLock={() => toggleLock('randomPresetInstrument2')}
-            onChange={(value) => handleCellChange('randomPresetInstrument2', value)}
+            onChange={(option) => handleCellChange('randomPresetInstrument2', option)}
             isAnimating={!!animatingCells.randomPresetInstrument2}
             hint={randomPresetInstruments.find(opt => opt.name === cells.randomPresetInstrument2.selected)?.hint}
+            index={8}
           />
         )}
         
@@ -524,8 +526,10 @@ function App() {
           value={cells.sendEffect.selected}
           locked={cells.sendEffect.locked}
           onLock={() => toggleLock('sendEffect')}
-          onChange={(value) => handleCellChange('sendEffect', value)}
+          onChange={(option) => handleCellChange('sendEffect', option)}
           isAnimating={!!animatingCells.sendEffect}
+          hint={sendEffects.find(opt => opt.name === cells.sendEffect.selected)?.hint}
+          index={9}
         />
       </div>
     </div>
