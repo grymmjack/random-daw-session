@@ -36,6 +36,9 @@ npm run build
 - Select and randomize a configurable number of specific preset instruments (up to 3).
 - Optional time constraint with a visible countdown timer.
 
+## SCREENSHOT
+![Screenshot of the react version](react-version.png)
+
 ### THE OLD VERSION
 
 Checkout the repo, and then this commit. This has the old jQuery one featured in my YouTube videos.
@@ -43,4 +46,4 @@ https://github.com/grymmjack/random-daw-session/tree/29227b40293280ec3627be45850
 
 [Random DAW Sessions YouTube Playlist](https://www.youtube.com/watch?v=WmpL8NCnWuI&list=PLLIsnFO_dy6O1ujATMyEG7kVRATAc4q7N)
 
-![YouTube Screenshot](image.png)
+![YouTube Screenshot](youtube-playlist.png)
