@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { animationTimings } from '../constants/animations';
+import Modal from './Modal';
 
 // Helper to generate image URL
 const getImageUrl = (value, hideImage) => {
@@ -28,6 +29,7 @@ const Cell = ({
   hint = null
 }) => {
   const imageUrl = getImageUrl(value, hideImage);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleRandomizeClick = () => {
     if (!locked && Array.isArray(options) && options.length > 0) {
@@ -36,54 +38,77 @@ const Cell = ({
     }
   };
 
+  const handleImageClick = (e) => {
+    e.stopPropagation();
+    if (imageUrl) {
+      setIsModalOpen(true);
+    }
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleLockClick = (e) => {
+    e.stopPropagation();
+    onLock();
+  };
+
   const cellClassName = `cell ${locked ? 'locked' : ''}`;
 
   return (
-    <div className={cellClassName}>
-      <span className="lock" onClick={onLock}></span>
-      <h1 onClick={handleRandomizeClick}>
-        {title}
-      </h1>
-      <select
-        name={name}
-        value={value}
-        onChange={(e) => onChange(e.target.value)}
-        disabled={locked}
-      >
-        <option value="">{placeholder}</option>
-        {/* Check if options is a valid array before mapping */}
-        {Array.isArray(options) && options.map((option, index) => (
-          <option key={index} value={option.name}> {/* Use option.name for value and display */}
-            {option.name}
-          </option>
-        ))}
-      </select>
-      
-      <AnimatePresence mode="wait">
-        {!hideImage && imageUrl && (
-          <motion.div
-            key={imageUrl}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{
-              duration: animationTimings.cellFade.duration,
-              ease: animationTimings.cellFade.ease,
-              delay: animationTimings.cellFade.delay
-            }}
-            className="cell-image-container"
-          >
-            <img 
-              src={imageUrl} 
-              alt={value} 
-              className="cell-image"
-              onError={(e) => { e.target.style.display = 'none'; console.error(`Failed to load image: ${imageUrl}`); }}
-            />
-            {hint && <div className="hint-text">{hint}</div>}
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
+    <>
+      <div className={cellClassName} onClick={handleRandomizeClick}>
+        <span className="lock" onClick={handleLockClick}></span>
+        <h1>
+          {title}
+        </h1>
+        <select
+          name={name}
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          disabled={locked}
+        >
+          <option value="">{placeholder}</option>
+          {options.map((option) => (
+            <option key={option.name} value={option.name}>
+              {option.name}
+            </option>
+          ))}
+        </select>
+        <AnimatePresence mode="wait">
+          {!hideImage && imageUrl && (
+            <motion.div
+              key={imageUrl}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{
+                duration: animationTimings.cellFade.duration,
+                ease: animationTimings.cellFade.ease,
+                delay: animationTimings.cellFade.delay
+              }}
+              className="cell-image-container"
+            >
+              <img 
+                src={imageUrl}
+                alt={hint}
+                onClick={handleImageClick}
+                className="cell-image"
+                onError={(e) => { e.target.style.display = 'none'; console.error(`Failed to load image: ${imageUrl}`); }}
+              />
+              {hint && <div className="hint-text">{hint}</div>}
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+      <Modal 
+        isOpen={isModalOpen}
+        onClose={handleModalClose}
+        imageUrl={imageUrl}
+        hint={hint}
+      />
+    </>
   );
 };
 
