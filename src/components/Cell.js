@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 // Helper to generate image URL
 const getImageUrl = (value, hideImage) => {
@@ -34,8 +35,7 @@ const Cell = ({
     }
   };
 
-  const cellClassName = `cell ${locked ? 'locked' : ''} ${isAnimating ? 'cell-spinning' : ''}`;
-  const imageClasses = 'cell-image';
+  const cellClassName = `cell ${locked ? 'locked' : ''}`;
 
   return (
     <div className={cellClassName}>
@@ -57,18 +57,27 @@ const Cell = ({
           </option>
         ))}
       </select>
-      {/* Render image and hint only if imageUrl is valid AND hideImage is false */}
-      {!hideImage && imageUrl &&
-        <div className="cell-image-container">
-          <img 
-            src={imageUrl} 
-            alt={value} 
-            className={imageClasses}
-            onError={(e) => { e.target.style.display = 'none'; console.error(`Failed to load image: ${imageUrl}`); }}
-          />
-          {hint && <div className="hint-text">{hint}</div>}
-        </div>
-      }
+      
+      <AnimatePresence mode="wait">
+        {!hideImage && imageUrl && (
+          <motion.div
+            key={imageUrl}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="cell-image-container"
+          >
+            <img 
+              src={imageUrl} 
+              alt={value} 
+              className="cell-image"
+              onError={(e) => { e.target.style.display = 'none'; console.error(`Failed to load image: ${imageUrl}`); }}
+            />
+            {hint && <div className="hint-text">{hint}</div>}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
