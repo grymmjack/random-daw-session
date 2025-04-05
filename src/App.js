@@ -414,6 +414,7 @@ function App() {
           onChange={(option) => handleCellChange('daw', option)}
           isAnimating={!!animatingCells.daw}
           hint={daws.find(opt => opt.name === cells.daw.selected)?.hint}
+          index={0}
         />
         <Cell 
           title="Synth Instrument"
@@ -425,6 +426,7 @@ function App() {
           onChange={(option) => handleCellChange('synthInstrument', option)}
           isAnimating={!!animatingCells.synthInstrument}
           hint={synthInstruments.find(opt => opt.name === cells.synthInstrument.selected)?.hint}
+          index={1}
         />
         <Cell 
           title="Synth Effect"
@@ -436,6 +438,7 @@ function App() {
           onChange={(option) => handleCellChange('synthEffect', option)}
           isAnimating={!!animatingCells.synthEffect}
           hint={synthEffects.find(opt => opt.name === cells.synthEffect.selected)?.hint}
+          index={2}
         />
         <Cell 
           title="Drum Instrument"
@@ -447,6 +450,7 @@ function App() {
           onChange={(option) => handleCellChange('drumInstrument', option)}
           isAnimating={!!animatingCells.drumInstrument}
           hint={drumInstruments.find(opt => opt.name === cells.drumInstrument.selected)?.hint}
+          index={3}
         />
         <Cell 
           title="Drum Effect"
@@ -458,19 +462,21 @@ function App() {
           onChange={(option) => handleCellChange('drumEffect', option)}
           isAnimating={!!animatingCells.drumEffect}
           hint={drumEffects.find(opt => opt.name === cells.drumEffect.selected)?.hint}
+          index={4}
         />
         
         <Cell 
           title="# Random Preset Instruments"
           name="randomPresetInstrumentCount"
-          options={instrumentCounts} // Use the new constant
+          options={instrumentCounts}
           value={cells.randomPresetInstrumentCount.selected}
           locked={cells.randomPresetInstrumentCount.locked}
           onLock={() => toggleLock('randomPresetInstrumentCount')}
           onChange={(option) => handleCellChange('randomPresetInstrumentCount', option)}
           placeholder="COUNT..."
-          hideImage={true} // Don't show image for the count selector
+          hideImage={true}
           isAnimating={!!animatingCells.randomPresetInstrumentCount}
+          index={5}
         />
         
         {/* Conditionally Render Preset Instrument Cells */}
@@ -486,6 +492,7 @@ function App() {
             onChange={(option) => handleCellChange('randomPresetInstrument0', option)}
             isAnimating={!!animatingCells.randomPresetInstrument0}
             hint={randomPresetInstruments.find(opt => opt.name === cells.randomPresetInstrument0.selected)?.hint}
+            index={6}
           />
         )}
         {actualPresetCount >= 2 && (
@@ -500,7 +507,8 @@ function App() {
             onChange={(option) => handleCellChange('randomPresetInstrument1', option)}
             isAnimating={!!animatingCells.randomPresetInstrument1}
             hint={randomPresetInstruments.find(opt => opt.name === cells.randomPresetInstrument1.selected)?.hint}
-          />       
+            index={7}
+          />
         )}
         {actualPresetCount >= 3 && (
           <Cell 
@@ -514,6 +522,7 @@ function App() {
             onChange={(option) => handleCellChange('randomPresetInstrument2', option)}
             isAnimating={!!animatingCells.randomPresetInstrument2}
             hint={randomPresetInstruments.find(opt => opt.name === cells.randomPresetInstrument2.selected)?.hint}
+            index={8}
           />
         )}
         
@@ -527,6 +536,7 @@ function App() {
           onChange={(option) => handleCellChange('sendEffect', option)}
           isAnimating={!!animatingCells.sendEffect}
           hint={sendEffects.find(opt => opt.name === cells.sendEffect.selected)?.hint}
+          index={9}
         />
       </div>
     </div>

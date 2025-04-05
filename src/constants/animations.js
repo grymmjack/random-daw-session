@@ -3,12 +3,18 @@ export const animationTimings = {
   cellFade: {
     duration: 0.3, // Duration for fade in/out
     ease: 'easeInOut', // Easing function
-    delay: 0 // Delay before animation starts
+    delay: 0 // Initial delay before animation starts
   },
   
-  // Additional animation presets can be added here
-  // cellScale: {
-  //   duration: 0.2,
-  //   ease: 'easeOut'
-  // }
+  // Staggered animation preset
+  stagger: {
+    duration: 0.3,
+    ease: 'easeInOut',
+    delay: 0,
+    stagger: {
+      each: 0.1, // 0.1 second delay between each cell
+      from: 'first', // Start from first cell
+      amount: 0.5 // Total duration of stagger effect
+    }
+  }
 };
