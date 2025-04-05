@@ -406,3 +406,9 @@ button {
   border-radius: 4px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+
+.modal-hint {
+  text-align: center;
+  padding: 1em 0 0 0;
+  font-size: 24px;
+}

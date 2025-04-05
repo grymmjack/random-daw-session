@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { animationTimings } from '../constants/animations';
 
 const Modal = ({ isOpen, onClose, imageUrl, hint, maxImageWidth = 800 }) => {
   const [isAnimating, setIsAnimating] = useState(false);
@@ -16,28 +15,27 @@ const Modal = ({ isOpen, onClose, imageUrl, hint, maxImageWidth = 800 }) => {
   }, [isOpen]);
 
   const handleOverlayClick = (e) => {
-    if (isOpen) {
+    // Only close if clicking the overlay itself, not the image
+    if (e.target === e.currentTarget) {
       onClose();
     }
   };
 
   return (
     <AnimatePresence>
-      <motion.div
-        key={isOpen ? 'modal-open' : 'modal-closed'}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: isOpen ? (isAnimating ? 0.5 : 1) : 0 }}
-        exit={{ opacity: 0 }}
-        transition={{
-          duration: animationTimings.cellFade.duration,
-          ease: animationTimings.cellFade.ease,
-          delay: animationTimings.cellFade.delay
-        }}
-        className="modal-overlay"
-        style={{ pointerEvents: isOpen ? 'auto' : 'none' }}
-        onClick={handleOverlayClick}
-      >
-        {isOpen && (
+      {isOpen && (
+        <motion.div
+          key="modal-overlay"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: isAnimating ? 0.5 : 1 }}
+          exit={{ opacity: 0 }}
+          transition={{
+            duration: 0.3,
+            ease: "easeInOut"
+          }}
+          className="modal-overlay"
+          onClick={handleOverlayClick}
+        >
           <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
             animate={{ 
@@ -49,29 +47,25 @@ const Modal = ({ isOpen, onClose, imageUrl, hint, maxImageWidth = 800 }) => {
               opacity: 0 
             }}
             transition={{ 
-              duration: animationTimings.cellFade.duration, 
-              ease: animationTimings.cellFade.ease 
+              duration: 0.3,
+              ease: "easeInOut"
             }}
             className="modal-content"
-            onClick={(e) => e.stopPropagation()}
           >
-            <div className="modal-header">
-              <h2>{hint}</h2>
-            </div>
-            <div className="modal-image-container">
-              <img 
-                src={imageUrl}
-                alt={hint}
-                style={{
-                  maxWidth: maxImageWidth,
-                  maxHeight: '80vh',
-                  objectFit: 'contain'
-                }}
-              />
-            </div>
+            <img 
+              src={imageUrl}
+              alt={hint}
+              style={{ maxWidth: `${maxImageWidth}px` }}
+              onClick={(e) => e.stopPropagation()}
+            />
+            {hint && (
+              <div className="modal-hint">
+                {hint}
+              </div>
+            )}
           </motion.div>
-        )}
-      </motion.div>
+        </motion.div>
+      )}
     </AnimatePresence>
   );
 };

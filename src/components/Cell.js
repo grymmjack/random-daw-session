@@ -129,7 +129,12 @@ const Cell = ({
       </AnimatePresence>
       <AnimatePresence>
         {isModalOpen && (
-          <Modal onClose={handleModalClose} imageUrl={imageUrl} hint={hint} />
+          <Modal 
+            isOpen={isModalOpen} 
+            onClose={handleModalClose} 
+            imageUrl={imageUrl} 
+            hint={hint} 
+          />
         )}
       </AnimatePresence>
     </motion.div>
