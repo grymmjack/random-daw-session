@@ -285,17 +285,20 @@ button {
 }
 
 .modal-header {
-  padding: 20px;
   text-align: center;
   color: white;
   font-size: 24px;
 }
 
 .modal-option-text {
-  font-size: 24px;
-  color: white;
+  background: #000;
+  padding: 8px 0;
+  width: 100%;
+  text-align: center;
   margin: 0;
-  padding: 0;
+  text-transform: uppercase;
+  font-weight: normal;
+  font-size: 16px;
 }
 
 .modal-image-container {
@@ -366,6 +369,7 @@ button {
   background: #222;
   color: #ccc;
   max-width: 80px; /* Limit width */
+  margin-left: 16px;
 }
 
 .actions-section {

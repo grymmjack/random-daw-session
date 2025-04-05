@@ -14,13 +14,6 @@ const Modal = ({ isOpen, onClose, imageUrl, hint, maxImageWidth = 800, selectedO
     }
   }, [isOpen]);
 
-  const handleOverlayClick = (e) => {
-    // Only close if clicking the overlay itself, not the image
-    if (e.target === e.currentTarget) {
-      onClose();
-    }
-  };
-
   return (
     <AnimatePresence>
       {isOpen && (
@@ -34,7 +27,16 @@ const Modal = ({ isOpen, onClose, imageUrl, hint, maxImageWidth = 800, selectedO
             ease: "easeInOut"
           }}
           className="modal-overlay"
-          onClick={handleOverlayClick}
+          onClick={(e) => {
+            // Only close if clicking the overlay itself, not the image
+            if (e.target === e.currentTarget) {
+              setIsAnimating(true);
+              setTimeout(() => {
+                setIsAnimating(false);
+                onClose();
+              }, 300);
+            }
+          }}
         >
           <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
