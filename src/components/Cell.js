@@ -34,7 +34,7 @@ const Cell = ({
   const handleRandomizeClick = () => {
     if (!locked && Array.isArray(options) && options.length > 0) {
       const randomOption = options[Math.floor(Math.random() * options.length)];
-      onChange(randomOption.name); // Pass the name of the random option
+      onChange(randomOption); // Pass the entire option object
     }
   };
 
@@ -58,24 +58,38 @@ const Cell = ({
 
   return (
     <>
-      <div className={cellClassName} onClick={handleRandomizeClick}>
+      <div className={cellClassName}>
         <span className="lock" onClick={handleLockClick}></span>
-        <h1>
+        <h1 onClick={handleRandomizeClick}>
           {title}
         </h1>
-        <select
-          name={name}
-          value={value}
-          onChange={(e) => onChange(e.target.value)}
-          disabled={locked}
-        >
-          <option value="">{placeholder}</option>
-          {options.map((option) => (
-            <option key={option.name} value={option.name}>
-              {option.name}
-            </option>
-          ))}
-        </select>
+        <div onClick={(e) => {
+          // Only trigger randomization if clicking outside the select
+          if (!e.target.closest('select')) {
+            handleRandomizeClick();
+          }
+        }}>
+          <select
+            name={name}
+            value={value}
+            onChange={(e) => {
+              // Find the selected option object
+              const selectedOption = options.find(opt => opt.name === e.target.value);
+              if (selectedOption) {
+                // Call onChange with the entire option object
+                onChange(selectedOption);
+              }
+            }}
+            disabled={locked}
+          >
+            <option value="">{placeholder}</option>
+            {options.map((option) => (
+              <option key={option.name} value={option.name}>
+                {option.name}
+              </option>
+            ))}
+          </select>
+        </div>
         <AnimatePresence mode="wait">
           {!hideImage && imageUrl && (
             <motion.div
