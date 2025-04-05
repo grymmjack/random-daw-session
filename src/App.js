@@ -159,11 +159,10 @@ function App() {
   const randomize = useCallback(() => {
     // Use existing settings, DO NOT randomize checkboxes
     const currentSettings = settings;
-    let newTimeValue = timeSelectValue; // Keep current unless overridden
 
     // 2. Randomize Time Constraint value if checked
     if (currentSettings.timeConstraint) {
-      const timeOptions = [15, 30, 45, 60, 120, 180];
+      const timeOptions = [1, 15, 30, 45, 60, 120, 180];
       let chosenTime = timeSelectValue;
       if (chosenTime === 'Random') {
         chosenTime = getRandomItem(timeOptions);
@@ -176,11 +175,10 @@ function App() {
          if (timeSelectValue === 'Random') {
             setTimeSelectValue(numericTime.toString());
          }
-         newTimeValue = numericTime; // Store the numeric value for countdown setup
       } else {
          // Fallback if something went wrong (e.g., parsing failed)
-         newTimeValue = 15;
-         if (timeSelectValue === 'Random') setTimeSelectValue('15');
+         const fallbackTime = 15;
+         setTimeSelectValue(fallbackTime.toString());
       }
     }
 
@@ -245,6 +243,8 @@ function App() {
                 options = cellName === 'synthEffect' ? synthEffects : (cellName === 'drumEffect' ? drumEffects : sendEffects);
                 applyRandomization = Math.random() < 0.5; // 50% chance for effects if unlocked
                 break;
+            default:
+                break;
         }
 
         if (applyRandomization && Array.isArray(options) && options.length > 0) {
@@ -300,7 +300,7 @@ function App() {
       setAnimatingCells({});
     }, 0);
 
-  }, [settings, cells, timeSelectValue, countdown.isTimerRunning, startTimer]); // Added dependencies
+  }, [settings, cells, timeSelectValue]); // Removed unnecessary dependencies
 
   // Recalculate displayed count for rendering
   const displayPresetCount = parseInt(cells.randomPresetInstrumentCount.selected, 10);

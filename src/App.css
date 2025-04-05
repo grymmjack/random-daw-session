@@ -1,5 +1,5 @@
 body {
-  overflow-y: scroll;			
+  overflow-y: scroll;
   user-select: none; /* Keep user-select none if intended */
   background-color: #222;
   color: #ccc;
