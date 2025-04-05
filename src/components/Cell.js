@@ -133,7 +133,8 @@ const Cell = ({
             isOpen={isModalOpen} 
             onClose={handleModalClose} 
             imageUrl={imageUrl} 
-            hint={hint} 
+            hint={hint}
+            selectedOption={value} 
           />
         )}
       </AnimatePresence>

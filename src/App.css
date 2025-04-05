@@ -384,14 +384,17 @@ button {
 }
 
 .modal-header {
-  margin-bottom: 1rem;
+  padding: 20px;
   text-align: center;
+  color: white;
+  font-size: 24px;
 }
 
-.modal-header h2 {
-  color: #777;
-  font-size: 1.2rem;
+.modal-option-text {
+  font-size: 24px;
+  color: white;
   margin: 0;
+  padding: 0;
 }
 
 .modal-image-container {
@@ -411,4 +414,10 @@ button {
   text-align: center;
   padding: 1em 0 0 0;
   font-size: 24px;
+}
+
+.modal-hint-text {
+  font-size: 20px;
+  color: #777;
+  text-align: center;
 }

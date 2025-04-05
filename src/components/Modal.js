@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const Modal = ({ isOpen, onClose, imageUrl, hint, maxImageWidth = 800 }) => {
+const Modal = ({ isOpen, onClose, imageUrl, hint, maxImageWidth = 800, selectedOption }) => {
   const [isAnimating, setIsAnimating] = useState(false);
 
   useEffect(() => {
@@ -52,6 +52,9 @@ const Modal = ({ isOpen, onClose, imageUrl, hint, maxImageWidth = 800 }) => {
             }}
             className="modal-content"
           >
+            <div className="modal-header">
+              <h2 className="modal-option-text">{selectedOption}</h2>
+            </div>
             <img 
               src={imageUrl}
               alt={hint}
@@ -59,9 +62,7 @@ const Modal = ({ isOpen, onClose, imageUrl, hint, maxImageWidth = 800 }) => {
               onClick={(e) => e.stopPropagation()}
             />
             {hint && (
-              <div className="modal-hint">
-                {hint}
-              </div>
+              <p className="modal-hint-text">{hint}</p>
             )}
           </motion.div>
         </motion.div>
