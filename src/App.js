@@ -121,8 +121,8 @@ function App() {
 
   // Reset Timer
   const resetTimer = () => {
-    const minutesToReset = 15; // Always initialize with 15 minutes
-    const initialTimeSeconds = minutesToReset * 60;
+    // Only reset timer state, don't touch time constraint value
+    const initialTimeSeconds = parseInt(timeSelectValue, 10) * 60;
     setCountdown({
       initialTime: initialTimeSeconds,
       timeRemaining: initialTimeSeconds,
@@ -155,31 +155,26 @@ function App() {
 
   }, [countdown.isTimerRunning, countdown.paused, countdown.timeRemaining]); // Dependencies for the effect
 
+  useEffect(() => {
+    const minutes = timeSelectValue === 'Random' ? 15 : parseInt(timeSelectValue, 10);
+    const timeInSeconds = minutes * 60;
+    setCountdown(prev => ({
+      ...prev,
+      initialTime: timeInSeconds,
+      timeRemaining: timeInSeconds
+    }));
+  }, [timeSelectValue]);
+
   // Randomize function update
   const randomize = useCallback(() => {
     // Use existing settings, DO NOT randomize checkboxes
     const currentSettings = settings;
 
-    // 2. Randomize Time Constraint value if checked
+    // Randomize Time Constraint value if checked
     if (currentSettings.timeConstraint) {
-      const timeOptions = [1, 15, 30, 45, 60, 120, 180];
-      let chosenTime = timeSelectValue;
-      if (chosenTime === 'Random') {
-        chosenTime = getRandomItem(timeOptions);
-      }
-      // Ensure chosenTime is a number before proceeding
-      const numericTime = parseInt(chosenTime, 10);
-
-      if (!isNaN(numericTime) && numericTime > 0) {
-         // Update the select dropdown display value if it was Random
-         if (timeSelectValue === 'Random') {
-            setTimeSelectValue(numericTime.toString());
-         }
-      } else {
-         // Fallback if something went wrong (e.g., parsing failed)
-         const fallbackTime = 15;
-         setTimeSelectValue(fallbackTime.toString());
-      }
+      const timeOptions = ['1', '15', '30', '45', '60', '120', '180'];
+      const randomTime = getRandomItem(timeOptions);
+      setTimeSelectValue(randomTime);
     }
 
     // 3. Select and store ideas for other checked constraints
@@ -300,7 +295,7 @@ function App() {
       setAnimatingCells({});
     }, 0);
 
-  }, [settings, cells, timeSelectValue]); // Removed unnecessary dependencies
+  }, [settings, cells]); // Removed unnecessary dependencies
 
   // Recalculate displayed count for rendering
   const displayPresetCount = parseInt(cells.randomPresetInstrumentCount.selected, 10);
@@ -331,24 +326,22 @@ function App() {
       <div id="lights_out"></div>
       <div id="corner-logo"></div>
       
-      {settings.timeConstraint && (
-        <div id="countdown-container" className={countdown.paused ? 'paused' : ''}>
-          <span id="countdown-remaining">Time Remaining:</span>
-          <span id="countdown">{formatTime(countdown.timeRemaining)}</span>
-          {!countdown.isTimerRunning && !countdown.paused && countdown.timeRemaining === countdown.initialTime && (
-             <button onClick={startTimer} disabled={!timeSelectValue || timeSelectValue <= 0}>Start</button>
-          )}
-          {countdown.isTimerRunning && !countdown.paused && (
-             <button onClick={pauseTimer}>Pause</button>
-          )}
-          {countdown.paused && (
-            <button onClick={resumeTimer}>Resume</button>
-          )}
-          {(countdown.isTimerRunning || countdown.paused || countdown.timeRemaining < countdown.initialTime) && (
-            <button onClick={resetTimer}>Reset</button>
-          )}
-        </div>
-      )}
+      <div id="countdown-container" className={countdown.paused ? 'paused' : ''}>
+        <span id="countdown-remaining">Time Remaining:</span>
+        <span id="countdown">{formatTime(countdown.timeRemaining)}</span>
+        {!countdown.isTimerRunning && !countdown.paused && countdown.timeRemaining === countdown.initialTime && (
+           <button onClick={startTimer} disabled={!timeSelectValue || timeSelectValue <= 0}>Start</button>
+        )}
+        {countdown.isTimerRunning && !countdown.paused && (
+           <button onClick={pauseTimer}>Pause</button>
+        )}
+        {countdown.paused && (
+          <button onClick={resumeTimer}>Resume</button>
+        )}
+        {(countdown.isTimerRunning || countdown.paused || countdown.timeRemaining < countdown.initialTime) && (
+          <button onClick={resetTimer}>Reset</button>
+        )}
+      </div>
       
       <div id="oblique-strategy">{obliqueStrategy}</div>
       

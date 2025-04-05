@@ -140,128 +140,11 @@ button {
 }
 
 #tempo {
-  display: inline-block;
-  font-size: 32px;
-  font-family: sans-serif;
-  font-style: normal;
-  font-weight: bold;
-  text-transform: uppercase;
-  background: #000;
-  color: #fff;
-  padding: 9px 32px;
-  margin-left: 8px;
-}
-
-.cell-image-container {
-  display: flex;           /* Enable flexbox for centering */
-  align-items: center;     /* Center vertically */
-  width: 100%;             /* Take full width of its parent (.cell) */
-  height: 250px;           /* Adjusted height */
-  justify-content: stretch;
-  margin-top: 5px;         /* Add some space above the image */
-}
-
-.cell-image {
-  max-width: 100%;         /* Ensure image doesn't exceed container width */
-  max-height: 100%;        /* Ensure image doesn't exceed container height */
-  object-fit: contain;     /* Scale image down to fit while preserving aspect ratio */
-  display: block;          /* Ensure image behaves as a block element */
-}
-
-.hint {
-  display: block;
-  position: relative;
-  top: 24px;
-  width: 100%;
-  text-align: center;
-  font-style: oblique;
-  font-size: medium;
-  font-family: serif;			
-  color: #666;
-  font-size: 0.8em;
-  color: #777;
-}
-
-.lock {
-  background: transparent url('../public/lock-icon.png') no-repeat 0 0;
-  width: 35px;
-  height: 35px;
-  display: block;
-  position: absolute;
-  top: 8px;
-  right: 0px;
-  opacity: 0.25;
-  cursor: pointer;
-  z-index: 99;
-}
-
-.lock:hover {
-  opacity: 0.75;
-}
-
-.locked .lock {
-  opacity: 1.0;
-}
-
-/* --- Control Panel Styles --- */
-.control-panel {
-  background: #1a1a1a; /* Dark background for the panel */
-  padding: 15px;
-  margin-bottom: 20px;
-  border-radius: 5px;
-  border: 1px solid #444;
-}
-
-.control-panel h2 {
-  margin-top: 0;
-  margin-bottom: 10px;
-  color: #eee;
-  font-size: 18px;
-  padding-bottom: 5px;
-}
-
-.constraints-section {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive columns */
-  gap: 10px; /* Spacing between items */
-  margin-bottom: 15px;
-}
-
-.constraints-section label {
-  display: flex; /* Align checkbox and text */
-  align-items: center;
-  background: #333;
-  padding: 8px 10px;
-  border-radius: 3px;
-  border: 1px solid #555;
-}
-
-.constraints-section input[type="checkbox"] {
-  margin-right: 8px; /* Space between checkbox and text */
-}
-
-.constraints-section .time-input {
-  padding: 5px;
-  border: 1px solid #555;
-  background: #222;
-  color: #ccc;
-  max-width: 80px; /* Limit width */
-}
-
-.actions-section {
-  margin-top: 15px;
-  padding-top: 15px;
-  text-align: center; /* Center buttons */
-}
-
-#tempo {
   /* Adjust tempo display if needed */
   display: block; /* Make it block to center */
   text-align: center;
   margin-top: 15px;
 }
-
-/* --- End Control Panel Styles --- */
 
 /* --- Timer Display Styles --- */
 #time_constraints {
@@ -289,6 +172,20 @@ button {
   padding: 5px 10px;
   font-size: 1em; /* Adjust button size */
   border-width: 2px;
+}
+
+#time_display {
+  display: inline-block;
+  font-size: 32px;
+  font-family: sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  text-transform: uppercase;
+  background: #000;
+  color: #fff;
+  padding: 9px 32px;
+  margin-left: 8px;
+  opacity: 1;
 }
 
 /* --- End Timer Display Styles --- */
@@ -420,4 +317,106 @@ button {
   font-size: 20px;
   color: #777;
   text-align: center;
+}
+
+/* --- Control Panel Styles --- */
+.control-panel {
+  background: #1a1a1a; /* Dark background for the panel */
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: 1px solid #444;
+}
+
+.control-panel h2 {
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: #eee;
+  font-size: 18px;
+  padding-bottom: 5px;
+}
+
+.constraints-section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Responsive columns */
+  gap: 10px; /* Spacing between items */
+  margin-bottom: 15px;
+}
+
+.constraints-section label {
+  display: flex; /* Align checkbox and text */
+  align-items: center;
+  background: #333;
+  padding: 8px 10px;
+  border-radius: 3px;
+  border: 1px solid #555;
+}
+
+.constraints-section input[type="checkbox"] {
+  margin-right: 8px; /* Space between checkbox and text */
+}
+
+.constraints-section .time-input {
+  padding: 5px;
+  border: 1px solid #555;
+  background: #222;
+  color: #ccc;
+  max-width: 80px; /* Limit width */
+}
+
+.actions-section {
+  margin-top: 15px;
+  padding-top: 15px;
+  text-align: center; /* Center buttons */
+}
+
+.cell-image-container {
+  display: flex;           /* Enable flexbox for centering */
+  align-items: center;     /* Center vertically */
+  width: 100%;             /* Take full width of its parent (.cell) */
+  height: 250px;           /* Adjusted height */
+  justify-content: stretch;
+  margin-top: 5px;         /* Add some space above the image */
+}
+
+.cell-image {
+  max-width: 100%;         /* Ensure image doesn't exceed container width */
+  max-height: 100%;        /* Ensure image doesn't exceed container height */
+  object-fit: contain;     /* Scale image down to fit while preserving aspect ratio */
+  display: block;          /* Ensure image behaves as a block element */
+}
+
+.hint {
+  display: block;
+  position: relative;
+  top: 24px;
+  width: 100%;
+  text-align: center;
+  font-style: oblique;
+  font-size: medium;
+  font-family: serif;			
+  color: #666;
+  font-size: 0.8em;
+  color: #777;
+}
+
+.lock {
+  background: transparent url('../public/lock-icon.png') no-repeat 0 0;
+  width: 35px;
+  height: 35px;
+  display: block;
+  position: absolute;
+  top: 8px;
+  right: 0px;
+  opacity: 0.25;
+  cursor: pointer;
+  z-index: 99;
+}
+
+.lock:hover {
+  opacity: 0.75;
+}
+
+.locked .lock {
+  opacity: 1.0;
 }

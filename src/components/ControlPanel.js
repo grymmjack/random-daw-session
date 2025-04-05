@@ -26,7 +26,6 @@ const ControlPanel = ({
             className="normal time-input" 
             value={timeSelectValue} 
             onChange={onTimeInputChange} 
-            disabled={!settings.timeConstraint} 
             style={{ marginLeft: '8px' }} 
           >
             <option value="Random">Random</option>
