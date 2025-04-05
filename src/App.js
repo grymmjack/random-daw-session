@@ -526,6 +526,7 @@ function App() {
           onLock={() => toggleLock('sendEffect')}
           onChange={(option) => handleCellChange('sendEffect', option)}
           isAnimating={!!animatingCells.sendEffect}
+          hint={sendEffects.find(opt => opt.name === cells.sendEffect.selected)?.hint}
         />
       </div>
     </div>
